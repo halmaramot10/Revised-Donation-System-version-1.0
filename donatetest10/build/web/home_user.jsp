@@ -32,6 +32,31 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
     <!-- modernizr css -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
+	<style type="text/css" class="init">
+	
+	</style>
+  
+	<script type="text/javascript" src="/media/js/site.js?_=a64810efc82bfd3b645784011efa5963"></script>
+	<script type="text/javascript" src="/media/js/dynamic.php?comments-page=extensions%2Fbuttons%2Fexamples%2Fhtml5%2Fsimple.html" async></script>
+	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+	<script type="text/javascript" language="javascript" src="../../../../examples/resources/demo.js"></script>
+	
+        <script type="text/javascript" class="init">
+            $(document).ready(function() {
+                    $('#example').DataTable( {
+                    } );
+            } );
+	</script>
+    
     <title>Add Donation Entry</title>
 </head>
 <body class="body-bg">
@@ -51,6 +76,7 @@
 
         String name = (String)session.getAttribute("name");
         String uname=(String)session.getAttribute("uname");
+        String id=null;
         if(uname!=null){
     %>
     
@@ -384,36 +410,70 @@
                                     
                                     <div class="row" style="display:none" id="moneysss">
                                         
-                                        <div class="form-group col-6" >
-                                            <label for="method">Method</label>
+                                        <div class="form-group col-6" id="metform">
+                                            <label for="metform">Method</label>
                                             <select id="method" name="method" class="form-control form-control-sm" onchange ="shows3()">
                                                 <option>Select One</option>
                                                 <option value="Bank">Bank</option>
                                                 <option value="Online">Online</option>
-                                                <option value="Others">Others</option>
+                                                <option value="Other">Other</option>
                                             </select>
                                         </div>
                                                                               
-                                        <div class="form-group col-4" style="display:none" id="otherss">
-                                            <label for="omethod">If Others, please specify</label>
-                                            <input type="text" id="omethod" name="otherss" class="form-control form-control-sm">
+                                        <div class="form-group col-4" style="display:none" id="others">
+                                            <label for="othfrm">If Other, please specify</label>
+                                            <input type="text" id="omethod" name="others1" class="form-control form-control-sm">
                                         </div>
+                                        
                                         <div class="form-group col-4" style="display:none" id="bnkform">
                                             <label for="bank">Bank</label>
-                                            <select id="bank" name="bank" class="form-control form-control-sm">
-                                                <option>Bank</option>
-                                                <option>Online</option>
-                                                <option>Others</option>
+                                            <select id="pay1" name="pay1" class="form-control form-control-sm" onchange="shows4()">
+                                                 <%
+                                            try{
+                                                con=DB.getConnection();
+                                                st=con.createStatement();
+                                                rs=st.executeQuery("select * from paymet where method='Bank'");
+                                                while(rs.next()){           
+                                        %>
+                                                    
+                                                    <option value="<%=rs.getString("met_name") %>"><%=rs.getString("met_name") %></option>
+                                        <%
+                                                }
+                                            }catch(Exception ex){
+                                                ex.printStackTrace();
+                                                out.println("Error: "+ex.getMessage());
+                                            }
+                                        %>
+                                                <option>Add New Bank</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-4" style="display:none" id="olform">
                                             <label for="payapp">Payment App</label>
-                                            <select id="payapp" name="online" class="form-control form-control-sm">
-                                                <option>Bank</option>
-                                                <option>Online</option>
-                                                <option>Others</option>
+                                            <select id="pay2" name="pay2" class="form-control form-control-sm" onchange="shows4()">
+                                                <%
+                                            try{
+                                                con=DB.getConnection();
+                                                st=con.createStatement();
+                                                rs=st.executeQuery("select * from paymet where method='Online'");
+                                                while(rs.next()){           
+                                        %>
+                                                    
+                                                    <option value="<%=rs.getString("met_name") %>"><%=rs.getString("met_name") %></option>
+                                        <%
+                                                }
+                                            }catch(Exception ex){
+                                                ex.printStackTrace();
+                                                out.println("Error: "+ex.getMessage());
+                                            }
+                                        %>
+                                                <option>Add New Application</option>
                                             </select>
                                         </div>                                      
+                                        
+                                        <div class="form-group col-3" style="display:none" id="nbafrm">
+                                            <label for="nbafrm">Add New Bank/Application</label>
+                                            <input type="text" id="newba" name="newba" class="form-control form-control-sm">
+                                        </div>
                                         
                                         <div class="form-group col-6" id="reform">
                                             <label for="reference">Reference No</label>
@@ -423,8 +483,7 @@
                                     <div class="row">
                                         <div class="form-group col-3">
                                             <button type="submit" class="btn btn-success mb-3">Add Entry</button>
-                                        </div>
-                                        
+                                        </div> 
                                     </div>                                  
                                 </form>
                             </div>
@@ -437,8 +496,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="header-title">Data Table Primary</h4>
-                                <div class="data-tables datatable-primary">
-                                    <table id="dataTable2" class="text-center">
+                                <div>
+                                    <table id="example" class="table table-striped table-bordered zero-configuration">
                                         <thead class="text-capitalize">
                                             <tr>
                                                 <th>Invoice No</th>
@@ -450,6 +509,8 @@
                                                 <th>To</th>
                                                 <th>Status</th>
                                                 <th>Date</th>
+                                                <th>Pending</th>
+                                                <th>Released</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -461,6 +522,7 @@
 
                                                 rs = st.executeQuery(sql);
                                                 while(rs.next()){
+                                                    
                                             %>  
                                             
                                             <tr>
@@ -472,7 +534,21 @@
                                                 <td><%=rs.getString("fr") %></td>
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
-                                                <td><%=rs.getString("date") %></td>                                                                   
+                                                <td><%=rs.getString("date") %></td>
+                                                <td>
+                                                    <form action="Update_Pending" action="post">
+                                                        <input type="text" style="display:none" value="<%=rs.getString("type") %>" name="pen">
+                                                        <input type="text" style="display:none" value="<%=rs.getString("invoicenum") %>" name="penum">                                                    
+                                                        <button type="submit" class="btn btn-warning btn-xs mb-3" >Pending</button>                                                      
+                                                    </form>
+                                                </td>
+                                                <td>
+                                                    <form action="Update_Released" action="post">
+                                                        <input type="text" style="display:none" value="<%=rs.getString("type") %>" name="rels">
+                                                        <input type="text" style="display:none" value="<%=rs.getString("invoicenum") %>" name="relums">                                                    
+                                                        <button type="submit" class="btn btn-primary btn-xs mb-3" >Released</button>                                                      
+                                                    </form>
+                                                </td>
                                             </tr>
                                             
                                              <% 
@@ -522,6 +598,14 @@
     <!-- others plugins -->
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/scripts.js"></script>
+    
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
 </body>
 
 </html>

@@ -8,6 +8,14 @@
         <servlet-name>Add_Donation</servlet-name>
         <servlet-class>com.donate.Add_Donation</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Update_Pending</servlet-name>
+        <servlet-class>com.donate.Update_Pending</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Update_Released</servlet-name>
+        <servlet-class>com.donate.Update_Released</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>Add_Donation</servlet-name>
         <url-pattern>/Add_Donation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Update_Pending</servlet-name>
+        <url-pattern>/Update_Pending</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Update_Released</servlet-name>
+        <url-pattern>/Update_Released</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

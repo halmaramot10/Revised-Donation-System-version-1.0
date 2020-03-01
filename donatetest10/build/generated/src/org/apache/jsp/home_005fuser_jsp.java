@@ -79,6 +79,31 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("    <link rel=\"stylesheet\" href=\"assets/css/responsive.css\">\n");
       out.write("    <!-- modernizr css -->\n");
       out.write("    <script src=\"assets/js/vendor/modernizr-2.8.3.min.js\"></script>\n");
+      out.write("    \n");
+      out.write("    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css\">\n");
+      out.write("\t<link rel=\"stylesheet\" type=\"text/css\" href=\"https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css\">\n");
+      out.write("\t<style type=\"text/css\" class=\"init\">\n");
+      out.write("\t\n");
+      out.write("\t</style>\n");
+      out.write("  \n");
+      out.write("\t<script type=\"text/javascript\" src=\"/media/js/site.js?_=a64810efc82bfd3b645784011efa5963\"></script>\n");
+      out.write("\t<script type=\"text/javascript\" src=\"/media/js/dynamic.php?comments-page=extensions%2Fbuttons%2Fexamples%2Fhtml5%2Fsimple.html\" async></script>\n");
+      out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>\n");
+      out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js\"></script>\n");
+      out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js\"></script>\n");
+      out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js\"></script>\n");
+      out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js\"></script>\n");
+      out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js\"></script>\n");
+      out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js\"></script>\n");
+      out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"../../../../examples/resources/demo.js\"></script>\n");
+      out.write("\t\n");
+      out.write("        <script type=\"text/javascript\" class=\"init\">\n");
+      out.write("            $(document).ready(function() {\n");
+      out.write("                    $('#example').DataTable( {\n");
+      out.write("                    } );\n");
+      out.write("            } );\n");
+      out.write("\t</script>\n");
+      out.write("    \n");
       out.write("    <title>Add Donation Entry</title>\n");
       out.write("</head>\n");
       out.write("<body class=\"body-bg\">\n");
@@ -101,6 +126,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
 
         String name = (String)session.getAttribute("name");
         String uname=(String)session.getAttribute("uname");
+        String id=null;
         if(uname!=null){
     
       out.write("\n");
@@ -255,7 +281,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                                        <!--FOR OTHERS-->\n");
       out.write("                                        <div class=\"form-group col-3\" id=\"item1\" style=\"display:\">\n");
       out.write("                                            <label for=\"item\">Item Type</label>\n");
-      out.write("                                            <select name=\"item\" class=\"form-control form-control-sm\" id=\"item01\" onchange=\"shows2()\">\n");
+      out.write("                                            <select name=\"item1\" class=\"form-control form-control-sm\" id=\"item01\" onchange=\"shows2()\">\n");
       out.write("                                                ");
 
                                             try{
@@ -288,7 +314,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                                        <!--FOR FOOD-->\n");
       out.write("                                        <div class=\"form-group col-3\" id=\"item2\" style=\"display:none\">\n");
       out.write("                                            <label for=\"item\">Item Type</label>\n");
-      out.write("                                            <select name=\"item\" class=\"form-control form-control-sm\" id=\"item02\" onchange=\"shows2()\">\n");
+      out.write("                                            <select name=\"item2\" class=\"form-control form-control-sm\" id=\"item02\" onchange=\"shows2()\">\n");
       out.write("                                                ");
 
                                             try{
@@ -321,7 +347,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                                        <!--FOR Clothes-->\n");
       out.write("                                        <div class=\"form-group col-3\" id=\"item3\" style=\"display:none\">\n");
       out.write("                                            <label for=\"item\">Item Type</label>\n");
-      out.write("                                            <select name=\"item\" class=\"form-control form-control-sm\" id=\"item03\" onchange=\"shows2()\">\n");
+      out.write("                                            <select name=\"item3\" class=\"form-control form-control-sm\" id=\"item03\" onchange=\"shows2()\">\n");
       out.write("                                                ");
 
                                             try{
@@ -354,7 +380,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                                        <!--FOR Money-->\n");
       out.write("                                        <div class=\"form-group col-3\" id=\"item4\" style=\"display:none\">\n");
       out.write("                                            <label for=\"item\">Item Type</label>\n");
-      out.write("                                            <select name=\"item\" class=\"form-control form-control-sm\" id=\"item04\" onchange=\"shows2()\">\n");
+      out.write("                                            <select name=\"item4\" class=\"form-control form-control-sm\" id=\"item04\" onchange=\"shows2()\">\n");
       out.write("                                                ");
 
                                             try{
@@ -386,8 +412,8 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                                        \n");
       out.write("                                        <!--FOR School Supplies-->\n");
       out.write("                                        <div class=\"form-group col-3\" id=\"item5\" style=\"display:none\">\n");
-      out.write("                                            <label for=\"item\">Item Type</label>\n");
-      out.write("                                            <select name=\"item\" class=\"form-control form-control-sm\" id=\"item05\" onchange=\"shows2()\">\n");
+      out.write("                                            <label for=\"item5\">Item Type</label>\n");
+      out.write("                                            <select name=\"item5\" class=\"form-control form-control-sm\" id=\"item05\" onchange=\"shows2()\">\n");
       out.write("                                                ");
 
                                             try{
@@ -469,7 +495,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                                        \n");
       out.write("                                        <div class=\"form-group col-3\">\n");
       out.write("                                            <label for=\"cond\">Condition</label>                                           \n");
-      out.write("                                            <select id =\"cond\" name=\"cond\" class=\"form-control form-control-sm\">\n");
+      out.write("                                            <select id =\"cond\" name=\"cond01\" class=\"form-control form-control-sm\">\n");
       out.write("                                                <option value=\"New\">New</option>\n");
       out.write("                                                <option value=\"Used\">Used</option>\n");
       out.write("                                                <option value=\"Slightly Damaged\">Slightly Damaged</option>\n");
@@ -500,36 +526,88 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                                    \n");
       out.write("                                    <div class=\"row\" style=\"display:none\" id=\"moneysss\">\n");
       out.write("                                        \n");
-      out.write("                                        <div class=\"form-group col-6\" >\n");
-      out.write("                                            <label for=\"method\">Method</label>\n");
+      out.write("                                        <div class=\"form-group col-6\" id=\"metform\">\n");
+      out.write("                                            <label for=\"metform\">Method</label>\n");
       out.write("                                            <select id=\"method\" name=\"method\" class=\"form-control form-control-sm\" onchange =\"shows3()\">\n");
       out.write("                                                <option>Select One</option>\n");
       out.write("                                                <option value=\"Bank\">Bank</option>\n");
       out.write("                                                <option value=\"Online\">Online</option>\n");
-      out.write("                                                <option value=\"Others\">Others</option>\n");
+      out.write("                                                <option value=\"Other\">Other</option>\n");
       out.write("                                            </select>\n");
       out.write("                                        </div>\n");
       out.write("                                                                              \n");
-      out.write("                                        <div class=\"form-group col-4\" style=\"display:none\" id=\"otherss\">\n");
-      out.write("                                            <label for=\"omethod\">If Others, please specify</label>\n");
-      out.write("                                            <input type=\"text\" id=\"omethod\" name=\"otherss\" class=\"form-control form-control-sm\">\n");
+      out.write("                                        <div class=\"form-group col-4\" style=\"display:none\" id=\"others\">\n");
+      out.write("                                            <label for=\"othfrm\">If Other, please specify</label>\n");
+      out.write("                                            <input type=\"text\" id=\"omethod\" name=\"others1\" class=\"form-control form-control-sm\">\n");
       out.write("                                        </div>\n");
+      out.write("                                        \n");
       out.write("                                        <div class=\"form-group col-4\" style=\"display:none\" id=\"bnkform\">\n");
       out.write("                                            <label for=\"bank\">Bank</label>\n");
-      out.write("                                            <select id=\"bank\" name=\"bank\" class=\"form-control form-control-sm\">\n");
-      out.write("                                                <option>Bank</option>\n");
-      out.write("                                                <option>Online</option>\n");
-      out.write("                                                <option>Others</option>\n");
+      out.write("                                            <select id=\"pay1\" name=\"pay1\" class=\"form-control form-control-sm\" onchange=\"shows4()\">\n");
+      out.write("                                                 ");
+
+                                            try{
+                                                con=DB.getConnection();
+                                                st=con.createStatement();
+                                                rs=st.executeQuery("select * from paymet where method='Bank'");
+                                                while(rs.next()){           
+                                        
+      out.write("\n");
+      out.write("                                                    \n");
+      out.write("                                                    <option value=\"");
+      out.print(rs.getString("met_name") );
+      out.write('"');
+      out.write('>');
+      out.print(rs.getString("met_name") );
+      out.write("</option>\n");
+      out.write("                                        ");
+
+                                                }
+                                            }catch(Exception ex){
+                                                ex.printStackTrace();
+                                                out.println("Error: "+ex.getMessage());
+                                            }
+                                        
+      out.write("\n");
+      out.write("                                                <option>Add New Bank</option>\n");
       out.write("                                            </select>\n");
       out.write("                                        </div>\n");
       out.write("                                        <div class=\"form-group col-4\" style=\"display:none\" id=\"olform\">\n");
       out.write("                                            <label for=\"payapp\">Payment App</label>\n");
-      out.write("                                            <select id=\"payapp\" name=\"online\" class=\"form-control form-control-sm\">\n");
-      out.write("                                                <option>Bank</option>\n");
-      out.write("                                                <option>Online</option>\n");
-      out.write("                                                <option>Others</option>\n");
+      out.write("                                            <select id=\"pay2\" name=\"pay2\" class=\"form-control form-control-sm\" onchange=\"shows4()\">\n");
+      out.write("                                                ");
+
+                                            try{
+                                                con=DB.getConnection();
+                                                st=con.createStatement();
+                                                rs=st.executeQuery("select * from paymet where method='Online'");
+                                                while(rs.next()){           
+                                        
+      out.write("\n");
+      out.write("                                                    \n");
+      out.write("                                                    <option value=\"");
+      out.print(rs.getString("met_name") );
+      out.write('"');
+      out.write('>');
+      out.print(rs.getString("met_name") );
+      out.write("</option>\n");
+      out.write("                                        ");
+
+                                                }
+                                            }catch(Exception ex){
+                                                ex.printStackTrace();
+                                                out.println("Error: "+ex.getMessage());
+                                            }
+                                        
+      out.write("\n");
+      out.write("                                                <option>Add New Application</option>\n");
       out.write("                                            </select>\n");
       out.write("                                        </div>                                      \n");
+      out.write("                                        \n");
+      out.write("                                        <div class=\"form-group col-3\" style=\"display:none\" id=\"nbafrm\">\n");
+      out.write("                                            <label for=\"nbafrm\">Add New Bank/Application</label>\n");
+      out.write("                                            <input type=\"text\" id=\"newba\" name=\"newba\" class=\"form-control form-control-sm\">\n");
+      out.write("                                        </div>\n");
       out.write("                                        \n");
       out.write("                                        <div class=\"form-group col-6\" id=\"reform\">\n");
       out.write("                                            <label for=\"reference\">Reference No</label>\n");
@@ -539,8 +617,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                                    <div class=\"row\">\n");
       out.write("                                        <div class=\"form-group col-3\">\n");
       out.write("                                            <button type=\"submit\" class=\"btn btn-success mb-3\">Add Entry</button>\n");
-      out.write("                                        </div>\n");
-      out.write("                                        \n");
+      out.write("                                        </div> \n");
       out.write("                                    </div>                                  \n");
       out.write("                                </form>\n");
       out.write("                            </div>\n");
@@ -553,8 +630,8 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                        <div class=\"card\">\n");
       out.write("                            <div class=\"card-body\">\n");
       out.write("                                <h4 class=\"header-title\">Data Table Primary</h4>\n");
-      out.write("                                <div class=\"data-tables datatable-primary\">\n");
-      out.write("                                    <table id=\"dataTable2\" class=\"text-center\">\n");
+      out.write("                                <div>\n");
+      out.write("                                    <table id=\"example\" class=\"table table-striped table-bordered zero-configuration\">\n");
       out.write("                                        <thead class=\"text-capitalize\">\n");
       out.write("                                            <tr>\n");
       out.write("                                                <th>Invoice No</th>\n");
@@ -566,10 +643,11 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                                                <th>To</th>\n");
       out.write("                                                <th>Status</th>\n");
       out.write("                                                <th>Date</th>\n");
+      out.write("                                                <th>Pending</th>\n");
+      out.write("                                                <th>Released</th>\n");
       out.write("                                            </tr>\n");
       out.write("                                        </thead>\n");
       out.write("                                        <tbody>\n");
-      out.write("                                            <tr>\n");
       out.write("                                               ");
 
                                                 try{ 
@@ -579,11 +657,11 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
 
                                                 rs = st.executeQuery(sql);
                                                 while(rs.next()){
+                                                    
                                             
       out.write("  \n");
       out.write("                                            \n");
       out.write("                                            <tr>\n");
-      out.write("                                                \n");
       out.write("                                                <td>");
       out.print(rs.getString("invoicenum") );
       out.write("</td>\n");
@@ -611,8 +689,28 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td>\n");
-      out.write("                                                \n");
-      out.write("                                                \n");
+      out.write("                                                <td>\n");
+      out.write("                                                    <form action=\"Update_Pending\" action=\"post\">\n");
+      out.write("                                                        <input type=\"text\" style=\"display:none\" value=\"");
+      out.print(rs.getString("type") );
+      out.write("\" name=\"pen\">\n");
+      out.write("                                                        <input type=\"text\" style=\"display:none\" value=\"");
+      out.print(rs.getString("invoicenum") );
+      out.write("\" name=\"penum\">                                                    \n");
+      out.write("                                                        <button type=\"submit\" class=\"btn btn-warning btn-xs mb-3\" >Pending</button>                                                      \n");
+      out.write("                                                    </form>\n");
+      out.write("                                                </td>\n");
+      out.write("                                                <td>\n");
+      out.write("                                                    <form action=\"Update_Released\" action=\"post\">\n");
+      out.write("                                                        <input type=\"text\" style=\"display:none\" value=\"");
+      out.print(rs.getString("type") );
+      out.write("\" name=\"rels\">\n");
+      out.write("                                                        <input type=\"text\" style=\"display:none\" value=\"");
+      out.print(rs.getString("invoicenum") );
+      out.write("\" name=\"relums\">                                                    \n");
+      out.write("                                                        <button type=\"submit\" class=\"btn btn-warning btn-xs mb-3\" >Pending</button>                                                      \n");
+      out.write("                                                    </form>\n");
+      out.write("                                                </td>\n");
       out.write("                                            </tr>\n");
       out.write("                                            \n");
       out.write("                                             ");
@@ -623,8 +721,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
                                                 e.printStackTrace();
                                                 }
                                             
-      out.write("\n");
-      out.write("                                            </tr>                                            \n");
+      out.write("                                          \n");
       out.write("                                        </tbody>\n");
       out.write("                                    </table>\n");
       out.write("                                </div>\n");
@@ -667,6 +764,14 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("    <!-- others plugins -->\n");
       out.write("    <script src=\"assets/js/plugins.js\"></script>\n");
       out.write("    <script src=\"assets/js/scripts.js\"></script>\n");
+      out.write("    \n");
+      out.write("    <script type=\"text/javascript\" language=\"javascript\" src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>\n");
+      out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js\"></script>\n");
+      out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js\"></script>\n");
+      out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js\"></script>\n");
+      out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js\"></script>\n");
+      out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js\"></script>\n");
+      out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js\"></script>\n");
       out.write("</body>\n");
       out.write("\n");
       out.write("</html>\n");

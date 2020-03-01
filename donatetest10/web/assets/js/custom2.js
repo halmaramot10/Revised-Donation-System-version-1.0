@@ -159,34 +159,86 @@ function shows2()
     }
 }
 /*for method in Money Form*/
-function shows3()
-{
-    var mt=document.getElementById("method");
+function shows3(){
+    var mt = document.getElementById("method");
     if(mt.value==="Bank"){
-        //show form
-        document.getElementById('bnkform').style.display='';
-        document.getElementById('otherss').style.display= 'none';
+        
+        document.getElementById('bnkform').style.display= '';
+        
+        document.getElementById('others').style.display= 'none';
         document.getElementById('olform').style.display= 'none';
-        //adjust form
+        
+        document.getElementById('metform').className = "form-group col-4"; 
+        document.getElementById('reform').className = "form-group col-4";
+    }
+    else if(mt.value==="Other"){
+        
+        document.getElementById('bnkform').style.display= 'none';
+        
+        document.getElementById('others').style.display= '';
+        document.getElementById('olform').style.display= 'none';
+        
         document.getElementById('metform').className = "form-group col-4"; 
         document.getElementById('reform').className = "form-group col-4";
     }
     else if(mt.value==="Online"){
-        //show form
+        
         document.getElementById('bnkform').style.display= 'none';
-        document.getElementById('otherss').style.display= 'none';
+        
+        document.getElementById('others').style.display= 'none';
         document.getElementById('olform').style.display= '';
-        //adjust form
+        
         document.getElementById('metform').className = "form-group col-4"; 
         document.getElementById('reform').className = "form-group col-4";
     }
     else{
-        //hide form
         document.getElementById('bnkform').style.display= 'none';
-        document.getElementById('otherss').style.display= 'none';
+        
+        document.getElementById('others').style.display= 'none';
         document.getElementById('olform').style.display= 'none';
-        //adjust form
+        
         document.getElementById('metform').className = "form-group col-6"; 
         document.getElementById('reform').className = "form-group col-6";
     }
+}
+function shows4(){
+    var nb1 = document.getElementById("pay1");
+    var nb2 = document.getElementById("pay2");
+    var bnk = document.getElementById("bnkform");
+    
+    if(nb1.value === "Add New Bank"){
+        
+        document.getElementById('nbafrm').style.display= '';
+        
+        document.getElementById('metform').className = "form-group col-3";
+        document.getElementById('bnkform').className = "form-group col-3";
+        document.getElementById('olform').style.display= 'none';
+        document.getElementById('reform').className = "form-group col-3";  
+    }
+    else if(nb2.value === "Add New Application"){
+        
+        document.getElementById('nbafrm').style.display= '';
+        
+        document.getElementById('metform').className = "form-group col-3";
+        document.getElementById('olform').className = "form-group col-3";
+        document.getElementById('bnkform').style.display= 'none';
+        document.getElementById('reform').className = "form-group col-3";
+    }
+    else{
+        
+        document.getElementById('nbafrm').style.display= 'none';
+        
+        if(bnk.style.display === ''){
+            document.getElementById('bnkform').className = "form-group col-4";
+            document.getElementById('olform').style.display= 'none';
+        }
+        else{
+            document.getElementById('olform').className = "form-group col-4";
+            document.getElementById('bnkform').style.display= 'none';
+        }
+        document.getElementById('metform').className = "form-group col-4";        
+        document.getElementById('reform').className = "form-group col-4";
+        
+    }
+    
 }
