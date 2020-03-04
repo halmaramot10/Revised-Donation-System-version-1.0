@@ -3,6 +3,10 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.util.Date;
+import java.text.*;
+import java.sql.*;
+import com.donate.DB;
 
 public final class gen_005freport_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -44,9 +48,12 @@ public final class gen_005freport_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
-      out.write("<html>\n");
-      out.write("    <head>\n");
+      out.write("<html class=\"no-js\" lang=\"en\">\n");
+      out.write("\n");
+      out.write("<head>\n");
       out.write("    <meta charset=\"utf-8\">\n");
       out.write("    <meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">\n");
       out.write("    \n");
@@ -90,18 +97,38 @@ public final class gen_005freport_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js\"></script>\n");
       out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"../../../../examples/resources/demo.js\"></script>\n");
       out.write("\t\n");
-      out.write("        <script type=\"text/javascript\" class=\"init\">\n");
-      out.write("            $(document).ready(function() {\n");
-      out.write("                    $('#example').DataTable( {\n");
-      out.write("                    } );\n");
-      out.write("            } );\n");
-      out.write("\t</script>\n");
+      out.write("        \n");
       out.write("    \n");
       out.write("    <title>Generate Reports</title>\n");
       out.write("</head>\n");
-      out.write("    <body>\n");
+      out.write("<body class=\"body-bg\">\n");
+      out.write("    \n");
+      out.write("    ");
+
+    Connection con = null;
+    Statement st = null;
+    ResultSet rs = null;
+    
+      out.write("\n");
+      out.write("\n");
+      out.write("    ");
+
+        Date today = new Date();
+        Format formatter1;
+        String tod1;
+        formatter1 = new SimpleDateFormat("MM-dd-yyyy");
+        tod1 = formatter1.format(today);
+
+        String name = (String)session.getAttribute("name");
+        String uname=(String)session.getAttribute("uname");
+        String id=null;
+        if(uname!=null){
+    
+      out.write("\n");
+      out.write("    \n");
+      out.write("    <div class=\"horizontal-main-wrapper\">\n");
       out.write("        \n");
-      out.write("    <!--[if lt IE 8]>\n");
+      out.write("         <!--[if lt IE 8]>\n");
       out.write("            <p class=\"browserupgrade\">You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/\">upgrade your browser</a> to improve your experience.</p>\n");
       out.write("        <![endif]-->\n");
       out.write("    <!-- preloader area start -->\n");
@@ -110,15 +137,14 @@ public final class gen_005freport_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("    </div>\n");
       out.write("    <!-- preloader area end -->\n");
       out.write("    <!-- main wrapper start -->\n");
-      out.write("<!-- main header area start -->\n");
-      out.write("        \n");
-      out.write("       \n");
+      out.write("        <!-- main header area start -->\n");
+      out.write("             \n");
       out.write("        <div class=\"mainheader-area\">\n");
       out.write("            <div class=\"container\">\n");
       out.write("                <div class=\"row align-items-center\">\n");
       out.write("                    <div class=\"col-md-3\">\n");
       out.write("                        <div class=\"logo\">\n");
-      out.write("                            <a href=\"home_user.jsp\"><img src=\"assets/images/icon/logo2.png\" alt=\"logo\"></a>\n");
+      out.write("                            <a href=\"home_user.jsp\"><img src=\"assets/images/media/cpelogo2.png\" alt=\"logo\"></a>\n");
       out.write("                        </div>\n");
       out.write("                    </div>\n");
       out.write("                    <!-- profile info & task notification -->\n");
@@ -128,7 +154,9 @@ public final class gen_005freport_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("                        <div class=\"clearfix d-md-inline-block d-block\">\n");
       out.write("                            <div class=\"user-profile m-0\">\n");
       out.write("                                <img class=\"avatar user-thumb\" src=\"assets/images/author/avatar.png\" alt=\"avatar\">\n");
-      out.write("                                <h4 class=\"user-name dropdown-toggle\" data-toggle=\"dropdown\">Kumkum Rai <i class=\"fa fa-angle-down\"></i></h4>\n");
+      out.write("                                <h4 class=\"user-name dropdown-toggle\" data-toggle=\"dropdown\">");
+      out.print(uname);
+      out.write("<i class=\"fa fa-angle-down\"></i></h4>\n");
       out.write("                                <div class=\"dropdown-menu\">\n");
       out.write("                                    <a class=\"dropdown-item\" href=\"logout.jsp\">Log Out</a>\n");
       out.write("                                </div>\n");
@@ -148,13 +176,13 @@ public final class gen_005freport_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("                        <div class=\"horizontal-menu\">\n");
       out.write("                            <nav>\n");
       out.write("                                <ul id=\"nav_menu\">\n");
-      out.write("                                    <li class=\"active\">\n");
+      out.write("                                    <li>\n");
       out.write("                                        <a href=\"home_user.jsp\"><i class=\"ti-plus\"></i><span>Add Donation</span></a>\n");
       out.write("                                    </li>\n");
       out.write("                                    <li>\n");
       out.write("                                        <a href=\"upload_csv.jsp\"><i class=\"ti-import\"></i><span>Upload CSV</span></a>\n");
       out.write("                                    </li>\n");
-      out.write("                                    <li>\n");
+      out.write("                                    <li class=\"active\">\n");
       out.write("                                        <a href=\"gen_report.jsp\"><i class=\"ti-file\"></i><span>Generate Reports</span></a>\n");
       out.write("                                    </li>\n");
       out.write("                                </ul>\n");
@@ -165,7 +193,1339 @@ public final class gen_005freport_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("            </div>\n");
       out.write("        </div>\n");
       out.write("        <!-- header area end -->\n");
-      out.write("    </body>\n");
+      out.write("        \n");
+      out.write("        <div class=\"main-content-inner\">\n");
+      out.write("            <div class=\"container\">\n");
+      out.write("  \n");
+      out.write("                <div class=\"row\">\n");
+      out.write("                    <div class=\"col-12 mt-5\">\n");
+      out.write("                        <div class=\"card\">\n");
+      out.write("                            <div class=\"card-body\">\n");
+      out.write("                                <div class=\"form-group col-3\" id=\"typeforms\">\n");
+      out.write("                                    <label for=\"cond\">Condition</label>                                           \n");
+      out.write("                                    <select id =\"tshows\" name=\"types23\" class=\"form-control form-control-sm\" onchange=\"tableshow1()\">\n");
+      out.write("                                        <option value=\"Select One\">Select One</option>\n");
+      out.write("                                        ");
+
+                                            try{
+                                                con=DB.getConnection();
+                                                st=con.createStatement();
+                                                rs=st.executeQuery("select * from category");
+                                                while(rs.next()){           
+                                        
+      out.write("\n");
+      out.write("                                                    \n");
+      out.write("                                                <option value=\"");
+      out.print(rs.getString("cat_name"));
+      out.write('"');
+      out.write('>');
+      out.print(rs.getString("cat_name"));
+      out.write("</option>\n");
+      out.write("                                        ");
+
+                                                }
+                                            }catch(Exception ex){
+                                                ex.printStackTrace();
+                                                out.println("Error: "+ex.getMessage());
+                                            }                                                  
+                                        
+      out.write("\n");
+      out.write("                                        <option value=\"All Donation Types\">All Donation Types</option>\n");
+      out.write("                                    </select>\n");
+      out.write("                                </div>\n");
+      out.write("                            </div>\n");
+      out.write("                        </div>\n");
+      out.write("                    </div>\n");
+      out.write("                </div>\n");
+      out.write("                  \n");
+      out.write("                <div class=\"row\" id=\"genrow\" style=\"display:none\">\n");
+      out.write("                    <!-- Primary table start -->\n");
+      out.write("                    <div class=\"col-12 mt-5\">\n");
+      out.write("                        <div class=\"card\">\n");
+      out.write("                            <div class=\"card-body\">\n");
+      out.write("                                <h4 class=\"header-title\">All Donation Types</h4>\n");
+      out.write("                                <button type=\"button\" class=\"btn btn-success mb-3\" onclick=\"showgenrec()\">Received</button>                               \n");
+      out.write("                                <button type=\"button\" class=\"btn btn-info mb-3\" onclick=\"showgenpen()\">Pending</button>\n");
+      out.write("                                <button type=\"button\" class=\"btn btn-danger mb-3\" onclick=\"showgenrel()\">Released</button>\n");
+      out.write("                                <button type=\"button\" class=\"btn btn-primary mb-3\" onclick=\"showgenall()\">All Statuses</button>\n");
+      out.write("                                <br>\n");
+      out.write("                                <div id=\"genall\" style=\"display:\">\n");
+      out.write("                                    <table id=\"example\" class=\"table table-striped table-bordered zero-configuration\">\n");
+      out.write("                                        <thead class=\"text-capitalize\">\n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <th>Invoice No</th>\n");
+      out.write("                                                <th>Donation Type</th>\n");
+      out.write("                                                <th>Item Category</th>\n");
+      out.write("                                                <th>Description</th>\n");
+      out.write("                                                <th>Quantity</th>\n");
+      out.write("                                                <th>From</th>\n");
+      out.write("                                                <th>To</th>\n");
+      out.write("                                                <th>Status</th>\n");
+      out.write("                                                <th>Date</th>\n");
+      out.write("                                                \n");
+      out.write("                                            </tr>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                               ");
+
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM donation";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            
+      out.write("  \n");
+      out.write("                                            \n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("invoicenum") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("type") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("item") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("des") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("qty") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("fr") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("donto") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("stat") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("date") );
+      out.write("</td>                                               \n");
+      out.write("                                            </tr>\n");
+      out.write("                                            \n");
+      out.write("                                             ");
+ 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            
+      out.write("                                          \n");
+      out.write("                                        </tbody>\n");
+      out.write("                                    </table>\n");
+      out.write("                                </div>\n");
+      out.write("                             \n");
+      out.write("                                <div id=\"genrec\" style=\"display:none\">\n");
+      out.write("                                    <table id=\"example1\" class=\"table table-striped table-bordered zero-configuration\">\n");
+      out.write("                                        <thead class=\"text-capitalize\">\n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <th>Invoice No</th>\n");
+      out.write("                                                <th>Donation Type</th>\n");
+      out.write("                                                <th>Item Category</th>\n");
+      out.write("                                                <th>Description</th>\n");
+      out.write("                                                <th>Quantity</th>\n");
+      out.write("                                                <th>From</th>\n");
+      out.write("                                                <th>To</th>\n");
+      out.write("                                                <th>Status</th>\n");
+      out.write("                                                <th>Date</th>\n");
+      out.write("                                                \n");
+      out.write("                                            </tr>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                               ");
+
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM donation where stat='Received'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            
+      out.write("  \n");
+      out.write("                                            \n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("invoicenum") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("type") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("item") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("des") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("qty") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("fr") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("donto") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("stat") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("date") );
+      out.write("</td>                                               \n");
+      out.write("                                            </tr>\n");
+      out.write("                                            \n");
+      out.write("                                             ");
+ 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            
+      out.write("                                          \n");
+      out.write("                                        </tbody>\n");
+      out.write("                                    </table>\n");
+      out.write("                                </div>\n");
+      out.write("                                \n");
+      out.write("                                <div id=\"genpen\" style=\"display:none\">\n");
+      out.write("                                    <table id=\"example2\" class=\"table table-striped table-bordered zero-configuration\">\n");
+      out.write("                                        <thead class=\"text-capitalize\">\n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <th>Invoice No</th>\n");
+      out.write("                                                <th>Donation Type</th>\n");
+      out.write("                                                <th>Item Category</th>\n");
+      out.write("                                                <th>Description</th>\n");
+      out.write("                                                <th>Quantity</th>\n");
+      out.write("                                                <th>From</th>\n");
+      out.write("                                                <th>To</th>\n");
+      out.write("                                                <th>Status</th>\n");
+      out.write("                                                <th>Date</th>\n");
+      out.write("                                                \n");
+      out.write("                                            </tr>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                               ");
+
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM donation where stat='Pending'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            
+      out.write("  \n");
+      out.write("                                            \n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("invoicenum") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("type") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("item") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("des") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("qty") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("fr") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("donto") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("stat") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("date") );
+      out.write("</td>                                               \n");
+      out.write("                                            </tr>\n");
+      out.write("                                            \n");
+      out.write("                                             ");
+ 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            
+      out.write("                                          \n");
+      out.write("                                        </tbody>\n");
+      out.write("                                    </table>\n");
+      out.write("                                </div>         \n");
+      out.write("                                \n");
+      out.write("                                <div id=\"genrel\" style=\"display:none\">\n");
+      out.write("                                    <table id=\"example3\" class=\"table table-striped table-bordered zero-configuration\">\n");
+      out.write("                                        <thead class=\"text-capitalize\">\n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <th>Invoice No</th>\n");
+      out.write("                                                <th>Donation Type</th>\n");
+      out.write("                                                <th>Item Category</th>\n");
+      out.write("                                                <th>Description</th>\n");
+      out.write("                                                <th>Quantity</th>\n");
+      out.write("                                                <th>From</th>\n");
+      out.write("                                                <th>To</th>\n");
+      out.write("                                                <th>Status</th>\n");
+      out.write("                                                <th>Date</th>\n");
+      out.write("                                                \n");
+      out.write("                                            </tr>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                               ");
+
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM donation where stat='Released'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            
+      out.write("  \n");
+      out.write("                                            \n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("invoicenum") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("type") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("item") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("des") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("qty") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("fr") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("donto") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("stat") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("date") );
+      out.write("</td>                                               \n");
+      out.write("                                            </tr>\n");
+      out.write("                                            \n");
+      out.write("                                             ");
+ 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            
+      out.write("                                          \n");
+      out.write("                                        </tbody>\n");
+      out.write("                                    </table>\n");
+      out.write("                                </div> \n");
+      out.write("                                        \n");
+      out.write("                            </div>\n");
+      out.write("                        </div>\n");
+      out.write("                    </div>\n");
+      out.write("                    <!-- Primary table end -->\n");
+      out.write("                </div>                    \n");
+      out.write("                  \n");
+      out.write("                <div class=\"row\" id=\"schrow\" style=\"display:none\">\n");
+      out.write("                    <!-- Primary table start -->\n");
+      out.write("                    <div class=\"col-12 mt-5\">\n");
+      out.write("                        <div class=\"card\">\n");
+      out.write("                            <div class=\"card-body\">\n");
+      out.write("                                <h4 class=\"header-title\">School Supplies Donations</h4>\n");
+      out.write("                                <button type=\"button\" class=\"btn btn-success mb-3\" onclick=\"showschrec()\">Received</button>                               \n");
+      out.write("                                <button type=\"button\" class=\"btn btn-info mb-3\" onclick=\"showschpen()\">Pending</button>\n");
+      out.write("                                <button type=\"button\" class=\"btn btn-danger mb-3\" onclick=\"showschrel()\">Released</button>\n");
+      out.write("                                <button type=\"button\" class=\"btn btn-primary mb-3\" onclick=\"showschall()\">All Statuses</button>\n");
+      out.write("                                <br>\n");
+      out.write("                                <div id=\"schall\" style=\"display:\">\n");
+      out.write("                                    <table id=\"example4\" class=\"table table-striped table-bordered zero-configuration\">\n");
+      out.write("                                        <thead class=\"text-capitalize\">\n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <th>Invoice No</th>                                                \n");
+      out.write("                                                <th>Item Category</th>\n");
+      out.write("                                                <th>Description</th>\n");
+      out.write("                                                <th>Quantity</th>\n");
+      out.write("                                                <th>From</th>\n");
+      out.write("                                                <th>To</th>\n");
+      out.write("                                                <th>Status</th>\n");
+      out.write("                                                <th>Date</th>\n");
+      out.write("                                                \n");
+      out.write("                                            </tr>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                               ");
+
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM school_donate";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            
+      out.write("  \n");
+      out.write("                                            \n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("invoicenum") );
+      out.write("</td>                                                \n");
+      out.write("                                                <td>");
+      out.print(rs.getString("item") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("des") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("qty") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("fr") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("donto") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("stat") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("date") );
+      out.write("</td>                                               \n");
+      out.write("                                            </tr>\n");
+      out.write("                                            \n");
+      out.write("                                             ");
+ 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            
+      out.write("                                          \n");
+      out.write("                                        </tbody>\n");
+      out.write("                                    </table>\n");
+      out.write("                                </div>\n");
+      out.write("                             \n");
+      out.write("                                <div id=\"schrec\" style=\"display:none\">\n");
+      out.write("                                    <table id=\"example5\" class=\"table table-striped table-bordered zero-configuration\">\n");
+      out.write("                                        <thead class=\"text-capitalize\">\n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <th>Invoice No</th>\n");
+      out.write("                                                <th>Item Category</th>\n");
+      out.write("                                                <th>Description</th>\n");
+      out.write("                                                <th>Quantity</th>\n");
+      out.write("                                                <th>From</th>\n");
+      out.write("                                                <th>To</th>\n");
+      out.write("                                                <th>Status</th>\n");
+      out.write("                                                <th>Date</th>\n");
+      out.write("                                                \n");
+      out.write("                                            </tr>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                               ");
+
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM school_donate where stat='Received'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            
+      out.write("  \n");
+      out.write("                                            \n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("invoicenum") );
+      out.write("</td>                                                \n");
+      out.write("                                                <td>");
+      out.print(rs.getString("item") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("des") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("qty") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("fr") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("donto") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("stat") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("date") );
+      out.write("</td>                                               \n");
+      out.write("                                            </tr>\n");
+      out.write("                                            \n");
+      out.write("                                             ");
+ 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            
+      out.write("                                          \n");
+      out.write("                                        </tbody>\n");
+      out.write("                                    </table>\n");
+      out.write("                                </div>\n");
+      out.write("                                \n");
+      out.write("                                <div id=\"schpen\" style=\"display:none\">\n");
+      out.write("                                    <table id=\"example6\" class=\"table table-striped table-bordered zero-configuration\">\n");
+      out.write("                                        <thead class=\"text-capitalize\">\n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <th>Invoice No</th>                                                \n");
+      out.write("                                                <th>Item Category</th>\n");
+      out.write("                                                <th>Description</th>\n");
+      out.write("                                                <th>Quantity</th>\n");
+      out.write("                                                <th>From</th>\n");
+      out.write("                                                <th>To</th>\n");
+      out.write("                                                <th>Status</th>\n");
+      out.write("                                                <th>Date</th>\n");
+      out.write("                                                \n");
+      out.write("                                            </tr>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                               ");
+
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM school_donate where stat='Pending'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            
+      out.write("  \n");
+      out.write("                                            \n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("invoicenum") );
+      out.write("</td>                                                \n");
+      out.write("                                                <td>");
+      out.print(rs.getString("item") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("des") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("qty") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("fr") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("donto") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("stat") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("date") );
+      out.write("</td>                                               \n");
+      out.write("                                            </tr>\n");
+      out.write("                                            \n");
+      out.write("                                             ");
+ 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            
+      out.write("                                          \n");
+      out.write("                                        </tbody>\n");
+      out.write("                                    </table>\n");
+      out.write("                                </div>         \n");
+      out.write("                                \n");
+      out.write("                                <div id=\"schrel\" style=\"display:none\">\n");
+      out.write("                                    <table id=\"example7\" class=\"table table-striped table-bordered zero-configuration\">\n");
+      out.write("                                        <thead class=\"text-capitalize\">\n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <th>Invoice No</th>                                               \n");
+      out.write("                                                <th>Item Category</th>\n");
+      out.write("                                                <th>Description</th>\n");
+      out.write("                                                <th>Quantity</th>\n");
+      out.write("                                                <th>From</th>\n");
+      out.write("                                                <th>To</th>\n");
+      out.write("                                                <th>Status</th>\n");
+      out.write("                                                <th>Date</th>\n");
+      out.write("                                                \n");
+      out.write("                                            </tr>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                               ");
+
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM school_donate where stat='Released'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            
+      out.write("  \n");
+      out.write("                                            \n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("invoicenum") );
+      out.write("</td>                                                \n");
+      out.write("                                                <td>");
+      out.print(rs.getString("item") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("des") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("qty") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("fr") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("donto") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("stat") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("date") );
+      out.write("</td>                                               \n");
+      out.write("                                            </tr>\n");
+      out.write("                                            \n");
+      out.write("                                             ");
+ 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            
+      out.write("                                          \n");
+      out.write("                                        </tbody>\n");
+      out.write("                                    </table>\n");
+      out.write("                                </div> \n");
+      out.write("                                        \n");
+      out.write("                            </div>\n");
+      out.write("                        </div>\n");
+      out.write("                    </div>\n");
+      out.write("                    <!-- Primary table end -->\n");
+      out.write("                </div>                       \n");
+      out.write("                                        \n");
+      out.write("                <div class=\"row\" id=\"foorow\" style=\"display:none\">\n");
+      out.write("                    <!-- Primary table start -->\n");
+      out.write("                    <div class=\"col-12 mt-5\">\n");
+      out.write("                        <div class=\"card\">\n");
+      out.write("                            <div class=\"card-body\">\n");
+      out.write("                                <h4 class=\"header-title\">Food Donations</h4>\n");
+      out.write("                                <button type=\"button\" class=\"btn btn-success mb-3\" onclick=\"showfoorec()\">Received</button>                               \n");
+      out.write("                                <button type=\"button\" class=\"btn btn-info mb-3\" onclick=\"showfoopen()\">Pending</button>\n");
+      out.write("                                <button type=\"button\" class=\"btn btn-danger mb-3\" onclick=\"showfoorel()\">Released</button>\n");
+      out.write("                                <button type=\"button\" class=\"btn btn-primary mb-3\" onclick=\"showfooall()\">All Statuses</button>\n");
+      out.write("                                <br>\n");
+      out.write("                                <div id=\"fooall\" style=\"display:\">\n");
+      out.write("                                    <table id=\"example8\" class=\"table table-striped table-bordered zero-configuration\">\n");
+      out.write("                                        <thead class=\"text-capitalize\">\n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <th>Invoice No</th>                                                \n");
+      out.write("                                                <th>Item Category</th>\n");
+      out.write("                                                <th>Description</th>\n");
+      out.write("                                                <th>Quantity</th>\n");
+      out.write("                                                <th>Expiration Date</th>\n");
+      out.write("                                                <th>From</th>\n");
+      out.write("                                                <th>To</th>\n");
+      out.write("                                                <th>Status</th>\n");
+      out.write("                                                <th>Date</th>\n");
+      out.write("                                                \n");
+      out.write("                                            </tr>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                               ");
+
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM foods_donate";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            
+      out.write("  \n");
+      out.write("                                            \n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("invoicenum") );
+      out.write("</td>                                                \n");
+      out.write("                                                <td>");
+      out.print(rs.getString("item") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("des") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("qty") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("exp") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("fr") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("donto") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("stat") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("date") );
+      out.write("</td>                                               \n");
+      out.write("                                            </tr>\n");
+      out.write("                                            \n");
+      out.write("                                             ");
+ 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            
+      out.write("                                          \n");
+      out.write("                                        </tbody>\n");
+      out.write("                                    </table>\n");
+      out.write("                                </div>\n");
+      out.write("                             \n");
+      out.write("                                <div id=\"foorec\" style=\"display:none\">\n");
+      out.write("                                    <table id=\"example9\" class=\"table table-striped table-bordered zero-configuration\">\n");
+      out.write("                                        <thead class=\"text-capitalize\">\n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <th>Invoice No</th>\n");
+      out.write("                                                <th>Item Category</th>\n");
+      out.write("                                                <th>Description</th>\n");
+      out.write("                                                <th>Quantity</th>\n");
+      out.write("                                                <th>Expiration Date</th>\n");
+      out.write("                                                <th>From</th>\n");
+      out.write("                                                <th>To</th>\n");
+      out.write("                                                <th>Status</th>\n");
+      out.write("                                                <th>Date</th>\n");
+      out.write("                                                \n");
+      out.write("                                            </tr>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                               ");
+
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM foods_donate where stat='Received'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            
+      out.write("  \n");
+      out.write("                                            \n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("invoicenum") );
+      out.write("</td>                                                \n");
+      out.write("                                                <td>");
+      out.print(rs.getString("item") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("des") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("qty") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("exp") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("fr") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("donto") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("stat") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("date") );
+      out.write("</td>                                               \n");
+      out.write("                                            </tr>\n");
+      out.write("                                            \n");
+      out.write("                                             ");
+ 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            
+      out.write("                                          \n");
+      out.write("                                        </tbody>\n");
+      out.write("                                    </table>\n");
+      out.write("                                </div>\n");
+      out.write("                                \n");
+      out.write("                                <div id=\"foopen\" style=\"display:none\">\n");
+      out.write("                                    <table id=\"example10\" class=\"table table-striped table-bordered zero-configuration\">\n");
+      out.write("                                        <thead class=\"text-capitalize\">\n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <th>Invoice No</th>                                                \n");
+      out.write("                                                <th>Item Category</th>\n");
+      out.write("                                                <th>Description</th>\n");
+      out.write("                                                <th>Quantity</th>\n");
+      out.write("                                                <th>Expiration Date</th>\n");
+      out.write("                                                <th>From</th>\n");
+      out.write("                                                <th>To</th>\n");
+      out.write("                                                <th>Status</th>\n");
+      out.write("                                                <th>Date</th>\n");
+      out.write("                                                \n");
+      out.write("                                            </tr>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                               ");
+
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM foods_donate where stat='Pending'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            
+      out.write("  \n");
+      out.write("                                            \n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("invoicenum") );
+      out.write("</td>                                                \n");
+      out.write("                                                <td>");
+      out.print(rs.getString("item") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("des") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("qty") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("exp") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("fr") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("donto") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("stat") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("date") );
+      out.write("</td>                                               \n");
+      out.write("                                            </tr>\n");
+      out.write("                                            \n");
+      out.write("                                             ");
+ 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            
+      out.write("                                          \n");
+      out.write("                                        </tbody>\n");
+      out.write("                                    </table>\n");
+      out.write("                                </div>         \n");
+      out.write("                                \n");
+      out.write("                                <div id=\"foorel\" style=\"display:none\">\n");
+      out.write("                                    <table id=\"example11\" class=\"table table-striped table-bordered zero-configuration\">\n");
+      out.write("                                        <thead class=\"text-capitalize\">\n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <th>Invoice No</th>                                               \n");
+      out.write("                                                <th>Item Category</th>\n");
+      out.write("                                                <th>Description</th>\n");
+      out.write("                                                <th>Quantity</th>\n");
+      out.write("                                                <th>Expiration Date</th>\n");
+      out.write("                                                <th>From</th>\n");
+      out.write("                                                <th>To</th>\n");
+      out.write("                                                <th>Status</th>\n");
+      out.write("                                                <th>Date</th>\n");
+      out.write("                                                \n");
+      out.write("                                            </tr>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                               ");
+
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM foods_donate where stat='Released'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            
+      out.write("  \n");
+      out.write("                                            \n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("invoicenum") );
+      out.write("</td>                                                \n");
+      out.write("                                                <td>");
+      out.print(rs.getString("item") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("des") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("qty") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("exp") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("fr") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("donto") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("stat") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("date") );
+      out.write("</td>                                               \n");
+      out.write("                                            </tr>\n");
+      out.write("                                            \n");
+      out.write("                                             ");
+ 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            
+      out.write("                                          \n");
+      out.write("                                        </tbody>\n");
+      out.write("                                    </table>\n");
+      out.write("                                </div> \n");
+      out.write("                                        \n");
+      out.write("                            </div>\n");
+      out.write("                        </div>\n");
+      out.write("                    </div>\n");
+      out.write("                    <!-- Primary table end -->\n");
+      out.write("                </div>                        \n");
+      out.write("                                        \n");
+      out.write("                <div class=\"row\" id=\"othrow\" style=\"display:none\">\n");
+      out.write("                    <!-- Primary table start -->\n");
+      out.write("                    <div class=\"col-12 mt-5\">\n");
+      out.write("                        <div class=\"card\">\n");
+      out.write("                            <div class=\"card-body\">\n");
+      out.write("                                <h4 class=\"header-title\">Other Donations</h4>\n");
+      out.write("                                <button type=\"button\" class=\"btn btn-success mb-3\" onclick=\"showothrec()\">Received</button>                               \n");
+      out.write("                                <button type=\"button\" class=\"btn btn-info mb-3\" onclick=\"showothpen()\">Pending</button>\n");
+      out.write("                                <button type=\"button\" class=\"btn btn-danger mb-3\" onclick=\"showothrel()\">Released</button>\n");
+      out.write("                                <button type=\"button\" class=\"btn btn-primary mb-3\" onclick=\"showothall()\">All Statuses</button>\n");
+      out.write("                                <br>\n");
+      out.write("                                <div id=\"othall\" style=\"display:\">\n");
+      out.write("                                    <table id=\"example12\" class=\"table table-striped table-bordered zero-configuration\">\n");
+      out.write("                                        <thead class=\"text-capitalize\">\n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <th>Invoice No</th>                                                \n");
+      out.write("                                                <th>Item Category</th>\n");
+      out.write("                                                <th>Description</th>\n");
+      out.write("                                                <th>Quantity</th>\n");
+      out.write("                                                <th>Condition</th>\n");
+      out.write("                                                <th>From</th>\n");
+      out.write("                                                <th>To</th>\n");
+      out.write("                                                <th>Status</th>\n");
+      out.write("                                                <th>Date</th>\n");
+      out.write("                                                \n");
+      out.write("                                            </tr>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                               ");
+
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM others_donate";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            
+      out.write("  \n");
+      out.write("                                            \n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("invoicenum") );
+      out.write("</td>                                                \n");
+      out.write("                                                <td>");
+      out.print(rs.getString("item") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("des") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("qty") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("cond") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("fr") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("donto") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("stat") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("date") );
+      out.write("</td>                                               \n");
+      out.write("                                            </tr>\n");
+      out.write("                                            \n");
+      out.write("                                             ");
+ 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            
+      out.write("                                          \n");
+      out.write("                                        </tbody>\n");
+      out.write("                                    </table>\n");
+      out.write("                                </div>\n");
+      out.write("                             \n");
+      out.write("                                <div id=\"othrec\" style=\"display:none\">\n");
+      out.write("                                    <table id=\"example13\" class=\"table table-striped table-bordered zero-configuration\">\n");
+      out.write("                                        <thead class=\"text-capitalize\">\n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <th>Invoice No</th>\n");
+      out.write("                                                <th>Item Category</th>\n");
+      out.write("                                                <th>Description</th>\n");
+      out.write("                                                <th>Quantity</th>\n");
+      out.write("                                                <th>Condition</th>\n");
+      out.write("                                                <th>From</th>\n");
+      out.write("                                                <th>To</th>\n");
+      out.write("                                                <th>Status</th>\n");
+      out.write("                                                <th>Date</th>\n");
+      out.write("                                                \n");
+      out.write("                                            </tr>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                               ");
+
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM others_donate where stat='Received'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            
+      out.write("  \n");
+      out.write("                                            \n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("invoicenum") );
+      out.write("</td>                                                \n");
+      out.write("                                                <td>");
+      out.print(rs.getString("item") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("des") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("qty") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("cond") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("fr") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("donto") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("stat") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("date") );
+      out.write("</td>                                               \n");
+      out.write("                                            </tr>\n");
+      out.write("                                            \n");
+      out.write("                                             ");
+ 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            
+      out.write("                                          \n");
+      out.write("                                        </tbody>\n");
+      out.write("                                    </table>\n");
+      out.write("                                </div>\n");
+      out.write("                                \n");
+      out.write("                                <div id=\"othpen\" style=\"display:none\">\n");
+      out.write("                                    <table id=\"example14\" class=\"table table-striped table-bordered zero-configuration\">\n");
+      out.write("                                        <thead class=\"text-capitalize\">\n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <th>Invoice No</th>                                                \n");
+      out.write("                                                <th>Item Category</th>\n");
+      out.write("                                                <th>Description</th>\n");
+      out.write("                                                <th>Quantity</th>\n");
+      out.write("                                                <th>Condition</th>\n");
+      out.write("                                                <th>From</th>\n");
+      out.write("                                                <th>To</th>\n");
+      out.write("                                                <th>Status</th>\n");
+      out.write("                                                <th>Date</th>\n");
+      out.write("                                                \n");
+      out.write("                                            </tr>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                               ");
+
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM others_donate where stat='Pending'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            
+      out.write("  \n");
+      out.write("                                            \n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("invoicenum") );
+      out.write("</td>                                                \n");
+      out.write("                                                <td>");
+      out.print(rs.getString("item") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("des") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("qty") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("cond") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("fr") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("donto") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("stat") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("date") );
+      out.write("</td>                                               \n");
+      out.write("                                            </tr>\n");
+      out.write("                                            \n");
+      out.write("                                             ");
+ 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            
+      out.write("                                          \n");
+      out.write("                                        </tbody>\n");
+      out.write("                                    </table>\n");
+      out.write("                                </div>         \n");
+      out.write("                                \n");
+      out.write("                                <div id=\"othrel\" style=\"display:none\">\n");
+      out.write("                                    <table id=\"example15\" class=\"table table-striped table-bordered zero-configuration\">\n");
+      out.write("                                        <thead class=\"text-capitalize\">\n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <th>Invoice No</th>                                               \n");
+      out.write("                                                <th>Item Category</th>\n");
+      out.write("                                                <th>Description</th>\n");
+      out.write("                                                <th>Quantity</th>\n");
+      out.write("                                                <th>Condition</th>\n");
+      out.write("                                                <th>From</th>\n");
+      out.write("                                                <th>To</th>\n");
+      out.write("                                                <th>Status</th>\n");
+      out.write("                                                <th>Date</th>\n");
+      out.write("                                                \n");
+      out.write("                                            </tr>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                               ");
+
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM others_donate where stat='Released'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            
+      out.write("  \n");
+      out.write("                                            \n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("invoicenum") );
+      out.write("</td>                                                \n");
+      out.write("                                                <td>");
+      out.print(rs.getString("item") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("des") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("qty") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("cond") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("fr") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("donto") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("stat") );
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("date") );
+      out.write("</td>                                               \n");
+      out.write("                                            </tr>\n");
+      out.write("                                            \n");
+      out.write("                                             ");
+ 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            
+      out.write("                                          \n");
+      out.write("                                        </tbody>\n");
+      out.write("                                    </table>\n");
+      out.write("                                </div> \n");
+      out.write("                                        \n");
+      out.write("                            </div>\n");
+      out.write("                        </div>\n");
+      out.write("                    </div>\n");
+      out.write("                    <!-- Primary table end -->\n");
+      out.write("                </div>                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("            </div>\n");
+      out.write("        </div>\n");
+      out.write("        \n");
+      out.write("        \n");
+      out.write("    ");
+
+        }else{
+            response.sendRedirect("index.jsp");
+        }
+    
+      out.write("                 \n");
+      out.write("    \n");
+      out.write("    <!--Custom Script-->\n");
+      out.write("    <script src=\"assets/js/custom1.js\"></script>\n");
+      out.write("    <script src=\"assets/js/custom2.js\"></script>\n");
+      out.write("    \n");
+      out.write("    <!-- jquery latest version -->\n");
+      out.write("    <script src=\"assets/js/vendor/jquery-2.2.4.min.js\"></script>\n");
+      out.write("    <!-- bootstrap 4 js -->\n");
+      out.write("    <script src=\"assets/js/popper.min.js\"></script>\n");
+      out.write("    <script src=\"assets/js/bootstrap.min.js\"></script>\n");
+      out.write("    <script src=\"assets/js/owl.carousel.min.js\"></script>\n");
+      out.write("    <script src=\"assets/js/metisMenu.min.js\"></script>\n");
+      out.write("    <script src=\"assets/js/jquery.slimscroll.min.js\"></script>\n");
+      out.write("    <script src=\"assets/js/jquery.slicknav.min.js\"></script>\n");
+      out.write("\n");
+      out.write("    <!-- Start datatable js -->\n");
+      out.write("    <script src=\"https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js\"></script>\n");
+      out.write("    <script src=\"https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js\"></script>\n");
+      out.write("    <script src=\"https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js\"></script>\n");
+      out.write("    <script src=\"https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js\"></script>\n");
+      out.write("    <script src=\"https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js\"></script>\n");
+      out.write("    <!-- others plugins -->\n");
+      out.write("    <script src=\"assets/js/plugins.js\"></script>\n");
+      out.write("    <script src=\"assets/js/scripts.js\"></script>\n");
+      out.write("    \n");
+      out.write("    <script type=\"text/javascript\" language=\"javascript\" src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>\n");
+      out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js\"></script>\n");
+      out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js\"></script>\n");
+      out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js\"></script>\n");
+      out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js\"></script>\n");
+      out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js\"></script>\n");
+      out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js\"></script>\n");
+      out.write("</body>\n");
+      out.write("\n");
       out.write("</html>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){

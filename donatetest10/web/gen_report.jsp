@@ -50,14 +50,9 @@
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
 	<script type="text/javascript" language="javascript" src="../../../../examples/resources/demo.js"></script>
 	
-        <script type="text/javascript" class="init">
-            $(document).ready(function() {
-                    $('#example').DataTable( {
-                    } );
-            } );
-	</script>
+        
     
-    <title>Add Donation Entry</title>
+    <title>Generate Reports</title>
 </head>
 <body class="body-bg">
     
@@ -128,13 +123,13 @@
                         <div class="horizontal-menu">
                             <nav>
                                 <ul id="nav_menu">
-                                    <li class="active">
+                                    <li>
                                         <a href="home_user.jsp"><i class="ti-plus"></i><span>Add Donation</span></a>
                                     </li>
                                     <li>
                                         <a href="upload_csv.jsp"><i class="ti-import"></i><span>Upload CSV</span></a>
                                     </li>
-                                    <li>
+                                    <li class="active">
                                         <a href="gen_report.jsp"><i class="ti-file"></i><span>Generate Reports</span></a>
                                     </li>
                                 </ul>
@@ -145,6 +140,1397 @@
             </div>
         </div>
         <!-- header area end -->
+        
+        <div class="main-content-inner">
+            <div class="container">
+  
+                <div class="row">
+                    <div class="col-12 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-group col-3" id="typeforms">
+                                    <label for="cond">Condition</label>                                           
+                                    <select id ="tshows" name="types23" class="form-control form-control-sm" onchange="tableshow1()">
+                                        <option value="Select One">Select One</option>
+                                        <%
+                                            try{
+                                                con=DB.getConnection();
+                                                st=con.createStatement();
+                                                rs=st.executeQuery("select * from category");
+                                                while(rs.next()){           
+                                        %>
+                                                    
+                                                <option value="<%=rs.getString("cat_name")%>"><%=rs.getString("cat_name")%></option>
+                                        <%
+                                                }
+                                            }catch(Exception ex){
+                                                ex.printStackTrace();
+                                                out.println("Error: "+ex.getMessage());
+                                            }                                                  
+                                        %>
+                                        <option value="All Donation Types">All Donation Types</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  
+                <div class="row" id="genrow" style="display:none">
+                    <!-- Primary table start -->
+                    <div class="col-12 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">All Donation Types</h4>
+                                <button type="button" class="btn btn-success mb-3" onclick="showgenrec()">Received</button>                               
+                                <button type="button" class="btn btn-info mb-3" onclick="showgenpen()">Pending</button>
+                                <button type="button" class="btn btn-danger mb-3" onclick="showgenrel()">Released</button>
+                                <button type="button" class="btn btn-primary mb-3" onclick="showgenall()">All Statuses</button>
+                                <br>
+                                <div id="genall" style="display:">
+                                    <table id="example" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>
+                                                <th>Donation Type</th>
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM donation";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            %>  
+                                            
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>
+                                                <td><%=rs.getString("type") %></td>
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+                                            
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+                             
+                                <div id="genrec" style="display:none">
+                                    <table id="example1" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>
+                                                <th>Donation Type</th>
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM donation where stat='Received'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            %>  
+                                            
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>
+                                                <td><%=rs.getString("type") %></td>
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+                                            
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div id="genpen" style="display:none">
+                                    <table id="example2" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>
+                                                <th>Donation Type</th>
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM donation where stat='Pending'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            %>  
+                                            
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>
+                                                <td><%=rs.getString("type") %></td>
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+                                            
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div>         
+                                
+                                <div id="genrel" style="display:none">
+                                    <table id="example3" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>
+                                                <th>Donation Type</th>
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM donation where stat='Released'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            %>  
+                                            
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>
+                                                <td><%=rs.getString("type") %></td>
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+                                            
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div> 
+                                        
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Primary table end -->
+                </div>                    
+                  
+                <div class="row" id="schrow" style="display:none">
+                    <!-- Primary table start -->
+                    <div class="col-12 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">School Supplies Donations</h4>
+                                <button type="button" class="btn btn-success mb-3" onclick="showschrec()">Received</button>                               
+                                <button type="button" class="btn btn-info mb-3" onclick="showschpen()">Pending</button>
+                                <button type="button" class="btn btn-danger mb-3" onclick="showschrel()">Released</button>
+                                <button type="button" class="btn btn-primary mb-3" onclick="showschall()">All Statuses</button>
+                                <br>
+                                <div id="schall" style="display:">
+                                    <table id="example4" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>                                                
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM school_donate";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            %>  
+                                            
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>                                                
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+                                            
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+                             
+                                <div id="schrec" style="display:none">
+                                    <table id="example5" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM school_donate where stat='Received'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            %>  
+                                            
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>                                                
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+                                            
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div id="schpen" style="display:none">
+                                    <table id="example6" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>                                                
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM school_donate where stat='Pending'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            %>  
+                                            
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>                                                
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+                                            
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div>         
+                                
+                                <div id="schrel" style="display:none">
+                                    <table id="example7" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>                                               
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM school_donate where stat='Released'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            %>  
+                                            
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>                                                
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+                                            
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div> 
+                                        
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Primary table end -->
+                </div>                       
+                                        
+                <div class="row" id="foorow" style="display:none">
+                    <!-- Primary table start -->
+                    <div class="col-12 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">Food Donations</h4>
+                                <button type="button" class="btn btn-success mb-3" onclick="showfoorec()">Received</button>                               
+                                <button type="button" class="btn btn-info mb-3" onclick="showfoopen()">Pending</button>
+                                <button type="button" class="btn btn-danger mb-3" onclick="showfoorel()">Released</button>
+                                <button type="button" class="btn btn-primary mb-3" onclick="showfooall()">All Statuses</button>
+                                <br>
+                                <div id="fooall" style="display:">
+                                    <table id="example8" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>                                                
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>Expiration Date</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM foods_donate";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            %>  
+                                            
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>                                                
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("exp") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+                                            
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+                             
+                                <div id="foorec" style="display:none">
+                                    <table id="example9" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>Expiration Date</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM foods_donate where stat='Received'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            %>  
+                                            
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>                                                
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("exp") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+                                            
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div id="foopen" style="display:none">
+                                    <table id="example10" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>                                                
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>Expiration Date</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM foods_donate where stat='Pending'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            %>  
+                                            
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>                                                
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("exp") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+                                            
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div>         
+                                
+                                <div id="foorel" style="display:none">
+                                    <table id="example11" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>                                               
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>Expiration Date</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM foods_donate where stat='Released'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            %>  
+                                            
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>                                                
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("exp") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+                                            
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div> 
+                                        
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Primary table end -->
+                </div>                        
+                                        
+                <div class="row" id="othrow" style="display:none">
+                    <!-- Primary table start -->
+                    <div class="col-12 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">Other Donations</h4>
+                                <button type="button" class="btn btn-success mb-3" onclick="showothrec()">Received</button>                               
+                                <button type="button" class="btn btn-info mb-3" onclick="showothpen()">Pending</button>
+                                <button type="button" class="btn btn-danger mb-3" onclick="showothrel()">Released</button>
+                                <button type="button" class="btn btn-primary mb-3" onclick="showothall()">All Statuses</button>
+                                <br>
+                                <div id="othall" style="display:">
+                                    <table id="example12" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>                                                
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>Condition</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM others_donate";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            %>  
+                                            
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>                                                
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("cond") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+                                            
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+                             
+                                <div id="othrec" style="display:none">
+                                    <table id="example13" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>Condition</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM others_donate where stat='Received'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            %>  
+                                            
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>                                                
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("cond") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+                                            
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div id="othpen" style="display:none">
+                                    <table id="example14" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>                                                
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>Condition</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM others_donate where stat='Pending'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            %>  
+                                            
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>                                                
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("cond") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+                                            
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div>         
+                                
+                                <div id="othrel" style="display:none">
+                                    <table id="example15" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>                                               
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>Condition</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM others_donate where stat='Released'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            %>  
+                                            
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>                                                
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("cond") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+                                            
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div> 
+                                        
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Primary table end -->
+                </div>                        
+                                        
+                  <div class="row" id="monrow" style="display:none">
+                    <!-- Primary table start -->
+                    <div class="col-12 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">Money Donations</h4>
+                                <button type="button" class="btn btn-success mb-3" onclick="showmonrec()">Received</button>                               
+                                <button type="button" class="btn btn-info mb-3" onclick="showmonpen()">Pending</button>
+                                <button type="button" class="btn btn-danger mb-3" onclick="showmonrel()">Released</button>
+                                <button type="button" class="btn btn-primary mb-3" onclick="showmonall()">All Statuses</button>
+                                <br>
+                                <div id="monall" style="display:">
+                                    <table id="example16" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>                                                
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Amount</th>
+                                                <th>Payment Through</th>
+                                                <th>Reference Number</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM money_donate";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+
+                                            %>  
+
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>                                                
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("pays") %></td>
+                                                <td><%=rs.getString("refno") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div id="monrec" style="display:none">
+                                    <table id="example17" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>                                                
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Amount</th>
+                                                <th>Payment Through</th>
+                                                <th>Reference Number</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM money_donate where stat = 'Received'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+
+                                            %>  
+
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>                                                
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("pays") %></td>
+                                                <td><%=rs.getString("refno") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div id="monpen" style="display:none">
+                                    <table id="example18" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>                                                
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Amount</th>
+                                                <th>Payment Through</th>
+                                                <th>Reference Number</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM money_donate where stat='Pending'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+
+                                            %>  
+
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>                                                
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("pays") %></td>
+                                                <td><%=rs.getString("refno") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div>         
+
+                                <div id="monrel" style="display:none">
+                                    <table id="example19" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>                                                
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Amount</th>
+                                                <th>Payment Through</th>
+                                                <th>Reference Number</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM money_donate where stat='Released'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+
+                                            %>  
+
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>                                                
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("pays") %></td>
+                                                <td><%=rs.getString("refno") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Primary table end -->
+                </div>                      
+                
+            <div class="row" id="clorow" style="display:none">
+                    <!-- Primary table start -->
+                    <div class="col-12 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">Money Donations</h4>
+                                <button type="button" class="btn btn-success mb-3" onclick="showclorec()">Received</button>                               
+                                <button type="button" class="btn btn-info mb-3" onclick="showclopen()">Pending</button>
+                                <button type="button" class="btn btn-danger mb-3" onclick="showclorel()">Released</button>
+                                <button type="button" class="btn btn-primary mb-3" onclick="showcloall()">All Statuses</button>
+                                <br>
+                                <div id="cloall" style="display:">
+                                    <table id="example20" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>                                                
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>Condition</th>
+                                                <th>Size</th>                                               
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM clothes_donate";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+
+                                            %>  
+
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>                                                
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("cond") %></td>
+                                                <td><%=rs.getString("size") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div id="clorec" style="display:none">
+                                    <table id="example21" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>                                                
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>Condition</th>
+                                                <th>Size</th>                                               
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM clothes_donate where stat='Received'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+
+                                            %>  
+
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>                                                
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("cond") %></td>
+                                                <td><%=rs.getString("size") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div id="clopen" style="display:none">
+                                    <table id="example22" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>                                                
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>Condition</th>
+                                                <th>Size</th>                                               
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM clothes_donate where stat='Pending'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+
+                                            %>  
+
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>                                                
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("cond") %></td>
+                                                <td><%=rs.getString("size") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div>         
+
+                                <div id="clorel" style="display:none">
+                                    <table id="example23" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Invoice No</th>                                                
+                                                <th>Item Category</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>Condition</th>
+                                                <th>Size</th>                                               
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM clothes_donate where stat='Released'";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+
+                                            %>  
+
+                                            <tr>
+                                                <td><%=rs.getString("invoicenum") %></td>                                                
+                                                <td><%=rs.getString("item") %></td>
+                                                <td><%=rs.getString("des") %></td>
+                                                <td><%=rs.getString("qty") %></td>
+                                                <td><%=rs.getString("cond") %></td>
+                                                <td><%=rs.getString("size") %></td>
+                                                <td><%=rs.getString("fr") %></td>
+                                                <td><%=rs.getString("donto") %></td>
+                                                <td><%=rs.getString("stat") %></td>
+                                                <td><%=rs.getString("date") %></td>                                               
+                                            </tr>
+
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Primary table end -->
+                </div>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+            </div>
+        </div>
+        
+        
     <%
         }else{
             response.sendRedirect("index.jsp");
@@ -152,8 +1538,9 @@
     %>                 
     
     <!--Custom Script-->
-    <!--<script src="assets/js/custom1.js"></script>-->
+    <script src="assets/js/custom1.js"></script>
     <script src="assets/js/custom2.js"></script>
+    
     <!-- jquery latest version -->
     <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
     <!-- bootstrap 4 js -->

@@ -1,4 +1,3 @@
-
 /*For Donation Types*/
 function show1()
 {
@@ -239,6 +238,6 @@ function shows4(){
         document.getElementById('metform').className = "form-group col-4";        
         document.getElementById('reform').className = "form-group col-4";
         
-    }
-    
+    }  
 }
+
