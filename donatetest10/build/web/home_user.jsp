@@ -50,6 +50,7 @@
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
 	<script type="text/javascript" language="javascript" src="../../../../examples/resources/demo.js"></script>
 	
+	
         <script type="text/javascript" class="init">
             $(document).ready(function() {
                     $('#example').DataTable( {
@@ -135,7 +136,7 @@
                                         <a href="upload_csv.jsp"><i class="ti-import"></i><span>Upload CSV</span></a>
                                     </li>
                                     <li>
-                                        <a href="gen_report.jsp"><i class="ti-file"></i><span>Generate Reports</span></a>
+                                        <a href="gen_report_user.jsp"><i class="ti-file"></i><span>Generate Reports</span></a>
                                     </li>
                                 </ul>
                             </nav>
@@ -509,8 +510,8 @@
                                                 <th>To</th>
                                                 <th>Status</th>
                                                 <th>Date</th>
-                                                <th>Pending</th>
-                                                <th>Released</th>
+                                                <th>Change Status</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -535,20 +536,13 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td>
-                                                <td>
+                                                <td align="center">
                                                     <form action="Update_Pending" action="post">
                                                         <input type="text" style="display:none" value="<%=rs.getString("type") %>" name="pen">
                                                         <input type="text" style="display:none" value="<%=rs.getString("invoicenum") %>" name="penum">                                                    
                                                         <button type="submit" class="btn btn-warning btn-xs mb-3" >Pending</button>                                                      
                                                     </form>
-                                                </td>
-                                                <td>
-                                                    <form action="Update_Released" action="post">
-                                                        <input type="text" style="display:none" value="<%=rs.getString("type") %>" name="rels">
-                                                        <input type="text" style="display:none" value="<%=rs.getString("invoicenum") %>" name="relums">                                                    
-                                                        <button type="submit" class="btn btn-primary btn-xs mb-3" >Released</button>                                                      
-                                                    </form>
-                                                </td>
+                                                </td>                                               
                                             </tr>
                                             
                                              <% 

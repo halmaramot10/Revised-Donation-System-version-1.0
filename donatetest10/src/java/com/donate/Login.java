@@ -58,6 +58,7 @@ public class Login extends HttpServlet {
                             switch(role){
                                 case "Admin":
                                     session.setAttribute("uname",uname);
+                                    session.setAttribute("role", role);
                                     session.setAttribute("name",name);
                                     session.setAttribute("id", id);
                                     rd = request.getRequestDispatcher("/home_admin.jsp");
@@ -68,6 +69,7 @@ public class Login extends HttpServlet {
                                     session.setAttribute("uname",uname);
                                     session.setAttribute("name",name);
                                     session.setAttribute("id", id);
+                                    session.setAttribute("role", role);
                                     rd = request.getRequestDispatcher("/home_owner.jsp");
                                     rd.forward(request,response);
                                     con.close();
@@ -76,6 +78,8 @@ public class Login extends HttpServlet {
                                     session.setAttribute("uname",uname);
                                     session.setAttribute("name",name);
                                     session.setAttribute("id", id);
+                                    String roles = role;
+                                    session.setAttribute(role, roles);
                                     rd = request.getRequestDispatcher("/home_user.jsp");
                                     rd.forward(request,response);
                                     con.close();

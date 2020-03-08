@@ -16,6 +16,30 @@
         <servlet-name>Update_Released</servlet-name>
         <servlet-class>com.donate.Update_Released</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Update_Clothes</servlet-name>
+        <servlet-class>com.donate.Update_Clothes</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Update_Food</servlet-name>
+        <servlet-class>com.donate.Update_Food</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Update_Money</servlet-name>
+        <servlet-class>com.donate.Update_Money</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Update_Others</servlet-name>
+        <servlet-class>com.donate.Update_Others</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Update_School</servlet-name>
+        <servlet-class>com.donate.Update_School</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Add_Donation_Admin</servlet-name>
+        <servlet-class>com.donate.Add_Donation_Admin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -31,6 +55,30 @@
     <servlet-mapping>
         <servlet-name>Update_Released</servlet-name>
         <url-pattern>/Update_Released</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Update_Clothes</servlet-name>
+        <url-pattern>/Update_Clothes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Update_Food</servlet-name>
+        <url-pattern>/Update_Food</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Update_Money</servlet-name>
+        <url-pattern>/Update_Money</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Update_Others</servlet-name>
+        <url-pattern>/Update_Others</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Update_School</servlet-name>
+        <url-pattern>/Update_School</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Add_Donation_Admin</servlet-name>
+        <url-pattern>/Add_Donation_Admin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

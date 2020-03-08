@@ -97,6 +97,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js\"></script>\n");
       out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"../../../../examples/resources/demo.js\"></script>\n");
       out.write("\t\n");
+      out.write("\t\n");
       out.write("        <script type=\"text/javascript\" class=\"init\">\n");
       out.write("            $(document).ready(function() {\n");
       out.write("                    $('#example').DataTable( {\n");
@@ -188,7 +189,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                                        <a href=\"upload_csv.jsp\"><i class=\"ti-import\"></i><span>Upload CSV</span></a>\n");
       out.write("                                    </li>\n");
       out.write("                                    <li>\n");
-      out.write("                                        <a href=\"gen_report.jsp\"><i class=\"ti-file\"></i><span>Generate Reports</span></a>\n");
+      out.write("                                        <a href=\"gen_report_user.jsp\"><i class=\"ti-file\"></i><span>Generate Reports</span></a>\n");
       out.write("                                    </li>\n");
       out.write("                                </ul>\n");
       out.write("                            </nav>\n");
@@ -643,8 +644,8 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                                                <th>To</th>\n");
       out.write("                                                <th>Status</th>\n");
       out.write("                                                <th>Date</th>\n");
-      out.write("                                                <th>Pending</th>\n");
-      out.write("                                                <th>Released</th>\n");
+      out.write("                                                <th colspan=\"2\">Change Status</th>\n");
+      out.write("                                                \n");
       out.write("                                            </tr>\n");
       out.write("                                        </thead>\n");
       out.write("                                        <tbody>\n");
@@ -708,7 +709,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                                                        <input type=\"text\" style=\"display:none\" value=\"");
       out.print(rs.getString("invoicenum") );
       out.write("\" name=\"relums\">                                                    \n");
-      out.write("                                                        <button type=\"submit\" class=\"btn btn-warning btn-xs mb-3\" >Pending</button>                                                      \n");
+      out.write("                                                        <button type=\"submit\" class=\"btn btn-primary btn-xs mb-3\" >Released</button>                                                      \n");
       out.write("                                                    </form>\n");
       out.write("                                                </td>\n");
       out.write("                                            </tr>\n");
