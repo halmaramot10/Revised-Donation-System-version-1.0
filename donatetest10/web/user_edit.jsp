@@ -73,12 +73,33 @@
         formatter1 = new SimpleDateFormat("MM-dd-yyyy");
         tod1 = formatter1.format(today);
 
-        String name = (String)session.getAttribute("name");
+        //String name = (String)session.getAttribute("name");
         String uname=(String)session.getAttribute("uname");
-        String id=null;
         if(uname!=null){
     %>
-    
+    <%
+            int id = 0;
+            String username=null, password = null, role = null,status = null, name=null, contact = null, email = null;
+            
+            try{
+                id = Integer.parseInt(request.getParameter("id"));
+                con = DB.getConnection();
+                st = con.createStatement();
+                rs = st.executeQuery("select * from users where id="+id+"");
+                if (rs.next()){
+                    
+                    username = rs.getString("username");
+                    password = rs.getString("password");
+                    role = rs.getString("role");
+                    status = rs.getString("status");
+                    name = rs.getString("name");
+                    contact = rs.getString("contact");
+                    email = rs.getString("email");
+                }
+            }catch(Exception e){
+               out.println(e);
+            }
+    %>
     <div class="horizontal-main-wrapper">
         
          <!--[if lt IE 8]>
@@ -174,19 +195,21 @@
                                 %>
                                 </b>
                                 <h6 class="header-title" style="text-align: center">Add User</h6>
-                                <form action="Add_User" method="post">
+                                <form action="Update_User" method="post">
                                     <div class="row">
+                                        <input type ="text" name="id" value="<%=id%>" style="display: none">
                                         <div class="form-group col-3">
                                             <label>Username</label>
-                                            <input type="text"  class="form-control form-control-sm" name="username">    
+                                            <input type="text"  class="form-control form-control-sm" name="username" value="<%=username%>">    
                                         </div>
                                         <div class="form-group col-3">
                                             <label>Password</label>
-                                            <input type="password"  class="form-control form-control-sm" name="password">    
+                                            <input type="password"  class="form-control form-control-sm" name="password" value="<%=password%>">    
                                         </div>
                                         <div class="form-group col-3">
                                             <label>Role</label>
                                             <select class="form-control form-control-sm" name="role">
+                                                <option value="<%=role%>"><%=role%></option>
                                                 <option value="User">User</option>
                                                 <option value="Owner">Manager/Owner</option>
                                                 <option value="Admin">Administrator</option>
@@ -195,6 +218,7 @@
                                         <div class="form-group col-3">
                                             <label>Status</label>
                                             <select class="form-control form-control-sm" name="status">
+                                                <option value="<%=status%>"><%=status%></option>
                                                 <option value="Active">Active</option>
                                                 <option value="Inactive">Inactive</option>
                                             </select>
@@ -203,20 +227,20 @@
                                     <div class="row">
                                         <div class="form-group col-4">
                                             <label>Name</label>
-                                            <input type="text"  class="form-control form-control-sm" name="name">    
+                                            <input type="text" class="form-control form-control-sm" name="name" value="<%=name%>">    
                                         </div>
                                         <div class="form-group col-4">
                                             <label>Contact Number</label>
-                                            <input type="text"  class="form-control form-control-sm" name="contact">    
+                                            <input type="text"  class="form-control form-control-sm" name="contact" value="<%=contact%>">    
                                         </div>
                                         <div class="form-group col-4">
                                             <label>Email</label>
-                                            <input type="email"  class="form-control form-control-sm" name="email">    
+                                            <input type="email"  class="form-control form-control-sm" name="email" value="<%=email%>">    
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-3">
-                                            <button type="submit" class="btn btn-success mb-3">Add User</button>
+                                            <button type="submit" class="btn btn-success mb-3">Update User</button>
                                         </div> 
                                     </div> 
                                 </form>    

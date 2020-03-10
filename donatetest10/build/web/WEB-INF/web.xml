@@ -40,6 +40,22 @@
         <servlet-name>Add_Donation_Admin</servlet-name>
         <servlet-class>com.donate.Add_Donation_Admin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Add_User</servlet-name>
+        <servlet-class>com.donate.Add_User</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Update_Activate</servlet-name>
+        <servlet-class>com.donate.Update_Activate</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Update_Deactivate</servlet-name>
+        <servlet-class>com.donate.Update_Deactivate</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Update_User</servlet-name>
+        <servlet-class>com.donate.Update_User</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -79,6 +95,22 @@
     <servlet-mapping>
         <servlet-name>Add_Donation_Admin</servlet-name>
         <url-pattern>/Add_Donation_Admin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Add_User</servlet-name>
+        <url-pattern>/Add_User</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Update_Activate</servlet-name>
+        <url-pattern>/Update_Activate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Update_Deactivate</servlet-name>
+        <url-pattern>/Update_Deactivate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Update_User</servlet-name>
+        <url-pattern>/Update_User</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

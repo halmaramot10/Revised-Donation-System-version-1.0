@@ -78,6 +78,7 @@ public class Login extends HttpServlet {
                                     session.setAttribute("uname",uname);
                                     session.setAttribute("name",name);
                                     session.setAttribute("id", id);
+                                    session.setAttribute("role", role);
                                     String roles = role;
                                     session.setAttribute(role, roles);
                                     rd = request.getRequestDispatcher("/home_user.jsp");

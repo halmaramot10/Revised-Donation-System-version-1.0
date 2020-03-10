@@ -77,7 +77,6 @@
 
         String name = (String)session.getAttribute("name");
         String uname=(String)session.getAttribute("uname");
-        String id=null;
         if(uname!=null){
     %>
     

@@ -35,9 +35,7 @@
     
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
-	<style type="text/css" class="init">
 	
-	</style>
   
 	<script type="text/javascript" src="/media/js/site.js?_=a64810efc82bfd3b645784011efa5963"></script>
 	<script type="text/javascript" src="/media/js/dynamic.php?comments-page=extensions%2Fbuttons%2Fexamples%2Fhtml5%2Fsimple.html" async></script>
@@ -51,9 +49,9 @@
 	<script type="text/javascript" language="javascript" src="../../../../examples/resources/demo.js"></script>
 	
 	
-        <script type="text/javascript" class="init">
+        <script type="text/javascript">
             $(document).ready(function() {
-                    $('#example').DataTable( {
+                    $('#example78').DataTable( {
                     } );
             } );
 	</script>
@@ -156,7 +154,148 @@
         </div>
         <!-- header area end -->
         
-        
+        <!-- page title area end -->
+        <div class="main-content-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <b style="font-weight:bolder; color:green;">
+                                <%
+                                    try{
+                                        String success= session.getAttribute("success").toString();
+                                        out.println(success);
+                                        session.removeAttribute("success");
+                                    }catch(Exception er){
+
+                                    }
+
+                                %>
+                                </b>
+                                <h6 class="header-title" style="text-align: center">Add User</h6>
+                                <form action="Add_User" method="post">
+                                    <div class="row">
+                                        <div class="form-group col-3">
+                                            <label>Username</label>
+                                            <input type="text"  class="form-control form-control-sm" name="username">    
+                                        </div>
+                                        <div class="form-group col-3">
+                                            <label>Password</label>
+                                            <input type="password"  class="form-control form-control-sm" name="password">    
+                                        </div>
+                                        <div class="form-group col-3">
+                                            <label>Role</label>
+                                            <select class="form-control form-control-sm" name="role">
+                                                <option value="User">User</option>
+                                                <option value="Owner">Manager/Owner</option>
+                                                <option value="Admin">Administrator</option>
+                                            </select>    
+                                        </div>
+                                        <div class="form-group col-3">
+                                            <label>Status</label>
+                                            <select class="form-control form-control-sm" name="status">
+                                                <option value="Active">Active</option>
+                                                <option value="Inactive">Inactive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-4">
+                                            <label>Name</label>
+                                            <input type="text"  class="form-control form-control-sm" name="name">    
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label>Contact Number</label>
+                                            <input type="text"  class="form-control form-control-sm" name="contact">    
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label>Email</label>
+                                            <input type="email"  class="form-control form-control-sm" name="email">    
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-3">
+                                            <button type="submit" class="btn btn-success mb-3">Add User</button>
+                                        </div> 
+                                    </div> 
+                                </form>    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <!-- Primary table start -->
+                    <div class="col-12 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">Data Table Primary</h4>
+                                <div>
+                                    <table id="example78" class="table table-striped table-bordered zero-configuration">
+                                        <thead>
+                                            <th>Name</th>
+                                            <th>Username</th>
+                                            <th>Role</th>
+                                            <th>Status</th>
+                                            <th>Contact</th>
+                                            <th>Email</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </thead>
+                                        <tbody>
+                                            <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM users";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            %>  
+                                            <tr>
+                                                <td><%=rs.getString("name")%></td>
+                                                <td><%=rs.getString("username")%></td>
+                                                <td><%=rs.getString("role")%></td>
+                                                <td><%=rs.getString("status")%></td>
+                                                <td><%=rs.getString("contact")%></td>
+                                                <td><%=rs.getString("email")%></td>
+                                                <td align="center">
+                                                    <form action="Update_Activate" method="post">
+                                                        <input type="text" style="display:none" value="<%=rs.getString("id")%>" name="acid">
+                                                        <button type="submit" class="btn btn-success btn-xs mb-3">Activate</button>
+                                                    </form>
+                                                </td>
+                                                <td align="center">
+                                                    <form action="Update_Deactivate" method="post">
+                                                        <input type="text" style="display:none" value="<%=rs.getString("id")%>" name="inid">
+                                                        <button type="submit" class="btn btn-danger btn-xs mb-3">Deactivate</button>
+                                                    </form>
+                                                </td>
+                                                <td><a href="user_edit.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                            </tr>
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                
+                                
+                                
+                                
+            </div>
+        </div>
         
         
     <%

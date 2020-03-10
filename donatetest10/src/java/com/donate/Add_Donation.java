@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package com.donate;
 
@@ -12,22 +7,10 @@ import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
-/**
- *
- * @author Hazel Anne
- */
+
 @WebServlet(name = "Add_Donation", urlPatterns = {"/Add_Donation"})
 public class Add_Donation extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     HttpSession session;
     int status=0 ,status2 = 0, status3=0;
     Connection con;
