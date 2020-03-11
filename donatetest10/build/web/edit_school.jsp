@@ -145,7 +145,7 @@
         </div>
         <!-- main header area end -->
         
-        <!-- header area start -->
+                <!-- header area start -->
         <div class="header-area header-bottom">
             <div class="container">
                 <div class="row align-items-center">
@@ -153,7 +153,7 @@
                         <div class="horizontal-menu">
                             <nav>
                                 <ul id="nav_menu">
-                                    <li class="active">
+                                    <li>
                                         <a href="home_admin.jsp"><i class="ti-plus"></i><span>Add Donation</span></a>
                                     </li>
                                     <li>
@@ -165,11 +165,11 @@
                                     <li>
                                         <a href="user_add.jsp"><i class="ti-user"></i><span>Add User</span></a>
                                     </li>
-                                    <li>
+                                    <li class="active">
                                         <a href="edit_type_table.jsp"><i class="ti-pencil"></i>Edit Donations</a>
                                     </li>
                                     <li>
-                                        <a href="edit_item_category.jsp"><i class="ti-pencil"></i>Edit Dropdowns</a>
+                                        <a href="edit_dropdowns.jsp"><i class="ti-pencil"></i>Edit Dropdowns</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -281,7 +281,7 @@
                 </div>
             </div>
         </div>
-        
+    </div>
         
     <%
         }else{

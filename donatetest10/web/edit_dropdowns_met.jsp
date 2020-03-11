@@ -64,11 +64,12 @@
     
     <%
     Connection con = null;
-    Statement st = null;
+    Statement st = null, st2 = null;
     ResultSet rs = null;
     %>
 
     <%
+        int id = 0;
         Date today = new Date();
         Format formatter1;
         String tod1;
@@ -77,37 +78,25 @@
 
         String name = (String)session.getAttribute("name");
         String uname=(String)session.getAttribute("uname");
+        id = Integer.parseInt(request.getParameter("id"));
         if(uname!=null){
     %>
     <%
-            int id = 0;
-            String date = null, item = null, des = null, qty = null,met = null,pays=null,refno=null,fr = null, donto = null, stat = null;
-            String addedby = null, invoicenum = null;
-            
+            String met = null,pay = null;
             try{
-                id = Integer.parseInt(request.getParameter("id"));
-                con = DB.getConnection();
-                st = con.createStatement();
-                rs = st.executeQuery("select * from money_donate where id="+id+"");
-                if (rs.next()){
-                    
-                    date = rs.getString("date");
-                    item = rs.getString("item");
-                    des = rs.getString("des");
-                    qty = rs.getString("qty");
-                    met = rs.getString("met");
-                    pays = rs.getString("pays");
-                    refno = rs.getString("refno");
-                    fr = rs.getString("fr");
-                    donto = rs.getString("donto");
-                    stat = rs.getString("stat");
-                    addedby = rs.getString("addedby");
-                    invoicenum = rs.getString("invoicenum");
-                }
+            con = DB.getConnection();
+            st = con.createStatement();
+            String sql = "select * from paymet where id = "+id+"";
+            rs = st.executeQuery(sql);
+            if(rs.next()){
+                met = rs.getString("method");
+                pay = rs.getString("met_name");
+            }
             }catch(Exception e){
                out.println(e);
             }
     %>
+
     <div class="horizontal-main-wrapper">
         
          <!--[if lt IE 8]>
@@ -202,110 +191,102 @@
 
                                 %>
                                 </b>
-                                <h6 class="header-title" style="text-align: center">Add Donation Entry</h6>
-                                <form action="Update_Money" method="post">
-                                    <div class="row">
+                                <h6 class="header-title" style="text-align: center">Update Food Donation Entry</h6>
+                                <form action="Update_Payment" method="post">
+                                    <div class ="row">
                                         <input type ="text" name="id" value="<%=id%>" style="display: none">
-                                        <div class="form-group col-3">
-                                            <label for="qty">Invoice Number</label>                                           
-                                            <input type="text" name="invoicenum" class="form-control form-control-sm" value="<%=invoicenum%>" readonly>
-                                        </div> 
-                                        <div class="form-group col-3">
-                                            <label for="addedby">Added By</label>
-                                            <input type="text" class="form-control form-control-sm" readonly name="addedby" value="<%=addedby%>">                                          
-                                        </div>
-                                        
-                                        <div class="form-group col-3">
-                                            <label for="date">Date</label>
-                                            <input type="text" class="form-control form-control-sm" name="date" readonly value="<%=date%>">                                      
-                                        </div>
-                                        <div class="form-group col-3">
-                                            <label for="item">Item Type</label>
-                                            <select name="item" class="form-control form-control-sm">
-                                                <option value="<%=item%>"><%=item%></option>
+                                        <div class="form-group col-4">
+                                            <select name="method" class="form-control form-control-sm">
+                                                
+                                                <option value="<%=met%>" selected="selected"><%=met%></option>
                                                 <%
-                                            try{
-                                                con=DB.getConnection();
-                                                st=con.createStatement();
-                                                rs=st.executeQuery("select * from item_category where category = 'Money'");
-                                                while(rs.next()){           
-                                        %>
+                                                    try{
+                                                        con=DB.getConnection();
+                                                        st=con.createStatement();
+                                                        rs=st.executeQuery("select * from method");
+                                                        while(rs.next()){           
+                                                %>
                                                     
-                                                    <option value="<%=rs.getString("item_name") %>"><%=rs.getString("item_name") %></option>
-                                        <%
-                                                }
-                                            }catch(Exception ex){
-                                                ex.printStackTrace();
-                                                out.println("Error: "+ex.getMessage());
-                                            }
-                                        %>
-                                            </select>
-                                        </div>                                                                                 
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-9">
-                                            <label for="desc">Description</label>                                           
-                                            <input type="text" name="des" class="form-control form-control-sm" value="<%=des%>">
-                                        </div>
-                                        <div class="form-group col-3">
-                                            <label for="qty" id="qtytxt">Quantity</label>                                           
-                                            <input type="text" name="qty" class="form-control form-control-sm" value="<%=qty%>">
-                                        </div>  
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-4">
-                                            <label for="from">From</label>
-                                            <input type="text" name="fr" class="form-control form-control-sm" value="<%=fr%>">
-                                        </div>
-                                        <div class="form-group col-4">
-                                            <label for="donto">To</label>
-                                            <input type="text" name="donto" class="form-control form-control-sm" value="<%=donto%>">                                      
-                                        </div>
-                                        <div class="form-group col-4">
-                                            <label for="stat">Status</label>
-                                            <select name="stat" class="form-control form-control-sm">
-                                                <option value="<%=stat%>" selected="selected"><%=stat%></option>
-                                                <option value="Received">Received</option>
-                                                <option value="Pending">Pending</option>
-                                                <option value="Released">Released</option>
-                                            </select>                                    
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-4" id="metform">
-                                            <label for="metform">Method</label>
-                                            <select name="met" class="form-control form-control-sm">
-                                                <option value="<%=met%>"><%=met%></option>
-                                                <option value="Bank">Bank</option>
-                                                <option value="Online">Online</option>
-                                                <option value="Other">Other</option>
+                                                    <option value="<%=rs.getString("method") %>"><%=rs.getString("method") %></option>
+                                                <%
+                                                        }
+                                                    }catch(Exception ex){
+                                                        ex.printStackTrace();
+                                                        out.println("Error: "+ex.getMessage());
+                                                    }
+                                                %>
                                             </select>
                                         </div>
-                                        <div class="form-group col-4" id="olform">
-                                            <label for="payapp">Payment Through</label>
-                                            <input type="text" name="pays" class="form-control form-control-sm" value="<%=pays%>">
+                                        <div class="form-group col-4">
+                                            <input type ="text" name="met_name" value="<%=pay%>" class="form-control form-control-sm">
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <button type="submit" class="btn btn-success btn-xs mb-3">Update</button>     
+                                            <a href="edit_dropdowns.jsp"><button type= "button" class="btn btn-danger btn-xs mb-3">Cancel</button></a>
                                         </div> 
                                         
-                                        <div class="form-group col-4" id="reform">
-                                            <label for="reference">Reference No</label>
-                                            <input type="text" name="refno" class="form-control form-control-sm" value="<%=refno%>">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-3">
-                                            <button type="submit" class="btn btn-success mb-3">Update</button>
-                                        </div> 
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
+               
+                 <div class="row">
+                    <div class="col-12 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6>Item Category Table</h6>
+                                <br>
+                                <div>
+                                    <table id="examples" class="table table-striped table-bordered zero-configuration">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>Category</th>
+                                                <th>Item Category</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                               <%
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM paymet";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            %>  
+                                            
+                                            <tr>
+                                                <td><%=rs.getString("method") %></td>                                                
+                                                <td><%=rs.getString("met_name") %></td>
+                                                <td><a href="edit_dropdowns_met.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                            </tr>
+                                            
+                                             <% 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            %>                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                       
+                                        
+                                        
+                                        
             </div>
         </div>
     </div>
-        
-    <%
+                              
+        <%
         }else{
             response.sendRedirect("index.jsp");
         }
@@ -314,7 +295,7 @@
     <!--Custom Script-->
     <script src="assets/js/custom1.js"></script>
     <script src="assets/js/custom2.js"></script>
-    
+    <script src="assets/js/custom4.js"></script>
     <!-- jquery latest version -->
     <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
     <!-- bootstrap 4 js -->

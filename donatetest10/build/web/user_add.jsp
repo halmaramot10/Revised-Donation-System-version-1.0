@@ -143,7 +143,7 @@
                                         <a href="edit_type_table.jsp"><i class="ti-pencil"></i>Edit Donations</a>
                                     </li>
                                     <li>
-                                        <a href="edit_item_category.jsp"><i class="ti-pencil"></i>Edit Dropdowns</a>
+                                        <a href="edit_dropdowns.jsp"><i class="ti-pencil"></i>Edit Dropdowns</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -296,6 +296,7 @@
                                 
             </div>
         </div>
+    </div>
         
         
     <%

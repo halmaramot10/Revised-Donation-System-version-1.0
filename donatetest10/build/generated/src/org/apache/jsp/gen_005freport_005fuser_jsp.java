@@ -8,7 +8,7 @@ import java.text.*;
 import java.sql.*;
 import com.donate.DB;
 
-public final class gen_005freport_005fadmin_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class gen_005freport_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -113,6 +113,12 @@ public final class gen_005freport_005fadmin_jsp extends org.apache.jasper.runtim
       out.write("\n");
       out.write("    ");
 
+        Date today = new Date();
+        Format formatter1;
+        String tod1;
+        formatter1 = new SimpleDateFormat("MM-dd-yyyy");
+        tod1 = formatter1.format(today);
+
         String name = (String)session.getAttribute("name");
         String uname=(String)session.getAttribute("uname");
         String id=null;
@@ -170,23 +176,14 @@ public final class gen_005freport_005fadmin_jsp extends org.apache.jasper.runtim
       out.write("                        <div class=\"horizontal-menu\">\n");
       out.write("                            <nav>\n");
       out.write("                                <ul id=\"nav_menu\">\n");
-      out.write("                                    <li class=\"active\">\n");
-      out.write("                                        <a href=\"home_admin.jsp\"><i class=\"ti-plus\"></i><span>Add Donation</span></a>\n");
+      out.write("                                    <li>\n");
+      out.write("                                        <a href=\"home_user.jsp\"><i class=\"ti-plus\"></i><span>Add Donation</span></a>\n");
       out.write("                                    </li>\n");
       out.write("                                    <li>\n");
       out.write("                                        <a href=\"upload_csv.jsp\"><i class=\"ti-import\"></i><span>Upload CSV</span></a>\n");
       out.write("                                    </li>\n");
-      out.write("                                    <li>\n");
-      out.write("                                        <a href=\"gen_report_admin.jsp\"><i class=\"ti-file\"></i><span>Generate Reports</span></a>\n");
-      out.write("                                    </li>\n");
-      out.write("                                    <li>\n");
-      out.write("                                        <a href=\"user_add.jsp\"><i class=\"ti-user\"></i><span>Add User</span></a>\n");
-      out.write("                                    </li>\n");
-      out.write("                                    <li>\n");
-      out.write("                                        <a href=\"edit_type_table.jsp\"><i class=\"ti-pencil\"></i>Edit Donations</a>\n");
-      out.write("                                    </li>\n");
-      out.write("                                    <li>\n");
-      out.write("                                        <a href=\"edit_dropdowns.jsp\"><i class=\"ti-pencil\"></i>Edit Dropdowns</a>\n");
+      out.write("                                    <li class=\"active\">\n");
+      out.write("                                        <a href=\"gen_report_user.jsp\"><i class=\"ti-file\"></i><span>Generate Reports</span></a>\n");
       out.write("                                    </li>\n");
       out.write("                                </ul>\n");
       out.write("                            </nav>\n");
@@ -196,7 +193,7 @@ public final class gen_005freport_005fadmin_jsp extends org.apache.jasper.runtim
       out.write("            </div>\n");
       out.write("        </div>\n");
       out.write("        <!-- header area end -->\n");
-      out.write("        \n");
+      out.write("    </div>\n");
       out.write("        <div class=\"main-content-inner\">\n");
       out.write("            <div class=\"container\">\n");
       out.write("  \n");
@@ -247,10 +244,10 @@ public final class gen_005freport_005fadmin_jsp extends org.apache.jasper.runtim
       out.write("                        <div class=\"card\">\n");
       out.write("                            <div class=\"card-body\">\n");
       out.write("                                <h4 class=\"header-title\">All Donation Types</h4>\n");
-      out.write("                                <button type=\"button\" class=\"btn btn-success mb-3\" onclick=\"showgenrec01()\">Received</button>                               \n");
-      out.write("                                <button type=\"button\" class=\"btn btn-info mb-3\" onclick=\"showgenpen01()\">Pending</button>\n");
-      out.write("                                <button type=\"button\" class=\"btn btn-danger mb-3\" onclick=\"showgenrel01()\">Released</button>\n");
-      out.write("                                <button type=\"button\" class=\"btn btn-primary mb-3\" onclick=\"showgenall01()\">All Statuses</button>\n");
+      out.write("                                <button type=\"button\" class=\"btn btn-success mb-3\" onclick=\"showgenrec()\">Received</button>                               \n");
+      out.write("                                <button type=\"button\" class=\"btn btn-info mb-3\" onclick=\"showgenpen()\">Pending</button>\n");
+      out.write("                                <button type=\"button\" class=\"btn btn-danger mb-3\" onclick=\"showgenrel()\">Released</button>\n");
+      out.write("                                <button type=\"button\" class=\"btn btn-primary mb-3\" onclick=\"showgenall()\">All Statuses</button>\n");
       out.write("                                <br>\n");
       out.write("                                <div id=\"genall\" style=\"display:\">\n");
       out.write("                                    <table id=\"example\" class=\"table table-striped table-bordered zero-configuration\">\n");
@@ -2111,7 +2108,7 @@ public final class gen_005freport_005fadmin_jsp extends org.apache.jasper.runtim
       out.write("                                        \n");
       out.write("            </div>\n");
       out.write("        </div>\n");
-      out.write("    </div>\n");
+      out.write("        \n");
       out.write("        \n");
       out.write("    ");
 
@@ -2124,7 +2121,7 @@ public final class gen_005freport_005fadmin_jsp extends org.apache.jasper.runtim
       out.write("    <!--Custom Script-->\n");
       out.write("    <script src=\"assets/js/custom1.js\"></script>\n");
       out.write("    <script src=\"assets/js/custom2.js\"></script>\n");
-      out.write("    <script src=\"assets/js/custom3.js\"></script>\n");
+      out.write("    \n");
       out.write("    <!-- jquery latest version -->\n");
       out.write("    <script src=\"assets/js/vendor/jquery-2.2.4.min.js\"></script>\n");
       out.write("    <!-- bootstrap 4 js -->\n");

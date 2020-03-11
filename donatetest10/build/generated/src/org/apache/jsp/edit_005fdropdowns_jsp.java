@@ -8,7 +8,7 @@ import java.text.*;
 import java.sql.*;
 import com.donate.DB;
 
-public final class edit_005fclothes_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class edit_005fdropdowns_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -96,16 +96,8 @@ public final class edit_005fclothes_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js\"></script>\n");
       out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js\"></script>\n");
       out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"../../../../examples/resources/demo.js\"></script>\n");
-      out.write("\t\n");
-      out.write("\t\n");
-      out.write("        <script type=\"text/javascript\" class=\"init\">\n");
-      out.write("            $(document).ready(function() {\n");
-      out.write("                    $('#example').DataTable( {\n");
-      out.write("                    } );\n");
-      out.write("            } );\n");
-      out.write("\t</script>\n");
       out.write("    \n");
-      out.write("    <title>Edit Clothes Donation</title>\n");
+      out.write("    <title>Add Donation Entry</title>\n");
       out.write("</head>\n");
       out.write("<body class=\"body-bg\">\n");
       out.write("    \n");
@@ -130,39 +122,6 @@ public final class edit_005fclothes_jsp extends org.apache.jasper.runtime.HttpJs
         if(uname!=null){
     
       out.write("\n");
-      out.write("    ");
-
-            int id = 0;
-            String date = null, item = null, des = null, qty = null,cond = null,size=null,color = null, gender = null, age = null, fr = null, donto = null, stat = null;
-            String addedby = null, invoicenum = null;
-            
-            try{
-                id = Integer.parseInt(request.getParameter("id"));
-                con = DB.getConnection();
-                st = con.createStatement();
-                rs = st.executeQuery("select * from clothes_donate where id="+id+"");
-                if (rs.next()){
-                    
-                    date = rs.getString("date");
-                    item = rs.getString("item");
-                    des = rs.getString("des");
-                    qty = rs.getString("qty");
-                    cond = rs.getString("cond");
-                    size = rs.getString("size");
-                    color = rs.getString("color");
-                    gender = rs.getString("gender");
-                    age = rs.getString("age");
-                    fr = rs.getString("fr");
-                    donto = rs.getString("donto");
-                    stat = rs.getString("stat");
-                    addedby = rs.getString("addedby");
-                    invoicenum = rs.getString("invoicenum");
-                }
-            }catch(Exception e){
-               out.println(e);
-            }
-    
-      out.write("\n");
       out.write("    <div class=\"horizontal-main-wrapper\">\n");
       out.write("        \n");
       out.write("         <!--[if lt IE 8]>\n");
@@ -181,7 +140,7 @@ public final class edit_005fclothes_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("                <div class=\"row align-items-center\">\n");
       out.write("                    <div class=\"col-md-3\">\n");
       out.write("                        <div class=\"logo\">\n");
-      out.write("                            <a href=\"home_admin.jsp\"><img src=\"assets/images/media/cpelogo2.png\" alt=\"logo\"></a>\n");
+      out.write("                            <a href=\"home_user.jsp\"><img src=\"assets/images/media/cpelogo2.png\" alt=\"logo\"></a>\n");
       out.write("                        </div>\n");
       out.write("                    </div>\n");
       out.write("                    <!-- profile info & task notification -->\n");
@@ -239,202 +198,153 @@ public final class edit_005fclothes_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("            </div>\n");
       out.write("        </div>\n");
       out.write("        <!-- header area end -->\n");
-      out.write("                \n");
+      out.write("        \n");
       out.write("        <!-- page title area end -->\n");
       out.write("        <div class=\"main-content-inner\">\n");
       out.write("            <div class=\"container\">\n");
+      out.write("                \n");
       out.write("                <div class=\"row\">\n");
       out.write("                    <div class=\"col-12 mt-5\">\n");
       out.write("                        <div class=\"card\">\n");
       out.write("                            <div class=\"card-body\">\n");
-      out.write("                                <b style=\"font-weight:bolder; color:green;\">\n");
-      out.write("                                ");
-
-                                    try{
-                                        String success= session.getAttribute("success").toString();
-                                        out.println(success);
-                                        session.removeAttribute("success");
-                                    }catch(Exception er){
-
-                                    }
-
-                                
-      out.write("\n");
-      out.write("                                </b>\n");
-      out.write("                                <h6 class=\"header-title\" style=\"text-align: center\">Update Clothes Donation Entry</h6>\n");
-      out.write("                                \n");
-      out.write("                                <form action=\"Update_Clothes\" method=\"post\">\n");
-      out.write("                                    <div class=\"row\">\n");
-      out.write("                                        <input type =\"text\" name=\"id\" value=\"");
-      out.print(id);
-      out.write("\" style=\"display: none\">\n");
-      out.write("                                        <div class=\"form-group col-3\">\n");
-      out.write("                                            <label>Invoice Number</label>\n");
-      out.write("                                            <input type=\"text\"class=\"form-control form-control-sm\" name=\"invoicenum\" value=\"");
-      out.print(invoicenum);
-      out.write("\" readonly>       \n");
-      out.write("                                        </div>\n");
-      out.write("                                        <div class=\"form-group col-3\">\n");
-      out.write("                                            <label for=\"addedby\">Added By</label>\n");
-      out.write("                                            <input type=\"text\"class=\"form-control form-control-sm\" name=\"addedby\" value=\"");
-      out.print(addedby);
-      out.write("\" readonly>                                          \n");
-      out.write("                                        </div>\n");
-      out.write("                                        \n");
-      out.write("                                        <div class=\"form-group col-3\">\n");
-      out.write("                                            <label for=\"date\">Date</label>\n");
-      out.write("                                            <input type=\"text\" class=\"form-control form-control-sm\" name=\"date\" value=\"");
-      out.print(date);
-      out.write("\" readonly>                                      \n");
-      out.write("                                        </div>\n");
-      out.write("                                        <div class=\"form-group col-3\" style=\"display:\">\n");
-      out.write("                                            <label for=\"item\">Item Type</label>\n");
-      out.write("                                            <select name=\"item\" class=\"form-control form-control-sm\">\n");
-      out.write("                                                <option value=\"");
-      out.print(item);
-      out.write("\" selected=\"selected\">");
-      out.print(item);
-      out.write("</option>\n");
-      out.write("                                                ");
-
-                                                    try{
-                                                        con=DB.getConnection();
-                                                        st=con.createStatement();
-                                                        rs=st.executeQuery("select * from item_category where category = 'Clothes'");
-                                                        while(rs.next()){           
-                                                
-      out.write("\n");
-      out.write("                                                    \n");
-      out.write("                                                    <option value=\"");
-      out.print(rs.getString("item_name") );
-      out.write('"');
-      out.write('>');
-      out.print(rs.getString("item_name") );
-      out.write("</option>\n");
-      out.write("                                                ");
-
-                                                        }
-                                                    }catch(Exception ex){
-                                                        ex.printStackTrace();
-                                                        out.println("Error: "+ex.getMessage());
-                                                    }
-                                                
-      out.write("\n");
-      out.write("                                                <option>Add New Item</option>\n");
-      out.write("                                            </select>\n");
-      out.write("                                        </div>                                              \n");
-      out.write("                                    </div>\n");
-      out.write("                                    <div class=\"row\">\n");
-      out.write("                                        <div class=\"form-group col-9\">\n");
-      out.write("                                            <label for=\"desc\">Description</label>                                           \n");
-      out.write("                                            <input type=\"text\" id = \"desc\" name=\"des\" class=\"form-control form-control-sm\" value=\"");
-      out.print(des);
-      out.write("\">\n");
-      out.write("                                        </div> \n");
-      out.write("                                        <div class=\"form-group col-3\">\n");
-      out.write("                                            <label for=\"date\">Quantity</label>\n");
-      out.write("                                            <input type=\"text\" class=\"form-control form-control-sm\" name=\"qty\" value=\"");
-      out.print(qty);
-      out.write("\">                                      \n");
-      out.write("                                        </div>\n");
-      out.write("                                    </div>\n");
-      out.write("                                    <div class=\"row\">\n");
-      out.write("                                        <div class=\"form-group col-3\">\n");
-      out.write("                                            <label for=\"date\">Size</label>\n");
-      out.write("                                            <input type=\"text\" class=\"form-control form-control-sm\" name=\"size\" value=\"");
-      out.print(size);
-      out.write("\">                                      \n");
-      out.write("                                        </div>  \n");
-      out.write("                                        <div class=\"form-group col-3\">\n");
-      out.write("                                            <label for=\"date\">From</label>\n");
-      out.write("                                            <input type=\"text\" class=\"form-control form-control-sm\" name=\"fr\" value=\"");
-      out.print(fr);
-      out.write("\">                                      \n");
-      out.write("                                        </div> \n");
-      out.write("                                        <div class=\"form-group col-3\">\n");
-      out.write("                                            <label for=\"date\">To</label>\n");
-      out.write("                                            <input type=\"text\" class=\"form-control form-control-sm\" name=\"donto\" value=\"");
-      out.print(donto);
-      out.write("\">                                      \n");
-      out.write("                                        </div> \n");
-      out.write("                                        <div class=\"form-group col-3\">\n");
-      out.write("                                            <label for=\"stat\">Status</label>\n");
-      out.write("                                            <select name=\"stat\" class=\"form-control form-control-sm\">\n");
-      out.write("                                                <option value=\"");
-      out.print(stat);
-      out.write("\" selected=\"selected\">");
-      out.print(stat);
-      out.write("</option>\n");
-      out.write("                                                <option value=\"Received\">Received</option>\n");
-      out.write("                                                <option value=\"Pending\">Pending</option>\n");
-      out.write("                                                <option value=\"Released\">Released</option>\n");
-      out.write("                                            </select>                                      \n");
-      out.write("                                        </div> \n");
-      out.write("                                    </div>\n");
-      out.write("                                        <div class=\"row\">\n");
-      out.write("                                            <div class=\"form-group col-3\">\n");
-      out.write("                                                <label for=\"cond\">Condition</label>                                           \n");
-      out.write("                                                <select name=\"cond\" class=\"form-control form-control-sm\">\n");
-      out.write("                                                    <option value=\"");
-      out.print(cond);
-      out.write("\" selected=\"selected\">");
-      out.print(cond);
-      out.write("</option>\n");
-      out.write("                                                    <option value=\"New\">New</option>\n");
-      out.write("                                                    <option value=\"Used\">Used</option>\n");
-      out.write("                                                    <option value=\"Slightly Damaged\">Slightly Damaged</option>\n");
-      out.write("                                                </select>\n");
-      out.write("                                            </div>                                       \n");
-      out.write("                                            <div class=\"form-group col-3\">\n");
-      out.write("                                                <label for=\"color\">Color</label>\n");
-      out.write("                                                <input type=\"text\"  name=\"color\" class=\"form-control form-control-sm\" value=\"");
-      out.print(color);
-      out.write("\">\n");
-      out.write("                                            </div>\n");
-      out.write("                                            <div class=\"form-group col-3\">\n");
-      out.write("                                                <label for=\"genderform\">Gender</label>\n");
-      out.write("                                                <select name=\"gender\" class=\"form-control form-control-sm\">\n");
-      out.write("                                                    <option value=\"");
-      out.print(gender);
-      out.write("\" selected=\"selected\">");
-      out.print(gender);
-      out.write("</option>\n");
-      out.write("                                                    <option>Male</option>\n");
-      out.write("                                                    <option>Female</option>\n");
-      out.write("                                                    <option>Unisex</option>\n");
-      out.write("                                                </select>\n");
-      out.write("                                            </div>\n");
-      out.write("                                            <div class=\"form-group col-3\">\n");
-      out.write("                                                <label for=\"age\">Age</label>\n");
-      out.write("                                                <select name=\"age\" class=\"form-control form-control-sm\">\n");
-      out.write("                                                    <option value=\"");
-      out.print(age);
-      out.write("\" selected=\"selected\">");
-      out.print(age);
-      out.write("</option>\n");
-      out.write("                                                    <option>Infant</option>\n");
-      out.write("                                                    <option>Kid</option>\n");
-      out.write("                                                    <option>Teen</option>\n");
-      out.write("                                                    <option>Adult</option>\n");
-      out.write("                                                </select>\n");
-      out.write("                                            </div>\n");
-      out.write("                                        </div>    \n");
-      out.write("                                        <div class=\"row\">\n");
-      out.write("                                            <div class=\"form-group col-3\">\n");
-      out.write("                                                <button type=\"submit\" class=\"btn btn-success mb-3\">Update</button>\n");
-      out.write("                                            </div> \n");
-      out.write("                                        </div>    \n");
-      out.write("                                </form>\n");
+      out.write("                                <div class=\"form-group col-3\">\n");
+      out.write("                                    <label for=\"cond\">Select Dropdowns</label>                                           \n");
+      out.write("                                    <select class=\"form-control form-control-sm\" id=\"dropdowns\" onchange=\"tableshow2()\">\n");
+      out.write("                                        <option>Select One</option>\n");
+      out.write("                                        <option>Item Category</option>\n");
+      out.write("                                        <option>Payment Method</option>\n");
+      out.write("                                    </select>\n");
+      out.write("                                </div>\n");
       out.write("                            </div>\n");
       out.write("                        </div>\n");
       out.write("                    </div>\n");
-      out.write("                </div>                               \n");
+      out.write("                </div>\n");
+      out.write("                \n");
+      out.write("                \n");
+      out.write("                \n");
+      out.write("                <div class=\"row\" style=\"display:none\" id=\"itemdrops\">\n");
+      out.write("                    <div class=\"col-12 mt-5\">\n");
+      out.write("                        <div class=\"card\">\n");
+      out.write("                            <div class=\"card-body\">\n");
+      out.write("                                <div class=\"row\"\n");
+      out.write("                                <br>\n");
+      out.write("                                <h6>Item Category Table</h6>\n");
+      out.write("                                <br>\n");
+      out.write("                                <div>\n");
+      out.write("                                    <table id=\"examples\" class=\"table table-striped table-bordered zero-configuration\">\n");
+      out.write("                                        <thead class=\"text-capitalize\">\n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <th>Category</th>\n");
+      out.write("                                                <th>Item Category</th>\n");
+      out.write("                                                <th></th>\n");
+      out.write("                                            </tr>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                               ");
+
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM item_category";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            
+      out.write("  \n");
+      out.write("                                            \n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("category") );
+      out.write("</td>                                                \n");
+      out.write("                                                <td>");
+      out.print(rs.getString("item_name") );
+      out.write("</td>\n");
+      out.write("                                                <td><a href=\"edit_dropdowns_cat.jsp?id=");
+      out.print(rs.getInt("id"));
+      out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
+      out.write("                                            </tr>\n");
+      out.write("                                            \n");
+      out.write("                                             ");
+ 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            
+      out.write("                                          \n");
+      out.write("                                        </tbody>\n");
+      out.write("                                    </table>\n");
+      out.write("                                </div>\n");
+      out.write("                            </div>\n");
+      out.write("                        </div>\n");
+      out.write("                    </div>\n");
+      out.write("                </div>\n");
+      out.write("                                        \n");
+      out.write("                <div class=\"row\" style=\"display:none\" id=\"paydrops\">\n");
+      out.write("                    <div class=\"col-12 mt-5\">\n");
+      out.write("                        <div class=\"card\">\n");
+      out.write("                            <div class=\"card-body\">\n");
+      out.write("                                <h6>Payment Method</h6>\n");
+      out.write("                                <br>\n");
+      out.write("                                <div>\n");
+      out.write("                                    <table id=\"example56\" class=\"table table-striped table-bordered zero-configuration\">\n");
+      out.write("                                        <thead class=\"text-capitalize\">\n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <th>Category</th>\n");
+      out.write("                                                <th>Item Category</th>\n");
+      out.write("                                                <th></th>\n");
+      out.write("                                            </tr>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                               ");
+
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM paymet";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            
+      out.write("  \n");
+      out.write("                                            \n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("method") );
+      out.write("</td>                                                \n");
+      out.write("                                                <td>");
+      out.print(rs.getString("met_name") );
+      out.write("</td>\n");
+      out.write("                                                <td><a href=\"edit_dropdowns_met.jsp?id=");
+      out.print(rs.getInt("id"));
+      out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
+      out.write("                                            </tr>\n");
+      out.write("                                            \n");
+      out.write("                                             ");
+ 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            
+      out.write("                                          \n");
+      out.write("                                        </tbody>\n");
+      out.write("                                    </table>\n");
+      out.write("                                </div>\n");
+      out.write("                            </div>\n");
+      out.write("                        </div>\n");
+      out.write("                    </div>\n");
+      out.write("                </div>                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
       out.write("            </div>\n");
       out.write("        </div>\n");
       out.write("    </div>\n");
-      out.write("                                    \n");
-      out.write("                                    \n");
-      out.write("                                    \n");
+      out.write("                                        \n");
       out.write("    ");
 
         }else{
@@ -444,8 +354,7 @@ public final class edit_005fclothes_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("                 \n");
       out.write("    \n");
       out.write("    <!--Custom Script-->\n");
-      out.write("    <!--<script src=\"assets/js/custom1.js\"></script>-->\n");
-      out.write("    <script src=\"assets/js/custom2.js\"></script>\n");
+      out.write("    <script src=\"assets/js/custom4.js\"></script>\n");
       out.write("    <!-- jquery latest version -->\n");
       out.write("    <script src=\"assets/js/vendor/jquery-2.2.4.min.js\"></script>\n");
       out.write("    <!-- bootstrap 4 js -->\n");
@@ -475,7 +384,8 @@ public final class edit_005fclothes_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js\"></script>\n");
       out.write("</body>\n");
       out.write("\n");
-      out.write("</html>     ");
+      out.write("</html>\n");
+      out.write("           ");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
