@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2020 at 10:43 AM
+-- Generation Time: Mar 11, 2020 at 10:18 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -76,7 +76,10 @@ CREATE TABLE `clothes_donate` (
 --
 
 INSERT INTO `clothes_donate` (`id`, `date`, `type`, `item`, `des`, `qty`, `cond`, `size`, `color`, `gender`, `age`, `fr`, `donto`, `stat`, `datemod`, `addedby`, `invoicenum`) VALUES
-(1, '03-01-2020', 'Clothes', 'Shorts', 'adwbbg', '24', 'New', 'M', 'eterb', 'Unisex', 'Teen', ' tfhfgh', 'ret3be', 'Pending', '03-01-2020', 'USER1', '03-01-2020-CD-001');
+(1, '03-01-2020', 'Clothes', 'Shorts', 'Uniqlo sosyal', '24', 'New', 'S', 'BLue', 'Male', 'Adult', 'heizeru', 'Taro', 'Pending', '03-08-2020', 'USER1', '03-01-2020-CD-001'),
+(2, '03-04-2020', 'Clothes', 'Shirt', 'errrt', '144566', 'New', 'S', 'rbrry', 'Female', 'Teen', 'nfnt', 'sascqwc', 'Received', '00/00/0000', 'USER1', '03-04-2020-CD-002'),
+(3, '03-04-2020', 'Clothes', 'Jogging Pants', 'brdtry', '795', 'Used', 'XS', 'btuytbiu', 'Male', 'Kid', 'dbt', 'etrbty', 'Released', '03-04-2020', 'USER1', '03-04-2020-CD-003'),
+(4, '03-08-2020', 'Clothes', 'Jogging Pants', 'banana123', '45', 'Slightly Damaged', 'M', '4h5t', 'Female', 'Teen', 'Anonymous', 'wata', 'Received', '00/00/0000', 'ADMIN1', '03-08-2020-CD-004');
 
 --
 -- Triggers `clothes_donate`
@@ -123,10 +126,10 @@ CREATE TABLE `counters` (
 --
 
 INSERT INTO `counters` (`id`, `ctr`, `cat_code`, `cat_name`) VALUES
-(1, 7, 'OD', 'Others'),
-(2, 2, 'CD', 'Clothes'),
-(3, 2, 'FD', 'Food'),
-(4, 2, 'MD', 'Money'),
+(1, 9, 'OD', 'Others'),
+(2, 5, 'CD', 'Clothes'),
+(3, 6, 'FD', 'Food'),
+(4, 6, 'MD', 'Money'),
 (5, 11, 'SD', 'School Supplies');
 
 -- --------------------------------------------------------
@@ -173,7 +176,20 @@ INSERT INTO `donation` (`id`, `date`, `type`, `item`, `des`, `qty`, `fr`, `donto
 (16, '03-01-2020', 'Clothes', 'Shorts', 'adwbbg', '24', ' tfhfgh', 'ret3be', 'Pending', '03-01-2020', 'USER1', '03-01-2020-CD-001'),
 (17, '03-01-2020', 'Others', 'Cellphone', 'd  h', '243', 'ery', 'ete', 'Received', '00/00/0000', 'USER1', '03-01-2020-OD-006'),
 (18, '03-01-2020', 'School Supplies', 'Notebook', 'Mega Sardines', '789', 'sdf;jsd', 'djkjsklf', 'Received', '00/00/0000', 'USER1', '03-01-2020-SD-010'),
-(19, '03-01-2020', 'Money', 'Check', 'guygubjh', '78921', 'knjhiu', 'ytrrrtd', 'Pending', '03-01-2020', 'USER1', '03-01-2020-MD-001');
+(19, '03-01-2020', 'Money', 'Check', 'guygubjh', '78921', 'knjhiu', 'ytrrrtd', 'Pending', '03-01-2020', 'USER1', '03-01-2020-MD-001'),
+(20, '03-04-2020', 'Money', 'Check', 'scholl', '78756', 'Anonymous', 'a rebyre', 'Received', '00/00/0000', 'USER1', '03-04-2020-MD-002'),
+(21, '03-04-2020', 'Money', 'Cash', 'ebebdfg', '12323', 'dggsdg', 'dfbdbge', 'Released', '03-04-2020', 'USER1', '03-04-2020-MD-003'),
+(22, '03-04-2020', 'Food', 'Sugar', 'its brown just like u reading dis dipshit', '657657', 'dsrt', 'wata', 'Released', '03-04-2020', 'USER1', '03-04-2020-FD-002'),
+(23, '03-04-2020', 'Food', 'Canned Goods', 'Mega Sardines ulit', '134', 'fsteeruui', 'wat', 'Received', '00/00/0000', 'USER1', '03-04-2020-FD-003'),
+(24, '03-04-2020', 'Clothes', 'Shirt', 'errrt', '144566', 'nfnt', 'sascqwc', 'Received', '00/00/0000', 'USER1', '03-04-2020-CD-002'),
+(25, '03-04-2020', 'Clothes', 'Jogging Pants', 'brdtry', '795', 'dbt', 'etrbty', 'Released', '03-04-2020', 'USER1', '03-04-2020-CD-003'),
+(26, '03-04-2020', 'Others', 'Cellphone', '', '', '', '', 'Received', '00/00/0000', 'USER1', '03-04-2020-OD-007'),
+(27, '03-08-2020', 'Others', 'Cellphone', 'admin 1', '123', 'heizeru', 'Taro', 'Received', '00/00/0000', 'ADMIN1', '03-08-2020-OD-008'),
+(28, '03-08-2020', 'Clothes', 'Jogging Pants', 'banana123', '45', 'Anonymous', 'wata', 'Received', '00/00/0000', 'ADMIN1', '03-08-2020-CD-004'),
+(29, '03-08-2020', 'Food', 'Canned Goods', 'Mega Sardines', '4521', 'fsteeruui', 'wat', 'Received', '00/00/0000', 'ADMIN1', '03-08-2020-FD-004'),
+(30, '03-08-2020', 'Money', 'Check', 'banana', '1234', 'Anonymous', 'wata', 'Received', '00/00/0000', 'ADMIN1', '03-08-2020-MD-004'),
+(31, '03-08-2020', 'Money', 'Check', 'Uniqlo sosyal', '12323', 'fsteeruui', 'qwe23', 'Received', '00/00/0000', 'ADMIN1', '03-08-2020-MD-005'),
+(32, '03-11-2020', 'Food', 'Beans', 'String Beans in Can', '345', 'fsteeruui', 'watapad21', 'Pending', '03-11-2020', 'ADMIN1', '03-11-2020-FD-005');
 
 -- --------------------------------------------------------
 
@@ -202,7 +218,11 @@ CREATE TABLE `foods_donate` (
 --
 
 INSERT INTO `foods_donate` (`id`, `date`, `type`, `item`, `des`, `qty`, `exp`, `fr`, `donto`, `stat`, `datemod`, `addedby`, `invoicenum`) VALUES
-(1, '03-01-2020', 'Food', 'Rice', 'this a test test 2', '35', '03/08/2020', 'Anonymous', 'watapad21', 'Pending', '03-01-2020', 'USER1', '03-01-2020-FD-001');
+(1, 'null', 'Food', 'null', 'null', 'null', 'null', 'null', 'null', 'null', '03-11-2020', 'USER1', '03-01-2020-FD-001'),
+(2, '03-04-2020', 'Food', 'Sugar', 'its brown just like u reading dis dipshit', '657657', '03/08/2020', 'dsrt', 'wata', 'Released', '03-04-2020', 'USER1', '03-04-2020-FD-002'),
+(3, '03-04-2020', 'Food', 'Canned Goods', 'Mega Sardines ulit', '134', '03/08/2021', 'fsteeruui', 'wat', 'Received', '00/00/0000', 'USER1', '03-04-2020-FD-003'),
+(4, '03-08-2020', 'Food', 'Canned Goods', 'Mega Sardines', '4521', '03/08/2021', 'fsteeruui', 'wat', 'Received', '00/00/0000', 'ADMIN1', '03-08-2020-FD-004'),
+(5, '03-11-2020', 'Food', 'Beans', 'String Beans in Can', '345', '03-01-2022', 'fsteeruui', 'watapad21', 'Pending', '03-11-2020', 'ADMIN1', '03-11-2020-FD-005');
 
 --
 -- Triggers `foods_donate`
@@ -250,7 +270,7 @@ CREATE TABLE `item_category` (
 INSERT INTO `item_category` (`id`, `category`, `item_name`) VALUES
 (1, 'Food', 'Canned Goods'),
 (2, 'Others', 'Cellphone'),
-(3, 'Clothes', 'Jogging Pants'),
+(3, 'Clothes', 'Jogging Pantsy'),
 (4, 'Money', 'Cash'),
 (5, 'School Supplies', 'Notebook'),
 (6, 'Others', 'Toothpaste'),
@@ -264,7 +284,29 @@ INSERT INTO `item_category` (`id`, `category`, `item_name`) VALUES
 (14, 'Money', 'test1'),
 (15, 'Money', '342'),
 (16, 'Money', 'otherss'),
-(17, 'Money', 'utr65');
+(17, 'Money', 'utr65'),
+(18, 'Food', 'Sugar'),
+(19, 'Clothes', 'Shirt'),
+(20, 'Food', 'Beans');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `method`
+--
+
+CREATE TABLE `method` (
+  `id` int(11) NOT NULL,
+  `method` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `method`
+--
+
+INSERT INTO `method` (`id`, `method`) VALUES
+(1, 'Bank'),
+(2, 'Online');
 
 -- --------------------------------------------------------
 
@@ -295,7 +337,11 @@ CREATE TABLE `money_donate` (
 --
 
 INSERT INTO `money_donate` (`id`, `date`, `type`, `item`, `des`, `qty`, `met`, `pays`, `refno`, `fr`, `donto`, `stat`, `datemod`, `addedby`, `invoicenum`) VALUES
-(1, '03-01-2020', 'Money', 'Check', 'guygubjh', '78921', 'Bank', 'BDO', '798321', 'knjhiu', 'ytrrrtd', 'Pending', '03-01-2020', 'USER1', '03-01-2020-MD-001');
+(1, '03-01-2020', 'Money', 'Check', 'guygubjh', '78921', 'Bank', 'BDO', '798321', 'knjhiu', 'ytrrrtd', 'Pending', '03-08-2020', 'USER1', '03-01-2020-MD-001'),
+(2, '03-04-2020', 'Money', 'Check', 'scholl', '78756', 'Online', 'GCash', '2312', 'Anonymous', 'a rebyre', 'Received', '00/00/0000', 'USER1', '03-04-2020-MD-002'),
+(3, '03-04-2020', 'Money', 'Cash', 'ebebdfg', '12323', 'Bank', 'BDO', 'svw4r75767', 'dggsdg', 'dfbdbge', 'Released', '03-04-2020', 'USER1', '03-04-2020-MD-003'),
+(4, '03-08-2020', 'Money', 'Check', 'banana', '1234', 'Bank', 'BDO', '456789', 'Anonymous', 'wata', 'Received', '00/00/0000', 'ADMIN1', '03-08-2020-MD-004'),
+(5, '03-08-2020', 'Money', 'Check', 'Uniqlo sosyal', '12323', 'Online', 'PayMaya', '2321', 'fsteeruui', 'qwe23', 'Received', '00/00/0000', 'ADMIN1', '03-08-2020-MD-005');
 
 --
 -- Triggers `money_donate`
@@ -351,12 +397,14 @@ CREATE TABLE `others_donate` (
 --
 
 INSERT INTO `others_donate` (`id`, `date`, `type`, `item`, `des`, `qty`, `cond`, `fr`, `donto`, `stat`, `datemod`, `addedby`, `invoicenum`) VALUES
-(1, '02-29-2020', 'Others', 'Toothbrush', 'sdklgjlkj', 'we234', 'Used', 'dyuioo', 'w44h', 'Released', '03-01-2020', 'USER1', '02-29-2020-OD-001'),
+(1, '02-29-2020', 'Others', 'Toothpaste', 'ferret', '789', 'New', 'srertrty', 'gjhjyi', 'Released', '03-10-2020', 'USER1', '02-29-2020-OD-001'),
 (2, '02-29-2020', 'Others', 'Toothbrush', 'yuti78', 'ert34', 'Slightly Damaged', 'dy58i', 'w534g', 'Received', '00/00/0000', 'USER1', '02-29-2020-OD-002'),
 (3, '02-29-2020', 'Others', 'Cellphone', 'gjj68', 'sfrtds', 'Used', 't456', 're56gf', 'Pending', '03-01-2020', 'USER1', '02-29-2020-OD-003'),
 (4, '02-29-2020', 'Others', 'Toothpaste', 're4i', 'fsdt4s', 'Used', 'dfs5', 'sefs', 'Received', '00/00/0000', 'USER1', '02-29-2020-OD-004'),
 (5, '02-29-2020', 'Others', 'Soap', 'ert4iijhj', '1334', 'New', 'rughji', 'wt45gd', 'Received', '00/00/0000', 'USER1', '02-29-2020-OD-005'),
-(6, '03-01-2020', 'Others', 'Cellphone', 'd  h', '243', 'New', 'ery', 'ete', 'Received', '00/00/0000', 'USER1', '03-01-2020-OD-006');
+(6, '03-01-2020', 'Others', 'Cellphone', 'd  h', '243', 'New', 'ery', 'ete', 'Received', '00/00/0000', 'USER1', '03-01-2020-OD-006'),
+(7, '03-04-2020', 'Others', 'Cellphone', '', '', 'New', '', '', 'Received', '00/00/0000', 'USER1', '03-04-2020-OD-007'),
+(8, '03-08-2020', 'Others', 'Cellphone', 'admin 1', '123', 'Used', 'heizeru', 'Taro', 'Received', '00/00/0000', 'ADMIN1', '03-08-2020-OD-008');
 
 --
 -- Triggers `others_donate`
@@ -402,7 +450,7 @@ CREATE TABLE `paymet` (
 --
 
 INSERT INTO `paymet` (`id`, `method`, `met_name`) VALUES
-(1, 'Bank', 'BDO'),
+(1, 'null', 'BDOs'),
 (2, 'Online', 'GCash'),
 (3, 'Bank', 'Security Bank'),
 (4, 'Online', 'PayMaya'),
@@ -435,7 +483,7 @@ CREATE TABLE `school_donate` (
 --
 
 INSERT INTO `school_donate` (`id`, `date`, `type`, `item`, `des`, `qty`, `fr`, `donto`, `stat`, `datemod`, `addedby`, `invoicenum`) VALUES
-(1, '02-29-2020', 'School Supplies', 'Cellphone', 'kdjlkkgfjdfhjdyo', '1378658', '69uioyito', 'ghkjhnghkjlkji', 'Pending', '03-01-2020', 'USER1', '02-29-2020-SD-001'),
+(1, '02-29-2020', 'School Supplies', 'Cellphone', 'kdjlkkgfjdfhjdyo', '1378658', '69uioyito', 'ghkjhnghkjlkji', 'Pending', '03-08-2020', 'USER1', '02-29-2020-SD-001'),
 (2, '02-29-2020', 'School Supplies', 'Paper', 'gfngjhgkj', '46589', 'sryryhjgjk', 'srthbb', 'Received', '00/00/0000', 'USER1', '02-29-2020-SD-002'),
 (3, '02-29-2020', 'School Supplies', 'Cellphone', 'e667ky', 'wq43', 'we46gf', 'dyru', 'Received', '00/00/0000', 'USER1', '02-29-2020-SD-003'),
 (4, '02-29-2020', 'School Supplies', 'Cellphone', 'wtytk', '2343dw', 'trgu568', 'dte5t4', 'Released', '03-01-2020', 'USER1', '02-29-2020-SD-004'),
@@ -496,7 +544,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `status`, `name`, `contact`, `email`) VALUES
 (1, 'user1', 'user1', 'User', 'Active', 'USER1', '123456789', 'user1@email.com'),
-(2, 'user2', 'user2', 'User', 'Inactive', 'USER2', '5463421', 'user2@email.com');
+(2, 'user2', 'user2', 'User', 'Inactive', 'USER2', '5463421', 'user2@email.com'),
+(3, 'admin1', 'admin1', 'Admin', 'Active', 'ADMIN1', '4778684339798', 'admin@admin.com'),
+(4, 'admin2', 'admin2', 'Admin', 'Inactive', 'ADMIN2', '7894556246', 'admin2@email.com');
 
 --
 -- Indexes for dumped tables
@@ -536,6 +586,12 @@ ALTER TABLE `foods_donate`
 -- Indexes for table `item_category`
 --
 ALTER TABLE `item_category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `method`
+--
+ALTER TABLE `method`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -582,7 +638,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `clothes_donate`
 --
 ALTER TABLE `clothes_donate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `counters`
@@ -594,31 +650,37 @@ ALTER TABLE `counters`
 -- AUTO_INCREMENT for table `donation`
 --
 ALTER TABLE `donation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `foods_donate`
 --
 ALTER TABLE `foods_donate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `item_category`
 --
 ALTER TABLE `item_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `method`
+--
+ALTER TABLE `method`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `money_donate`
 --
 ALTER TABLE `money_donate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `others_donate`
 --
 ALTER TABLE `others_donate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `paymet`
@@ -636,7 +698,7 @@ ALTER TABLE `school_donate`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
