@@ -30,6 +30,11 @@ function show1()
         document.getElementById('toform').className = "form-group col-3"; 
         document.getElementById('statform').className = "form-group col-3"; 
         
+        document.getElementById('ntform').style.display= 'none';
+        //adjust form
+        document.getElementById('descform').className = "form-group col-9"; 
+        document.getElementById('qtyform').className = "form-group col-3";
+        
     }
 
     else if(types.value==="Clothes"){
@@ -57,6 +62,11 @@ function show1()
         document.getElementById('frform').className = "form-group col-3"; 
         document.getElementById('toform').className = "form-group col-3"; 
         document.getElementById('statform').className = "form-group col-3"; 
+        
+        document.getElementById('ntform').style.display= 'none';
+        //adjust form
+        document.getElementById('descform').className = "form-group col-9"; 
+        document.getElementById('qtyform').className = "form-group col-3";
     }
     else if (types.value==="School Supplies"){
         /*Hide Input Forms not related to School Supplies*/
@@ -80,6 +90,11 @@ function show1()
         document.getElementById('frform').className = "form-group col-4"; 
         document.getElementById('toform').className = "form-group col-4"; 
         document.getElementById('statform').className = "form-group col-4";
+        
+        document.getElementById('ntform').style.display= 'none';
+        //adjust form
+        document.getElementById('descform').className = "form-group col-9"; 
+        document.getElementById('qtyform').className = "form-group col-3";
     }
     else if (types.value==="Money"){
         /*Hide Input Forms not related to School Supplies*/
@@ -105,6 +120,11 @@ function show1()
         document.getElementById('frform').className = "form-group col-4"; 
         document.getElementById('toform').className = "form-group col-4"; 
         document.getElementById('statform').className = "form-group col-4";
+        
+        document.getElementById('ntform').style.display= 'none';
+        //adjust form
+        document.getElementById('descform').className = "form-group col-9"; 
+        document.getElementById('qtyform').className = "form-group col-3";
     }
 
     /*For Other Donation Type*/
@@ -131,6 +151,11 @@ function show1()
         document.getElementById('frform').className = "form-group col-3"; 
         document.getElementById('toform').className = "form-group col-3"; 
         document.getElementById('statform').className = "form-group col-3";
+        
+        document.getElementById('ntform').style.display= 'none';
+        //adjust form
+        document.getElementById('descform').className = "form-group col-9"; 
+        document.getElementById('qtyform').className = "form-group col-3";
     }
 }
 
@@ -138,11 +163,79 @@ function show1()
 function shows2()
 {
     var nt=document.getElementById("item01");
+    if(nt.value==="Add New Item"){
+        //show form
+        document.getElementById('ntform').style.display= '';
+        //adjust form
+        document.getElementById('descform').className = "form-group col-6"; 
+        document.getElementById('qtyform').className = "form-group col-3";
+    }
+    else{
+        //hide form
+        document.getElementById('ntform').style.display= 'none';
+        //adjust form
+        document.getElementById('descform').className = "form-group col-9"; 
+        document.getElementById('qtyform').className = "form-group col-3";
+    }
+}
+function shows2a()
+{
     var nt1=document.getElementById("item02");
+    if(nt1.value==="Add New Item"){
+        //show form
+        document.getElementById('ntform').style.display= '';
+        //adjust form
+        document.getElementById('descform').className = "form-group col-6"; 
+        document.getElementById('qtyform').className = "form-group col-3";
+    }
+    else{
+        //hide form
+        document.getElementById('ntform').style.display= 'none';
+        //adjust form
+        document.getElementById('descform').className = "form-group col-9"; 
+        document.getElementById('qtyform').className = "form-group col-3";
+    }
+}
+function shows2b()
+{
     var nt2=document.getElementById("item03");
+    if(nt2.value==="Add New Item"){
+        //show form
+        document.getElementById('ntform').style.display= '';
+        //adjust form
+        document.getElementById('descform').className = "form-group col-6"; 
+        document.getElementById('qtyform').className = "form-group col-3";
+    }
+    else{
+        //hide form
+        document.getElementById('ntform').style.display= 'none';
+        //adjust form
+        document.getElementById('descform').className = "form-group col-9"; 
+        document.getElementById('qtyform').className = "form-group col-3";
+    }
+}
+function shows2c()
+{
     var nt3=document.getElementById("item04");
+    if(nt3.value==="Add New Item"){
+        //show form
+        document.getElementById('ntform').style.display= '';
+        //adjust form
+        document.getElementById('descform').className = "form-group col-6"; 
+        document.getElementById('qtyform').className = "form-group col-3";
+    }
+    else{
+        //hide form
+        document.getElementById('ntform').style.display= 'none';
+        //adjust form
+        document.getElementById('descform').className = "form-group col-9"; 
+        document.getElementById('qtyform').className = "form-group col-3";
+    }
+}
+function shows2d()
+{
     var nt4=document.getElementById("item05");
-    if(nt.value==="Add New Item" || nt1.value==="Add New Item" || nt2.value==="Add New Item"|| nt3.value==="Add New Item"|| nt4.value==="Add New Item"){
+    if(nt4.value==="Add New Item"){
         //show form
         document.getElementById('ntform').style.display= '';
         //adjust form

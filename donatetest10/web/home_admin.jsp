@@ -54,6 +54,7 @@
         <script type="text/javascript" class="init">
             $(document).ready(function() {
                     $('#example').DataTable( {
+                        "order": [[ 8, "desc" ]]
                     } );
             } );
 	</script>
@@ -244,7 +245,7 @@
                                         <!--FOR FOOD-->
                                         <div class="form-group col-3" id="item2" style="display:none">
                                             <label for="item">Item Type</label>
-                                            <select name="item2" class="form-control form-control-sm" id="item02" onchange="shows2()">
+                                            <select name="item2" class="form-control form-control-sm" id="item02" onchange="shows2a()">
                                                 <%
                                             try{
                                                 con=DB.getConnection();
@@ -268,7 +269,7 @@
                                         <!--FOR Clothes-->
                                         <div class="form-group col-3" id="item3" style="display:none">
                                             <label for="item">Item Type</label>
-                                            <select name="item3" class="form-control form-control-sm" id="item03" onchange="shows2()">
+                                            <select name="item3" class="form-control form-control-sm" id="item03" onchange="shows2b()">
                                                 <%
                                             try{
                                                 con=DB.getConnection();
@@ -292,7 +293,7 @@
                                         <!--FOR Money-->
                                         <div class="form-group col-3" id="item4" style="display:none">
                                             <label for="item">Item Type</label>
-                                            <select name="item4" class="form-control form-control-sm" id="item04" onchange="shows2()">
+                                            <select name="item4" class="form-control form-control-sm" id="item04" onchange="shows2c()">
                                                 <%
                                             try{
                                                 con=DB.getConnection();
@@ -316,7 +317,7 @@
                                         <!--FOR School Supplies-->
                                         <div class="form-group col-3" id="item5" style="display:none">
                                             <label for="item5">Item Type</label>
-                                            <select name="item5" class="form-control form-control-sm" id="item05" onchange="shows2()">
+                                            <select name="item5" class="form-control form-control-sm" id="item05" onchange="shows2d()">
                                                 <%
                                             try{
                                                 con=DB.getConnection();
@@ -505,7 +506,7 @@
                     <div class="col-12 mt-5">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title">Data Table Primary</h4>
+                                <h4 class="header-title">List of Donations</h4>
                                 <div>
                                     <table id="example" class="table table-striped table-bordered zero-configuration">
                                         <thead class="text-capitalize">
