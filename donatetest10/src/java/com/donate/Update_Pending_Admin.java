@@ -7,27 +7,14 @@ import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
-/**
- *
- * @author Hazel Anne
- */
-public class Update_Released extends HttpServlet {
+public class Update_Pending_Admin extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     HttpSession session;
     int status,status2;
     Connection con;
     Statement st;
     ResultSet rs;
-    String type,stat = "Released",penum;
+    String type,stat = "Pending",penum;
     String sql,sql2;
     RequestDispatcher rd = null;
     
@@ -37,8 +24,8 @@ public class Update_Released extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             
             
-            type = request.getParameter("rels");
-            penum = request.getParameter("relums");
+            type = request.getParameter("pen");
+            penum = request.getParameter("penum");
             
             SimpleDateFormat sdf= new SimpleDateFormat("MM-dd-yyyy");
             String today = sdf.format(new java.util.Date());

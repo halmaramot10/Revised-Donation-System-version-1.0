@@ -56,7 +56,7 @@
             } );
 	</script>
     
-    <title>Add Donation Entry</title>
+    <title>Edit Users</title>
 </head>
 <body class="body-bg">
     
@@ -118,7 +118,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-3">
                         <div class="logo">
-                            <a href="home_user.jsp"><img src="assets/images/media/cpelogo2.png" alt="logo"></a>
+                            <a href="Home"><img src="assets/images/media/cpelogo2.png" alt="logo"></a>
                         </div>
                     </div>
                     <!-- profile info & task notification -->
@@ -130,7 +130,8 @@
                                 <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
                                 <h4 class="user-name dropdown-toggle" data-toggle="dropdown"><%=uname%><i class="fa fa-angle-down"></i></h4>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="logout.jsp">Log Out</a>
+                                    <a class="dropdown-item" href="Add_Users">User Accounts</a>
+                                    <a class="dropdown-item" href="Login_Page">Log Out</a>
                                 </div>
                             </div>
                         </div>
@@ -148,23 +149,26 @@
                         <div class="horizontal-menu">
                             <nav>
                                 <ul id="nav_menu">
-                                    <li class="active">
-                                        <a href="home_admin.jsp"><i class="ti-plus"></i><span>Add Donation</span></a>
+                                    <li>
+                                        <a href="Dashboard"><i class="ti-dashboard"></i><span>Dashboard</span></a>
                                     </li>
                                     <li>
+                                        <a href="Home"><i class="ti-plus"></i><span>Add Donation</span></a>
+                                    </li>
+                                    <!--<li>
                                         <a href="upload_csv.jsp"><i class="ti-import"></i><span>Upload CSV</span></a>
+                                    </li>-->
+                                    <li>
+                                        <a href="Generate_Report"><i class="ti-file"></i><span>Generate Reports</span></a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="Add_Users"><i class="ti-user"></i><span>User Accounts</span></a>
                                     </li>
                                     <li>
-                                        <a href="gen_report_admin.jsp"><i class="ti-file"></i><span>Generate Reports</span></a>
+                                        <a href="Edit_Donations"><i class="ti-pencil"></i>Edit Donations</a>
                                     </li>
                                     <li>
-                                        <a href="user_add.jsp"><i class="ti-user"></i><span>Add User</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="edit_type_table.jsp"><i class="ti-pencil"></i>Edit Donations</a>
-                                    </li>
-                                    <li>
-                                        <a href="edit_dropdowns.jsp"><i class="ti-pencil"></i>Edit Dropdowns</a>
+                                        <a href="Edit_Dropdowns"><i class="ti-pencil"></i>Edit Dropdowns</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -194,7 +198,7 @@
 
                                 %>
                                 </b>
-                                <h6 class="header-title" style="text-align: center">Add User</h6>
+                                <h6 class="header-title" style="text-align: center">Edit User Account</h6>
                                 <form action="Update_User" method="post">
                                     <div class="row">
                                         <input type ="text" name="id" value="<%=id%>" style="display: none">
@@ -254,7 +258,7 @@
                     <div class="col-12 mt-5">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title">Data Table Primary</h4>
+                                <h4 class="header-title">List of User Accounts</h4>
                                 <div>
                                     <table id="example78" class="table table-striped table-bordered zero-configuration">
                                         <thead>
@@ -298,7 +302,7 @@
                                                         <button type="submit" class="btn btn-danger btn-xs mb-3">Deactivate</button>
                                                     </form>
                                                 </td>
-                                                <td><a href="user_edit.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_Users?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
                                              <% 
                                                 }
@@ -313,11 +317,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                                
-                                
-                                
-                                
+                </div>                                                             
             </div>
         </div>
     </div>
@@ -325,7 +325,7 @@
         
     <%
         }else{
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("Login_Page");
         }
     %>                 
     

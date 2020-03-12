@@ -33,7 +33,7 @@ public class Update_Activate extends HttpServlet {
             {
 
                 out.println("Entry Updated uccessfully!");
-                response.sendRedirect("user_add.jsp");
+                response.sendRedirect("Add_Users");
                 session.setAttribute("success","User Updated uccessfully!");
             }
             else

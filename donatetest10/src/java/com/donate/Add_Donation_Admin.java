@@ -132,7 +132,7 @@ public class Add_Donation_Admin extends HttpServlet {
                             {
 
                                 out.println("Donation Entry Added Successfully!");
-                                response.sendRedirect("home_admin.jsp");
+                                response.sendRedirect("Home");
                                 session.setAttribute("success","Record Added Successfully!");
                             }
                             else
@@ -166,7 +166,7 @@ public class Add_Donation_Admin extends HttpServlet {
                             {
                             
                             out.println("Donation Entry Added Successfully!");
-                            response.sendRedirect("home_admin.jsp");
+                            response.sendRedirect("Home");
                             session.setAttribute("success","Record Added Successfully!");
                             }
                             else
@@ -199,7 +199,7 @@ public class Add_Donation_Admin extends HttpServlet {
                             {
 
                                 out.println("Donation Entry Added Successfully!");
-                                response.sendRedirect("home_admin.jsp");
+                                response.sendRedirect("Home");
                                 session.setAttribute("success","Record Added Successfully!");
                             }
                             else
@@ -231,7 +231,7 @@ public class Add_Donation_Admin extends HttpServlet {
                             {
 
                                 out.println("Donation Entry Added Successfully!");
-                                response.sendRedirect("home_admin.jsp");
+                                response.sendRedirect("Home");
                                 session.setAttribute("success","Record Added Successfully!");
                             }
                             else
@@ -265,7 +265,7 @@ public class Add_Donation_Admin extends HttpServlet {
                             {
 
                                 out.println("Donation Entry Added Successfully!");
-                                response.sendRedirect("home_admin.jsp");
+                                response.sendRedirect("Home");
                                 session.setAttribute("success","Record Added Successfully!");
                             }
                             else
@@ -299,7 +299,7 @@ public class Add_Donation_Admin extends HttpServlet {
                             {
                             
                             out.println("Donation Entry Added Successfully!");
-                            response.sendRedirect("home_admin.jsp");
+                            response.sendRedirect("Home");
                             session.setAttribute("success","Record Added Successfully!");
                             }
                             else
@@ -337,7 +337,7 @@ public class Add_Donation_Admin extends HttpServlet {
                             {
 
                                 out.println("Donation Entry Added Successfully!");
-                                response.sendRedirect("home_admin.jsp");
+                                response.sendRedirect("Home");
                                 session.setAttribute("success","Record Added Successfully!");
                             }
                             else
@@ -375,7 +375,7 @@ public class Add_Donation_Admin extends HttpServlet {
                             {
                             
                             out.println("Donation Entry Added Successfully!");
-                            response.sendRedirect("home_admin.jsp");
+                            response.sendRedirect("Home");
                             session.setAttribute("success","Record Added Successfully!");
                             }
                             else
@@ -414,7 +414,7 @@ public class Add_Donation_Admin extends HttpServlet {
                                     {
 
                                         out.println("Donation Entry Added Successfully!");
-                                        response.sendRedirect("home_admin.jsp");
+                                        response.sendRedirect("Home");
                                         session.setAttribute("success","Record Added Successfully!");
                                     }
                                     else
@@ -448,7 +448,7 @@ public class Add_Donation_Admin extends HttpServlet {
                                     {
 
                                         out.println("Donation Entry Added Successfully!");
-                                        response.sendRedirect("home_admin.jsp");
+                                        response.sendRedirect("Home");
                                         session.setAttribute("success","Record Added Successfully!");
                                     }
                                     else
@@ -484,7 +484,7 @@ public class Add_Donation_Admin extends HttpServlet {
                                     {
 
                                         out.println("Donation Entry Added Successfully!");
-                                        response.sendRedirect("home_admin.jsp");
+                                        response.sendRedirect("Home");
                                         session.setAttribute("success","Record Added Successfully!");
                                     }
                                     else
@@ -518,7 +518,7 @@ public class Add_Donation_Admin extends HttpServlet {
                                     {
 
                                         out.println("Donation Entry Added Successfully!");
-                                        response.sendRedirect("home_admin.jsp");
+                                        response.sendRedirect("Home");
                                         session.setAttribute("success","Record Added Successfully!");
                                     }
                                     else
@@ -552,7 +552,7 @@ public class Add_Donation_Admin extends HttpServlet {
                                     {
 
                                         out.println("Donation Entry Added Successfully!");
-                                        response.sendRedirect("home_admin.jsp");
+                                        response.sendRedirect("Home");
                                         session.setAttribute("success","Record Added Successfully!");
                                     }
                                     else
@@ -591,7 +591,7 @@ public class Add_Donation_Admin extends HttpServlet {
                                     {
 
                                         out.println("Donation Entry Added Successfully!");
-                                        response.sendRedirect("home_admin.jsp");
+                                        response.sendRedirect("Home");
                                         session.setAttribute("success","Record Added Successfully!");
                                     }
                                     else
@@ -627,7 +627,7 @@ public class Add_Donation_Admin extends HttpServlet {
                                     {
 
                                         out.println("Donation Entry Added Successfully!");
-                                        response.sendRedirect("home_admin.jsp");
+                                        response.sendRedirect("Home");
                                         session.setAttribute("success","Record Added Successfully!");
                                     }
                                     else
@@ -665,7 +665,7 @@ public class Add_Donation_Admin extends HttpServlet {
                                     {
 
                                         out.println("Donation Entry Added Successfully!");
-                                        response.sendRedirect("home_admin.jsp");
+                                        response.sendRedirect("Home");
                                         session.setAttribute("success","Record Added Successfully!");
                                     }
                                     else
@@ -701,7 +701,7 @@ public class Add_Donation_Admin extends HttpServlet {
                                     {
 
                                         out.println("Donation Entry Added Successfully!");
-                                        response.sendRedirect("home_admin.jsp");
+                                        response.sendRedirect("Home");
                                         session.setAttribute("success","Record Added Successfully!");
                                     }
                                     else
@@ -737,7 +737,7 @@ public class Add_Donation_Admin extends HttpServlet {
                                     {
 
                                         out.println("Donation Entry Added Successfully!");
-                                        response.sendRedirect("home_admin.jsp");
+                                        response.sendRedirect("Home");
                                         session.setAttribute("success","Record Added Successfully!");
                                     }
                                     else

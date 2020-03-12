@@ -52,7 +52,7 @@
 	
         
     
-    <title>Generate Reports</title>
+    <title>Edit Donations</title>
 </head>
 <body class="body-bg">
     
@@ -87,7 +87,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-3">
                         <div class="logo">
-                            <a href="home_admin.jsp"><img src="assets/images/media/cpelogo2.png" alt="logo"></a>
+                            <a href="Home"><img src="assets/images/media/cpelogo2.png" alt="logo"></a>
                         </div>
                     </div>
                     <!-- profile info & task notification -->
@@ -99,8 +99,8 @@
                                 <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
                                 <h4 class="user-name dropdown-toggle" data-toggle="dropdown"><%=uname%><i class="fa fa-angle-down"></i></h4>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="user_add.jsp">Add User</a>
-                                    <a class="dropdown-item" href="logout.jsp">Log Out</a>
+                                    <a class="dropdown-item" href="Add_Users">User Accounts</a>
+                                    <a class="dropdown-item" href="Login_Page">Log Out</a>
                                 </div>
                             </div>
                         </div>
@@ -119,22 +119,25 @@
                             <nav>
                                 <ul id="nav_menu">
                                     <li>
-                                        <a href="home_admin.jsp"><i class="ti-plus"></i><span>Add Donation</span></a>
+                                        <a href="Dashboard"><i class="ti-dashboard"></i><span>Dashboard</span></a>
                                     </li>
                                     <li>
+                                        <a href="Home"><i class="ti-plus"></i><span>Add Donation</span></a>
+                                    </li>
+                                    <!--<li>
                                         <a href="upload_csv.jsp"><i class="ti-import"></i><span>Upload CSV</span></a>
+                                    </li>-->
+                                    <li>
+                                        <a href="Generate_Report"><i class="ti-file"></i><span>Generate Reports</span></a>
                                     </li>
                                     <li>
-                                        <a href="gen_report_admin.jsp"><i class="ti-file"></i><span>Generate Reports</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="user_add.jsp"><i class="ti-user"></i><span>Add User</span></a>
+                                        <a href="Add_Users"><i class="ti-user"></i><span>User Accounts</span></a>
                                     </li>
                                     <li class="active">
-                                        <a href="edit_type_table.jsp"><i class="ti-pencil"></i>Edit Donations</a>
+                                        <a href="Edit_Donations"><i class="ti-pencil"></i>Edit Donations</a>
                                     </li>
                                     <li>
-                                        <a href="edit_dropdowns.jsp"><i class="ti-pencil"></i>Edit Dropdowns</a>
+                                        <a href="Edit_Dropdowns"><i class="ti-pencil"></i>Edit Dropdowns</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -153,7 +156,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-group col-3" id="typeforms">
-                                    <label for="cond">Condition</label>                                           
+                                    <label for="cond">Donation Types</label>                                           
                                     <select id ="tshows01" name="types23" class="form-control form-control-sm" onchange="tableshow01()">
                                         <option value="Select One">Select One</option>
                                         <%
@@ -229,7 +232,7 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td>
-                                                <td><a href="edit_school.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_School?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
                                             
                                              <% 
@@ -279,7 +282,7 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td>
-                                                <td><a href="edit_school.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_School?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
                                             
                                              <% 
@@ -329,7 +332,7 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td>
-                                                <td><a href="edit_school.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_School?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
                                             
                                              <% 
@@ -379,7 +382,7 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td>
-                                                <td><a href="edit_school.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_School?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
                                             
                                              <% 
@@ -448,7 +451,7 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td>
-                                                <td><a href="edit_food.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_Food?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
                                             
                                              <% 
@@ -500,7 +503,7 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td>
-                                                <td><a href="edit_food.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_Food?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
                                             
                                              <% 
@@ -552,7 +555,7 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td>
-                                                <td><a href="edit_food.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_Food?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
                                             
                                              <% 
@@ -604,7 +607,7 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td>
-                                                <td><a href="edit_food.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_Food?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
                                             
                                              <% 
@@ -673,7 +676,7 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td> 
-                                                <td><a href="edit_others.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_Others?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
                                             
                                              <% 
@@ -725,7 +728,7 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td>
-                                                <td><a href="edit_others.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_Others?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
                                             
                                              <% 
@@ -777,7 +780,7 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td>
-                                                <td><a href="edit_others.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_Others?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
                                             
                                              <% 
@@ -829,7 +832,7 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td>
-                                                <td><a href="edit_others.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_Others?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
                                             
                                              <% 
@@ -900,7 +903,7 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td>
-                                                <td><a href="edit_money.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_Money?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
 
                                              <% 
@@ -954,7 +957,7 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td>
-                                                <td><a href="edit_money.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_Money?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
 
                                              <% 
@@ -1008,7 +1011,7 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td>
-                                                <td><a href="edit_money.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_Money?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
 
                                              <% 
@@ -1062,7 +1065,7 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td>    
-                                                <td><a href="edit_money.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_Money?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
 
                                              <% 
@@ -1092,7 +1095,7 @@
                                 <button type="button" class="btn btn-danger mb-3" onclick="showclorel01()">Released</button>
                                 <button type="button" class="btn btn-primary mb-3" onclick="showcloall01()">All Statuses</button>
                                 <br>
-                                <div id="cloall" style="display:">
+                                <div id="cloall01" style="display:">
                                     <table id="example020" class="table table-striped table-bordered zero-configuration">
                                         <thead class="text-capitalize">
                                             <tr>
@@ -1133,7 +1136,7 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td>
-                                                <td><a href="edit_clothes.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_Clothes?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
 
                                              <% 
@@ -1187,7 +1190,7 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td>
-                                                <td><a href="edit_clothes.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_Clothes?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
 
                                              <% 
@@ -1241,7 +1244,7 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td> 
-                                                <td><a href="edit_clothes.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_Clothes?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
 
                                              <% 
@@ -1295,7 +1298,7 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td>
-                                                <td><a href="edit_clothes.jsp?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><a href="Edit_Clothes?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
                                             </tr>
 
                                              <% 
@@ -1321,7 +1324,7 @@
         
     <%
         }else{
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("Login_Page");
         }
     %>                 
     

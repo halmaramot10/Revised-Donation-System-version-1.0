@@ -51,7 +51,7 @@ public class Update_User extends HttpServlet {
                 {
                     
                     out.println("User Account Updated Successfully!");
-                    response.sendRedirect("./user_edit.jsp?id="+id);
+                    response.sendRedirect("Edit_Users?id="+id);
                     session.setAttribute("success","User Account Updated Successfully!");
                 }
                 else

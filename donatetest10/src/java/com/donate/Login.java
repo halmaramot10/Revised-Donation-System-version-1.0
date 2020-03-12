@@ -36,7 +36,7 @@ public class Login extends HttpServlet {
             if(uname=="" || pass==""){
                 String error="Please enter valid credentials!";
                 session.setAttribute("error",error);
-                rd = request.getRequestDispatcher("index.jsp");
+                rd = request.getRequestDispatcher("Login_Page");
                 rd.forward(request,response);
             }
             else{
@@ -61,11 +61,11 @@ public class Login extends HttpServlet {
                                     session.setAttribute("role", role);
                                     session.setAttribute("name",name);
                                     session.setAttribute("id", id);
-                                    rd = request.getRequestDispatcher("/home_admin.jsp");
+                                    rd = request.getRequestDispatcher("/Dashboard");
                                     rd.forward(request,response);
                                     con.close();
                                 break;
-                                case "Owner":
+                                /*case "Owner":
                                     session.setAttribute("uname",uname);
                                     session.setAttribute("name",name);
                                     session.setAttribute("id", id);
@@ -73,7 +73,7 @@ public class Login extends HttpServlet {
                                     rd = request.getRequestDispatcher("/home_owner.jsp");
                                     rd.forward(request,response);
                                     con.close();
-                                break;
+                                break;*/
                                 case "User":
                                     session.setAttribute("uname",uname);
                                     session.setAttribute("name",name);
@@ -81,7 +81,7 @@ public class Login extends HttpServlet {
                                     session.setAttribute("role", role);
                                     String roles = role;
                                     session.setAttribute(role, roles);
-                                    rd = request.getRequestDispatcher("/home_user.jsp");
+                                    rd = request.getRequestDispatcher("/Home_Page");
                                     rd.forward(request,response);
                                     con.close();
                                 break;
@@ -89,14 +89,14 @@ public class Login extends HttpServlet {
                         break;
                         case "Inactive":
                             session.setAttribute("error", "The Account is Inactive. Please try again using an Active account.");
-                            response.sendRedirect("index.jsp");
+                            response.sendRedirect("Login_Page");
                         break;
                     }                    
                 }
                 else
                 {
                     session.setAttribute("error", "Invalid Username or Password! Try again.");
-                    response.sendRedirect("index.jsp");
+                    response.sendRedirect("Login_Page");
                 }
             }
             

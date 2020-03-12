@@ -38,7 +38,7 @@ public class Update_Item extends HttpServlet {
             {
 
                 out.println("Entry Updated uccessfully!");
-                response.sendRedirect("./edit_dropdowns_cat.jsp?id="+id);
+                response.sendRedirect("Edit_Item?id="+id);
                 session.setAttribute("success","Item Updated uccessfully!");
             }
             else

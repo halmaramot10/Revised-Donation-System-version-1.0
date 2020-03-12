@@ -82,9 +82,7 @@ public final class user_005fadd_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("    \n");
       out.write("    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css\">\n");
       out.write("\t<link rel=\"stylesheet\" type=\"text/css\" href=\"https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css\">\n");
-      out.write("\t<style type=\"text/css\" class=\"init\">\n");
       out.write("\t\n");
-      out.write("\t</style>\n");
       out.write("  \n");
       out.write("\t<script type=\"text/javascript\" src=\"/media/js/site.js?_=a64810efc82bfd3b645784011efa5963\"></script>\n");
       out.write("\t<script type=\"text/javascript\" src=\"/media/js/dynamic.php?comments-page=extensions%2Fbuttons%2Fexamples%2Fhtml5%2Fsimple.html\" async></script>\n");
@@ -98,14 +96,14 @@ public final class user_005fadd_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"../../../../examples/resources/demo.js\"></script>\n");
       out.write("\t\n");
       out.write("\t\n");
-      out.write("        <script type=\"text/javascript\" class=\"init\">\n");
+      out.write("        <script type=\"text/javascript\">\n");
       out.write("            $(document).ready(function() {\n");
-      out.write("                    $('#example').DataTable( {\n");
+      out.write("                    $('#example78').DataTable( {\n");
       out.write("                    } );\n");
       out.write("            } );\n");
       out.write("\t</script>\n");
       out.write("    \n");
-      out.write("    <title>Add Donation Entry</title>\n");
+      out.write("    <title>Add Users</title>\n");
       out.write("</head>\n");
       out.write("<body class=\"body-bg\">\n");
       out.write("    \n");
@@ -150,7 +148,7 @@ public final class user_005fadd_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("                <div class=\"row align-items-center\">\n");
       out.write("                    <div class=\"col-md-3\">\n");
       out.write("                        <div class=\"logo\">\n");
-      out.write("                            <a href=\"home_user.jsp\"><img src=\"assets/images/media/cpelogo2.png\" alt=\"logo\"></a>\n");
+      out.write("                            <a href=\"Home\"><img src=\"assets/images/media/cpelogo2.png\" alt=\"logo\"></a>\n");
       out.write("                        </div>\n");
       out.write("                    </div>\n");
       out.write("                    <!-- profile info & task notification -->\n");
@@ -164,7 +162,7 @@ public final class user_005fadd_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.print(uname);
       out.write("<i class=\"fa fa-angle-down\"></i></h4>\n");
       out.write("                                <div class=\"dropdown-menu\">\n");
-      out.write("                                    <a class=\"dropdown-item\" href=\"logout.jsp\">Log Out</a>\n");
+      out.write("                                    <a class=\"dropdown-item\" href=\"Login_Page\">Log Out</a>\n");
       out.write("                                </div>\n");
       out.write("                            </div>\n");
       out.write("                        </div>\n");
@@ -182,17 +180,23 @@ public final class user_005fadd_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("                        <div class=\"horizontal-menu\">\n");
       out.write("                            <nav>\n");
       out.write("                                <ul id=\"nav_menu\">\n");
-      out.write("                                    <li class=\"active\">\n");
-      out.write("                                        <a href=\"home_admin.jsp\"><i class=\"ti-plus\"></i><span>Add Donation</span></a>\n");
-      out.write("                                    </li>\n");
       out.write("                                    <li>\n");
+      out.write("                                        <a href=\"Home\"><i class=\"ti-plus\"></i><span>Add Donation</span></a>\n");
+      out.write("                                    </li>\n");
+      out.write("                                    <!--<li>\n");
       out.write("                                        <a href=\"upload_csv.jsp\"><i class=\"ti-import\"></i><span>Upload CSV</span></a>\n");
+      out.write("                                    </li>-->\n");
+      out.write("                                    <li>\n");
+      out.write("                                        <a href=\"Generate_Report\"><i class=\"ti-file\"></i><span>Generate Reports</span></a>\n");
+      out.write("                                    </li>\n");
+      out.write("                                    <li class=\"active\">\n");
+      out.write("                                        <a href=\"Add_Users\"><i class=\"ti-user\"></i><span>User Accounts</span></a>\n");
       out.write("                                    </li>\n");
       out.write("                                    <li>\n");
-      out.write("                                        <a href=\"gen_report_admin.jsp\"><i class=\"ti-file\"></i><span>Generate Reports</span></a>\n");
+      out.write("                                        <a href=\"Edit_Donations\"><i class=\"ti-pencil\"></i>Edit Donations</a>\n");
       out.write("                                    </li>\n");
       out.write("                                    <li>\n");
-      out.write("                                        <a href=\"add_user.jsp\"><i class=\"ti-user\"></i><span>Add User</span></a>\n");
+      out.write("                                        <a href=\"Edit_Dropdowns\"><i class=\"ti-pencil\"></i>Edit Dropdowns</a>\n");
       out.write("                                    </li>\n");
       out.write("                                </ul>\n");
       out.write("                            </nav>\n");
@@ -202,10 +206,176 @@ public final class user_005fadd_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("            </div>\n");
       out.write("        </div>\n");
       out.write("        <!-- header area end -->\n");
+      out.write("        \n");
+      out.write("        <!-- page title area end -->\n");
+      out.write("        <div class=\"main-content-inner\">\n");
+      out.write("            <div class=\"container\">\n");
+      out.write("                <div class=\"row\">\n");
+      out.write("                    <div class=\"col-12 mt-5\">\n");
+      out.write("                        <div class=\"card\">\n");
+      out.write("                            <div class=\"card-body\">\n");
+      out.write("                                <b style=\"font-weight:bolder; color:green;\">\n");
+      out.write("                                ");
+
+                                    try{
+                                        String success= session.getAttribute("success").toString();
+                                        out.println(success);
+                                        session.removeAttribute("success");
+                                    }catch(Exception er){
+
+                                    }
+
+                                
+      out.write("\n");
+      out.write("                                </b>\n");
+      out.write("                                <h6 class=\"header-title\" style=\"text-align: center\">Add User</h6>\n");
+      out.write("                                <form action=\"Add_User\" method=\"post\">\n");
+      out.write("                                    <div class=\"row\">\n");
+      out.write("                                        <div class=\"form-group col-3\">\n");
+      out.write("                                            <label>Username</label>\n");
+      out.write("                                            <input type=\"text\"  class=\"form-control form-control-sm\" name=\"username\">    \n");
+      out.write("                                        </div>\n");
+      out.write("                                        <div class=\"form-group col-3\">\n");
+      out.write("                                            <label>Password</label>\n");
+      out.write("                                            <input type=\"password\"  class=\"form-control form-control-sm\" name=\"password\">    \n");
+      out.write("                                        </div>\n");
+      out.write("                                        <div class=\"form-group col-3\">\n");
+      out.write("                                            <label>Role</label>\n");
+      out.write("                                            <select class=\"form-control form-control-sm\" name=\"role\">\n");
+      out.write("                                                <option value=\"User\">User</option>\n");
+      out.write("                                                <option value=\"Owner\">Manager/Owner</option>\n");
+      out.write("                                                <option value=\"Admin\">Administrator</option>\n");
+      out.write("                                            </select>    \n");
+      out.write("                                        </div>\n");
+      out.write("                                        <div class=\"form-group col-3\">\n");
+      out.write("                                            <label>Status</label>\n");
+      out.write("                                            <select class=\"form-control form-control-sm\" name=\"status\">\n");
+      out.write("                                                <option value=\"Active\">Active</option>\n");
+      out.write("                                                <option value=\"Inactive\">Inactive</option>\n");
+      out.write("                                            </select>\n");
+      out.write("                                        </div>\n");
+      out.write("                                    </div>\n");
+      out.write("                                    <div class=\"row\">\n");
+      out.write("                                        <div class=\"form-group col-4\">\n");
+      out.write("                                            <label>Name</label>\n");
+      out.write("                                            <input type=\"text\"  class=\"form-control form-control-sm\" name=\"name\">    \n");
+      out.write("                                        </div>\n");
+      out.write("                                        <div class=\"form-group col-4\">\n");
+      out.write("                                            <label>Contact Number</label>\n");
+      out.write("                                            <input type=\"text\"  class=\"form-control form-control-sm\" name=\"contact\">    \n");
+      out.write("                                        </div>\n");
+      out.write("                                        <div class=\"form-group col-4\">\n");
+      out.write("                                            <label>Email</label>\n");
+      out.write("                                            <input type=\"email\"  class=\"form-control form-control-sm\" name=\"email\">    \n");
+      out.write("                                        </div>\n");
+      out.write("                                    </div>\n");
+      out.write("                                    <div class=\"row\">\n");
+      out.write("                                        <div class=\"form-group col-3\">\n");
+      out.write("                                            <button type=\"submit\" class=\"btn btn-success mb-3\">Add User Account</button>\n");
+      out.write("                                        </div> \n");
+      out.write("                                    </div> \n");
+      out.write("                                </form>    \n");
+      out.write("                            </div>\n");
+      out.write("                        </div>\n");
+      out.write("                    </div>\n");
+      out.write("                </div>\n");
+      out.write("                \n");
+      out.write("                <div class=\"row\">\n");
+      out.write("                    <!-- Primary table start -->\n");
+      out.write("                    <div class=\"col-12 mt-5\">\n");
+      out.write("                        <div class=\"card\">\n");
+      out.write("                            <div class=\"card-body\">\n");
+      out.write("                                <h4 class=\"header-title\">List of User Accounts</h4>\n");
+      out.write("                                <div>\n");
+      out.write("                                    <table id=\"example78\" class=\"table table-striped table-bordered zero-configuration\">\n");
+      out.write("                                        <thead>\n");
+      out.write("                                            <th>Name</th>\n");
+      out.write("                                            <th>Username</th>\n");
+      out.write("                                            <th>Role</th>\n");
+      out.write("                                            <th>Status</th>\n");
+      out.write("                                            <th>Contact</th>\n");
+      out.write("                                            <th>Email</th>\n");
+      out.write("                                            <th></th>\n");
+      out.write("                                            <th></th>\n");
+      out.write("                                            <th></th>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                            ");
+
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM users";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            
+      out.write("  \n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("name"));
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("username"));
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("role"));
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("status"));
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("contact"));
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("email"));
+      out.write("</td>\n");
+      out.write("                                                <td align=\"center\">\n");
+      out.write("                                                    <form action=\"Update_Activate\" method=\"post\">\n");
+      out.write("                                                        <input type=\"text\" style=\"display:none\" value=\"");
+      out.print(rs.getString("id"));
+      out.write("\" name=\"acid\">\n");
+      out.write("                                                        <button type=\"submit\" class=\"btn btn-success btn-xs mb-3\">Activate</button>\n");
+      out.write("                                                    </form>\n");
+      out.write("                                                </td>\n");
+      out.write("                                                <td align=\"center\">\n");
+      out.write("                                                    <form action=\"Update_Deactivate\" method=\"post\">\n");
+      out.write("                                                        <input type=\"text\" style=\"display:none\" value=\"");
+      out.print(rs.getString("id"));
+      out.write("\" name=\"inid\">\n");
+      out.write("                                                        <button type=\"submit\" class=\"btn btn-danger btn-xs mb-3\">Deactivate</button>\n");
+      out.write("                                                    </form>\n");
+      out.write("                                                </td>\n");
+      out.write("                                                <td><a href=\"Edit_Users?id=");
+      out.print(rs.getInt("id"));
+      out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
+      out.write("                                            </tr>\n");
+      out.write("                                             ");
+ 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            
+      out.write("\n");
+      out.write("                                        </tbody>\n");
+      out.write("                                    </table>\n");
+      out.write("                                </div>\n");
+      out.write("                            </div>\n");
+      out.write("                        </div>\n");
+      out.write("                    </div>\n");
+      out.write("                </div>                        \n");
+      out.write("            </div>\n");
+      out.write("        </div>\n");
+      out.write("    </div>\n");
+      out.write("        \n");
+      out.write("        \n");
       out.write("    ");
 
         }else{
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("Login_Page");
         }
     
       out.write("                 \n");

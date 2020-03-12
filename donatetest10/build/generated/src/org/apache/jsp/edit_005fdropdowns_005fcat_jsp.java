@@ -105,7 +105,7 @@ public final class edit_005fdropdowns_005fcat_jsp extends org.apache.jasper.runt
       out.write("            } );\n");
       out.write("\t</script>\n");
       out.write("    \n");
-      out.write("    <title>Add Donation Entry</title>\n");
+      out.write("    <title>Edit Item Category</title>\n");
       out.write("</head>\n");
       out.write("<body class=\"body-bg\">\n");
       out.write("    \n");
@@ -168,7 +168,7 @@ public final class edit_005fdropdowns_005fcat_jsp extends org.apache.jasper.runt
       out.write("                <div class=\"row align-items-center\">\n");
       out.write("                    <div class=\"col-md-3\">\n");
       out.write("                        <div class=\"logo\">\n");
-      out.write("                            <a href=\"home_user.jsp\"><img src=\"assets/images/media/cpelogo2.png\" alt=\"logo\"></a>\n");
+      out.write("                            <a href=\"Home\"><img src=\"assets/images/media/cpelogo2.png\" alt=\"logo\"></a>\n");
       out.write("                        </div>\n");
       out.write("                    </div>\n");
       out.write("                    <!-- profile info & task notification -->\n");
@@ -182,7 +182,8 @@ public final class edit_005fdropdowns_005fcat_jsp extends org.apache.jasper.runt
       out.print(uname);
       out.write("<i class=\"fa fa-angle-down\"></i></h4>\n");
       out.write("                                <div class=\"dropdown-menu\">\n");
-      out.write("                                    <a class=\"dropdown-item\" href=\"logout.jsp\">Log Out</a>\n");
+      out.write("                                    <a class=\"dropdown-item\" href=\"Add_Users\">User Accounts</a>\n");
+      out.write("                                    <a class=\"dropdown-item\" href=\"Login_Page\">Log Out</a>\n");
       out.write("                                </div>\n");
       out.write("                            </div>\n");
       out.write("                        </div>\n");
@@ -201,22 +202,19 @@ public final class edit_005fdropdowns_005fcat_jsp extends org.apache.jasper.runt
       out.write("                            <nav>\n");
       out.write("                                <ul id=\"nav_menu\">\n");
       out.write("                                    <li>\n");
-      out.write("                                        <a href=\"home_admin.jsp\"><i class=\"ti-plus\"></i><span>Add Donation</span></a>\n");
+      out.write("                                        <a href=\"Home\"><i class=\"ti-plus\"></i><span>Add Donation</span></a>\n");
+      out.write("                                    </li>                                 \n");
+      out.write("                                    <li>\n");
+      out.write("                                        <a href=\"Generate_Report\"><i class=\"ti-file\"></i><span>Generate Reports</span></a>\n");
       out.write("                                    </li>\n");
       out.write("                                    <li>\n");
-      out.write("                                        <a href=\"upload_csv.jsp\"><i class=\"ti-import\"></i><span>Upload CSV</span></a>\n");
+      out.write("                                        <a href=\"Add_Users\"><i class=\"ti-user\"></i><span>Add User</span></a>\n");
       out.write("                                    </li>\n");
       out.write("                                    <li>\n");
-      out.write("                                        <a href=\"gen_report_admin.jsp\"><i class=\"ti-file\"></i><span>Generate Reports</span></a>\n");
-      out.write("                                    </li>\n");
-      out.write("                                    <li>\n");
-      out.write("                                        <a href=\"user_add.jsp\"><i class=\"ti-user\"></i><span>Add User</span></a>\n");
+      out.write("                                        <a href=\"Edit_Donations\"><i class=\"ti-pencil\"></i>Edit Donations</a>\n");
       out.write("                                    </li>\n");
       out.write("                                    <li class=\"active\">\n");
-      out.write("                                        <a href=\"edit_type_table.jsp\"><i class=\"ti-pencil\"></i>Edit Donations</a>\n");
-      out.write("                                    </li>\n");
-      out.write("                                    <li>\n");
-      out.write("                                        <a href=\"edit_dropdowns.jsp\"><i class=\"ti-pencil\"></i>Edit Dropdowns</a>\n");
+      out.write("                                        <a href=\"Edit_Dropdowns\"><i class=\"ti-pencil\"></i>Edit Dropdowns</a>\n");
       out.write("                                    </li>\n");
       out.write("                                </ul>\n");
       out.write("                            </nav>\n");
@@ -249,12 +247,12 @@ public final class edit_005fdropdowns_005fcat_jsp extends org.apache.jasper.runt
       out.write("\n");
       out.write("                                </b>\n");
       out.write("                                <h6 class=\"header-title\" style=\"text-align: center\">Update Food Donation Entry</h6>\n");
-      out.write("                                <form action=\"Update_Food\" method=\"post\">\n");
+      out.write("                                <form action=\"Update_Item\" method=\"post\">\n");
       out.write("                                    <div class =\"row\">\n");
       out.write("                                        <input type =\"text\" name=\"id\" value=\"");
       out.print(id);
       out.write("\" style=\"display: none\">\n");
-      out.write("                                        <div class=\"form-group col-6\">\n");
+      out.write("                                        <div class=\"form-group col-4\">\n");
       out.write("                                            <select name=\"category\" class=\"form-control form-control-sm\">\n");
       out.write("                                                \n");
       out.write("                                                <option value=\"");
@@ -273,10 +271,10 @@ public final class edit_005fdropdowns_005fcat_jsp extends org.apache.jasper.runt
       out.write("\n");
       out.write("                                                    \n");
       out.write("                                                    <option value=\"");
-      out.print(rs.getString("category") );
+      out.print(rs.getString("cat_name") );
       out.write('"');
       out.write('>');
-      out.print(rs.getString("category") );
+      out.print(rs.getString("cat_name") );
       out.write("</option>\n");
       out.write("                                                ");
 
@@ -289,17 +287,84 @@ public final class edit_005fdropdowns_005fcat_jsp extends org.apache.jasper.runt
       out.write("\n");
       out.write("                                            </select>\n");
       out.write("                                        </div>\n");
+      out.write("                                        <div class=\"form-group col-4\">\n");
+      out.write("                                            <input type =\"text\" name=\"item_name\" value=\"");
+      out.print(item);
+      out.write("\" class=\"form-control form-control-sm\">\n");
+      out.write("                                        </div>\n");
+      out.write("                                        <div class=\"form-group col-4\">\n");
+      out.write("                                            <button type=\"submit\" class=\"btn btn-success btn-xs mb-3\">Update</button>\n");
+      out.write("                                            <a href=\"Edit_Dropdowns\"><button type= \"button\" class=\"btn btn-danger btn-xs mb-3\">Cancel</button></a>\n");
+      out.write("                                        </div> \n");
       out.write("                                    </div>\n");
       out.write("                                </form>\n");
       out.write("                            </div>\n");
       out.write("                        </div>\n");
       out.write("                    </div>\n");
       out.write("                </div>\n");
+      out.write("               \n");
+      out.write("                 <div class=\"row\">\n");
+      out.write("                    <div class=\"col-12 mt-5\">\n");
+      out.write("                        <div class=\"card\">\n");
+      out.write("                            <div class=\"card-body\">\n");
+      out.write("                                <h6>Item Category Table</h6>\n");
+      out.write("                                <br>\n");
+      out.write("                                <div>\n");
+      out.write("                                    <table id=\"examples\" class=\"table table-striped table-bordered zero-configuration\">\n");
+      out.write("                                        <thead class=\"text-capitalize\">\n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <th>Category</th>\n");
+      out.write("                                                <th>Item Category</th>\n");
+      out.write("                                                <th></th>\n");
+      out.write("                                            </tr>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                               ");
+
+                                                try{ 
+                                                con = DB.getConnection();
+                                                st= con.createStatement();
+                                                String sql ="SELECT * FROM item_category";
+
+                                                rs = st.executeQuery(sql);
+                                                while(rs.next()){
+                                                    
+                                            
+      out.write("  \n");
+      out.write("                                            \n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(rs.getString("category") );
+      out.write("</td>                                                \n");
+      out.write("                                                <td>");
+      out.print(rs.getString("item_name") );
+      out.write("</td>\n");
+      out.write("                                                <td><a href=\"edit_dropdowns_cat.jsp?id=");
+      out.print(rs.getInt("id"));
+      out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
+      out.write("                                            </tr>\n");
+      out.write("                                            \n");
+      out.write("                                             ");
+ 
+                                                }
+
+                                                } catch (Exception e) {
+                                                e.printStackTrace();
+                                                }
+                                            
+      out.write("                                          \n");
+      out.write("                                        </tbody>\n");
+      out.write("                                    </table>\n");
+      out.write("                                </div>\n");
+      out.write("                            </div>\n");
+      out.write("                        </div>\n");
+      out.write("                    </div>\n");
+      out.write("                </div>                       \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
+      out.write("                                        \n");
       out.write("            </div>\n");
       out.write("        </div>\n");
-      out.write("                                \n");
-      out.write("        \n");
-      out.write("    \n");
       out.write("    </div>\n");
       out.write("                              \n");
       out.write("        ");
@@ -313,7 +378,7 @@ public final class edit_005fdropdowns_005fcat_jsp extends org.apache.jasper.runt
       out.write("    <!--Custom Script-->\n");
       out.write("    <script src=\"assets/js/custom1.js\"></script>\n");
       out.write("    <script src=\"assets/js/custom2.js\"></script>\n");
-      out.write("    \n");
+      out.write("    <script src=\"assets/js/custom4.js\"></script>\n");
       out.write("    <!-- jquery latest version -->\n");
       out.write("    <script src=\"assets/js/vendor/jquery-2.2.4.min.js\"></script>\n");
       out.write("    <!-- bootstrap 4 js -->\n");

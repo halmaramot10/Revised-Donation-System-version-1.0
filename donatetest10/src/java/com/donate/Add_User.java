@@ -48,7 +48,7 @@ public class Add_User extends HttpServlet {
                             {
 
                                 out.println("User Added Successfully!");
-                                response.sendRedirect("user_add.jsp");
+                                response.sendRedirect("Add_Users");
                                 session.setAttribute("success","User Added Successfully!");
                             }
                             else

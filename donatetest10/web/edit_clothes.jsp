@@ -128,7 +128,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-3">
                         <div class="logo">
-                            <a href="home_admin.jsp"><img src="assets/images/media/cpelogo2.png" alt="logo"></a>
+                            <a href="Home"><img src="assets/images/media/cpelogo2.png" alt="logo"></a>
                         </div>
                     </div>
                     <!-- profile info & task notification -->
@@ -140,7 +140,8 @@
                                 <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
                                 <h4 class="user-name dropdown-toggle" data-toggle="dropdown"><%=uname%><i class="fa fa-angle-down"></i></h4>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="logout.jsp">Log Out</a>
+                                    <a class="dropdown-item" href="Add_Users">User Accounts</a>
+                                    <a class="dropdown-item" href="Login_Page">Log Out</a>
                                 </div>
                             </div>
                         </div>
@@ -159,22 +160,25 @@
                             <nav>
                                 <ul id="nav_menu">
                                     <li>
-                                        <a href="home_admin.jsp"><i class="ti-plus"></i><span>Add Donation</span></a>
+                                        <a href="Dashboard"><i class="ti-dashboard"></i><span>Dashboard</span></a>
                                     </li>
                                     <li>
+                                        <a href="Home"><i class="ti-plus"></i><span>Add Donation</span></a>
+                                    </li>
+                                    <!--<li>
                                         <a href="upload_csv.jsp"><i class="ti-import"></i><span>Upload CSV</span></a>
+                                    </li>-->
+                                    <li>
+                                        <a href="Generate_Report"><i class="ti-file"></i><span>Generate Reports</span></a>
                                     </li>
                                     <li>
-                                        <a href="gen_report_admin.jsp"><i class="ti-file"></i><span>Generate Reports</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="user_add.jsp"><i class="ti-user"></i><span>Add User</span></a>
+                                        <a href="Add_Users"><i class="ti-user"></i><span>Add User</span></a>
                                     </li>
                                     <li class="active">
-                                        <a href="edit_type_table.jsp"><i class="ti-pencil"></i>Edit Donations</a>
+                                        <a href="Edit_Donations"><i class="ti-pencil"></i>Edit Donations</a>
                                     </li>
                                     <li>
-                                        <a href="edit_dropdowns.jsp"><i class="ti-pencil"></i>Edit Dropdowns</a>
+                                        <a href="Edit_Dropdowns"><i class="ti-pencil"></i>Edit Dropdowns</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -316,6 +320,7 @@
                                         <div class="row">
                                             <div class="form-group col-3">
                                                 <button type="submit" class="btn btn-success mb-3">Update</button>
+                                                <a href="Edit_Donations"><button type= "button" class="btn btn-danger mb-3">Cancel</button></a>
                                             </div> 
                                         </div>    
                                 </form>
@@ -331,7 +336,7 @@
                                     
     <%
         }else{
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("Login_Page");
         }
     %>                 
     

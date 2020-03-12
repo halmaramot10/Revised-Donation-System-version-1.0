@@ -99,7 +99,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("\t\n");
       out.write("        \n");
       out.write("    \n");
-      out.write("    <title>Generate Reports</title>\n");
+      out.write("    <title>Edit Donations</title>\n");
       out.write("</head>\n");
       out.write("<body class=\"body-bg\">\n");
       out.write("    \n");
@@ -138,7 +138,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                <div class=\"row align-items-center\">\n");
       out.write("                    <div class=\"col-md-3\">\n");
       out.write("                        <div class=\"logo\">\n");
-      out.write("                            <a href=\"home_admin.jsp\"><img src=\"assets/images/media/cpelogo2.png\" alt=\"logo\"></a>\n");
+      out.write("                            <a href=\"Home\"><img src=\"assets/images/media/cpelogo2.png\" alt=\"logo\"></a>\n");
       out.write("                        </div>\n");
       out.write("                    </div>\n");
       out.write("                    <!-- profile info & task notification -->\n");
@@ -152,8 +152,8 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.print(uname);
       out.write("<i class=\"fa fa-angle-down\"></i></h4>\n");
       out.write("                                <div class=\"dropdown-menu\">\n");
-      out.write("                                    <a class=\"dropdown-item\" href=\"user_add.jsp\">Add User</a>\n");
-      out.write("                                    <a class=\"dropdown-item\" href=\"logout.jsp\">Log Out</a>\n");
+      out.write("                                    <a class=\"dropdown-item\" href=\"Add_Users\">User Accounts</a>\n");
+      out.write("                                    <a class=\"dropdown-item\" href=\"Login_Page\">Log Out</a>\n");
       out.write("                                </div>\n");
       out.write("                            </div>\n");
       out.write("                        </div>\n");
@@ -171,23 +171,23 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                        <div class=\"horizontal-menu\">\n");
       out.write("                            <nav>\n");
       out.write("                                <ul id=\"nav_menu\">\n");
-      out.write("                                    <li class=\"active\">\n");
-      out.write("                                        <a href=\"home_admin.jsp\"><i class=\"ti-plus\"></i><span>Add Donation</span></a>\n");
-      out.write("                                    </li>\n");
       out.write("                                    <li>\n");
+      out.write("                                        <a href=\"Home\"><i class=\"ti-plus\"></i><span>Add Donation</span></a>\n");
+      out.write("                                    </li>\n");
+      out.write("                                    <!--<li>\n");
       out.write("                                        <a href=\"upload_csv.jsp\"><i class=\"ti-import\"></i><span>Upload CSV</span></a>\n");
+      out.write("                                    </li>-->\n");
+      out.write("                                    <li>\n");
+      out.write("                                        <a href=\"Generate_Report\"><i class=\"ti-file\"></i><span>Generate Reports</span></a>\n");
       out.write("                                    </li>\n");
       out.write("                                    <li>\n");
-      out.write("                                        <a href=\"gen_report_admin.jsp\"><i class=\"ti-file\"></i><span>Generate Reports</span></a>\n");
+      out.write("                                        <a href=\"Add_Users\"><i class=\"ti-user\"></i><span>User Accounts</span></a>\n");
+      out.write("                                    </li>\n");
+      out.write("                                    <li class=\"active\">\n");
+      out.write("                                        <a href=\"Edit_Donations\"><i class=\"ti-pencil\"></i>Edit Donations</a>\n");
       out.write("                                    </li>\n");
       out.write("                                    <li>\n");
-      out.write("                                        <a href=\"user_add.jsp\"><i class=\"ti-user\"></i><span>Add User</span></a>\n");
-      out.write("                                    </li>\n");
-      out.write("                                    <li>\n");
-      out.write("                                        <a href=\"edit_type_table.jsp\"><i class=\"ti-pencil\"></i>Edit Donations</a>\n");
-      out.write("                                    </li>\n");
-      out.write("                                    <li>\n");
-      out.write("                                        <a href=\"edit_item_category.jsp\"><i class=\"ti-pencil\"></i>Edit Dropdowns</a>\n");
+      out.write("                                        <a href=\"Edit_Dropdowns\"><i class=\"ti-pencil\"></i>Edit Dropdowns</a>\n");
       out.write("                                    </li>\n");
       out.write("                                </ul>\n");
       out.write("                            </nav>\n");
@@ -206,7 +206,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                        <div class=\"card\">\n");
       out.write("                            <div class=\"card-body\">\n");
       out.write("                                <div class=\"form-group col-3\" id=\"typeforms\">\n");
-      out.write("                                    <label for=\"cond\">Condition</label>                                           \n");
+      out.write("                                    <label for=\"cond\">Donation Types</label>                                           \n");
       out.write("                                    <select id =\"tshows01\" name=\"types23\" class=\"form-control form-control-sm\" onchange=\"tableshow01()\">\n");
       out.write("                                        <option value=\"Select One\">Select One</option>\n");
       out.write("                                        ");
@@ -309,7 +309,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td>\n");
-      out.write("                                                <td><a href=\"edit_school.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_School?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -381,7 +381,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td>\n");
-      out.write("                                                <td><a href=\"edit_school.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_School?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -453,7 +453,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td>\n");
-      out.write("                                                <td><a href=\"edit_school.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_School?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -525,7 +525,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td>\n");
-      out.write("                                                <td><a href=\"edit_school.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_School?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -618,7 +618,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td>\n");
-      out.write("                                                <td><a href=\"edit_food.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_Food?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -694,7 +694,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td>\n");
-      out.write("                                                <td><a href=\"edit_food.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_Food?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -770,7 +770,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td>\n");
-      out.write("                                                <td><a href=\"edit_food.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_Food?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -846,7 +846,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td>\n");
-      out.write("                                                <td><a href=\"edit_food.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_Food?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -939,7 +939,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td> \n");
-      out.write("                                                <td><a href=\"edit_others.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_Others?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -1015,7 +1015,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td>\n");
-      out.write("                                                <td><a href=\"edit_others.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_Others?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -1091,7 +1091,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td>\n");
-      out.write("                                                <td><a href=\"edit_others.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_Others?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -1167,7 +1167,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td>\n");
-      out.write("                                                <td><a href=\"edit_others.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_Others?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -1264,7 +1264,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td>\n");
-      out.write("                                                <td><a href=\"edit_money.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_Money?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -1344,7 +1344,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td>\n");
-      out.write("                                                <td><a href=\"edit_money.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_Money?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -1424,7 +1424,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td>\n");
-      out.write("                                                <td><a href=\"edit_money.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_Money?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -1504,7 +1504,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td>    \n");
-      out.write("                                                <td><a href=\"edit_money.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_Money?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -1538,7 +1538,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                <button type=\"button\" class=\"btn btn-danger mb-3\" onclick=\"showclorel01()\">Released</button>\n");
       out.write("                                <button type=\"button\" class=\"btn btn-primary mb-3\" onclick=\"showcloall01()\">All Statuses</button>\n");
       out.write("                                <br>\n");
-      out.write("                                <div id=\"cloall\" style=\"display:\">\n");
+      out.write("                                <div id=\"cloall01\" style=\"display:\">\n");
       out.write("                                    <table id=\"example020\" class=\"table table-striped table-bordered zero-configuration\">\n");
       out.write("                                        <thead class=\"text-capitalize\">\n");
       out.write("                                            <tr>\n");
@@ -1601,7 +1601,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td>\n");
-      out.write("                                                <td><a href=\"edit_clothes.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_Clothes?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -1681,7 +1681,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td>\n");
-      out.write("                                                <td><a href=\"edit_clothes.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_Clothes?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -1761,7 +1761,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td> \n");
-      out.write("                                                <td><a href=\"edit_clothes.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_Clothes?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -1841,7 +1841,7 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td>\n");
-      out.write("                                                <td><a href=\"edit_clothes.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_Clothes?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -1867,12 +1867,12 @@ public final class edit_005ftype_005ftable_jsp extends org.apache.jasper.runtime
       out.write("                                        \n");
       out.write("            </div>\n");
       out.write("        </div>\n");
-      out.write("        \n");
+      out.write("    </div>  \n");
       out.write("        \n");
       out.write("    ");
 
         }else{
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("Login_Page");
         }
     
       out.write("                 \n");

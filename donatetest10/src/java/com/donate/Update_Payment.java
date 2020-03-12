@@ -38,7 +38,7 @@ public class Update_Payment extends HttpServlet {
             {
 
                 out.println("Entry Updated uccessfully!");
-                response.sendRedirect("./edit_dropdowns_met.jsp?id="+id);
+                response.sendRedirect("Edit_Method?id="+id);
                 session.setAttribute("success","Item Updated uccessfully!");
             }
             else

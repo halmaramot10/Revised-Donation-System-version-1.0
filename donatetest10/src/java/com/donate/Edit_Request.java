@@ -7,15 +7,15 @@ import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
-@WebServlet(name = "Update_Money", urlPatterns = {"/Update_Money"})
-public class Update_Money extends HttpServlet {
+public class Edit_Request extends HttpServlet {
 
     HttpSession session;
-    int status,id;
+    int status,status2;
     Connection con;
     Statement st;
     ResultSet rs;
-    String date,item,des,qty,met,pays,refno,fr,donto,stat,addedby,invoicenum,datemod;
+    String type,stat = "Pending",penum;
+    String sql,sql2;
     RequestDispatcher rd = null;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -23,57 +23,35 @@ public class Update_Money extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            id=Integer.parseInt(request.getParameter("id"));
-            date = request.getParameter("date");
-            item = request.getParameter("item");
-            des = request.getParameter("des");
-            qty = request.getParameter("qty");
-            met = request.getParameter("met");
-            pays = request.getParameter("pays");
-            refno = request.getParameter("refno");
             
-            fr = request.getParameter("fr");
-            donto = request.getParameter("donto");
-            stat = request.getParameter("stat");
-            addedby = request.getParameter("addedby");
-            invoicenum = request.getParameter("invoicenum");
+            type = request.getParameter("reqtype");
+            penum = request.getParameter("reqnum");
             
             SimpleDateFormat sdf= new SimpleDateFormat("MM-dd-yyyy");
-            datemod = sdf.format(new java.util.Date());
+            String today = sdf.format(new java.util.Date());
             
             session = request.getSession();
             con = DB.getConnection();
-            st = con.createStatement();
-             String sql = "UPDATE money_donate SET "
-                           + "date = '"+date+"'"
-                           + ",item = '"+item+ "'"
-                           + ",des = '"+des+"'"                           
-                           + ",qty = '"+qty+"'"
-                           + ",met = '"+met+"'"
-                           + ",pays = '"+pays+"'"
-                           + ",refno = '"+refno+"'"
-                           + ",fr = '"+fr+"'"
-                           + ",donto = '"+donto+"'"
-                           + ",stat = '"+stat+"'"
-                           + ",datemod = '"+datemod+"'"
-                           + "WHERE id = '"+id+"'";
             
-            status=st.executeUpdate(sql);
-            if(status>0)
-                {
-                    
-                    out.println("Donation Entry Updated Successfully!");
-                    response.sendRedirect("Edit_Money?id="+id);
-                    session.setAttribute("success","Donation Entry Updated Successfully!");
-                }
-                else
-                {
-                    
-                    out.println("Oops! Something went wrong...");
-                    session.setAttribute("error","Oops! Something went wrong...");
-                }
-            
-           
+
+                    st = con.createStatement();
+                        sql = "INSERT INTO edit_request (type,invoicenum,daterequest) VALUES ('"+type+"', '"+penum+"','"+today+"')";
+                    status=st.executeUpdate(sql);
+                    if(status>0)
+                            {
+
+                                out.println("Edit Request Sent");
+                                response.sendRedirect("Home_Page");
+                                session.setAttribute("success","Edit Request Sent!");
+                            }
+                            else
+                            {
+
+                                out.println("Oops! Something went wrong...");
+                                session.setAttribute("error","Oops! Something went wrong...");
+                            }
+
+
         }catch(SQLException ex) { 
                    while (ex!=null) { 
                        System.out.println ("SQL Exception: " + ex.getMessage ()); 

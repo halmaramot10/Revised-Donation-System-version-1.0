@@ -53,23 +53,23 @@
 	
         <script type="text/javascript" class="init">
             $(document).ready(function() {
-                    $('#example').DataTable( {
+                    $('#example1').DataTable( {
+                        "order": [[ 8, "desc" ]]
                     } );
             } );
 	</script>
     
-    <title>Edit Item Category</title>
+    <title>Dashboard</title>
 </head>
 <body class="body-bg">
     
     <%
     Connection con = null;
-    Statement st = null, st2 = null;
+    Statement st = null;
     ResultSet rs = null;
     %>
 
     <%
-        int id = 0;
         Date today = new Date();
         Format formatter1;
         String tod1;
@@ -78,25 +78,13 @@
 
         String name = (String)session.getAttribute("name");
         String uname=(String)session.getAttribute("uname");
-        id = Integer.parseInt(request.getParameter("id"));
+        String id=null;
         if(uname!=null){
     %>
     <%
-            String cat = null,item = null;
-            try{
-            con = DB.getConnection();
-            st = con.createStatement();
-            String sql = "select * from item_category where id = "+id+"";
-            rs = st.executeQuery(sql);
-            if(rs.next()){
-                cat = rs.getString("category");
-                item = rs.getString("item_name");
-            }
-            }catch(Exception e){
-               out.println(e);
-            }
+        int money = 0, school = 0, clothes = 0, others = 0, food = 0, all = 0;                                            
     %>
-
+    
     <div class="horizontal-main-wrapper">
         
          <!--[if lt IE 8]>
@@ -138,7 +126,7 @@
         </div>
         <!-- main header area end -->
         
-                <!-- header area start -->
+        <!-- header area start -->
         <div class="header-area header-bottom">
             <div class="container">
                 <div class="row align-items-center">
@@ -146,22 +134,25 @@
                         <div class="horizontal-menu">
                             <nav>
                                 <ul id="nav_menu">
-                                    <li>
+                                    <li class="active">
                                         <a href="Dashboard"><i class="ti-dashboard"></i><span>Dashboard</span></a>
                                     </li>
                                     <li>
                                         <a href="Home"><i class="ti-plus"></i><span>Add Donation</span></a>
-                                    </li>                                 
+                                    </li>
+                                    <!--<li>
+                                        <a href="upload_csv.jsp"><i class="ti-import"></i><span>Upload CSV</span></a>
+                                    </li>-->
                                     <li>
                                         <a href="Generate_Report"><i class="ti-file"></i><span>Generate Reports</span></a>
                                     </li>
                                     <li>
-                                        <a href="Add_Users"><i class="ti-user"></i><span>Add User</span></a>
+                                        <a href="Add_Users"><i class="ti-user"></i><span>User Accounts</span></a>
                                     </li>
                                     <li>
                                         <a href="Edit_Donations"><i class="ti-pencil"></i>Edit Donations</a>
                                     </li>
-                                    <li class="active">
+                                    <li>
                                         <a href="Edit_Dropdowns"><i class="ti-pencil"></i>Edit Dropdowns</a>
                                     </li>
                                 </ul>
@@ -173,78 +164,171 @@
         </div>
         <!-- header area end -->
         
-        <!-- page title area end -->
         <div class="main-content-inner">
             <div class="container">
-                <div class="row">
-                    <div class="col-12 mt-5">
-                        <div class="card">
-                            <div class="card-body">
-                                <b style="font-weight:bolder; color:green;">
-                                <%
-                                    try{
-                                        String success= session.getAttribute("success").toString();
-                                        out.println(success);
-                                        session.removeAttribute("success");
-                                    }catch(Exception er){
+                <!-- sales report area start -->
+                <div class="sales-report-area sales-style-two">
+                    <div class="row">
+                        <div class="col-xl-2 col-ml-2 col-md-6 mt-5">
+                            <div class="single-report">
+                                <div class="s-sale-inner pt--30 mb-3">
+                                    <div class="s-report-title d-flex justify-content-between">
+                                        <%
+                                        try{
+                                            con = DB.getConnection();
+                                            st = con.createStatement();
+                                            rs = st.executeQuery("select count(*) from donation");
+                                            rs.next();
+                                            all = rs.getInt(1);
 
-                                    }
-
-                                %>
-                                </b>
-                                <h6 class="header-title" style="text-align: center">Update Food Donation Entry</h6>
-                                <form action="Update_Item" method="post">
-                                    <div class ="row">
-                                        <input type ="text" name="id" value="<%=id%>" style="display: none">
-                                        <div class="form-group col-4">
-                                            <select name="category" class="form-control form-control-sm">
-                                                
-                                                <option value="<%=cat%>" selected="selected"><%=cat%></option>
-                                                <%
-                                                    try{
-                                                        con=DB.getConnection();
-                                                        st=con.createStatement();
-                                                        rs=st.executeQuery("select * from category");
-                                                        while(rs.next()){           
-                                                %>
-                                                    
-                                                    <option value="<%=rs.getString("cat_name") %>"><%=rs.getString("cat_name") %></option>
-                                                <%
-                                                        }
-                                                    }catch(Exception ex){
-                                                        ex.printStackTrace();
-                                                        out.println("Error: "+ex.getMessage());
-                                                    }
-                                                %>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-4">
-                                            <input type ="text" name="item_name" value="<%=item%>" class="form-control form-control-sm">
-                                        </div>
-                                        <div class="form-group col-4">
-                                            <button type="submit" class="btn btn-success btn-xs mb-3">Update</button>
-                                            <a href="Edit_Dropdowns"><button type= "button" class="btn btn-danger btn-xs mb-3">Cancel</button></a>
-                                        </div> 
+                                        }catch(Exception e){
+                                            out.println(e);
+                                        }
+                                        %>
+                                        <h4 class="header-title mb-0">All Donations</h4>
+                                        <br>
+                                        <h4><%=all%></h4>
                                     </div>
-                                </form>
+                                </div>
+
                             </div>
                         </div>
+                        <div class="col-xl-2 col-ml-2 col-md-6 mt-5">
+                            <div class="single-report">
+                                <div class="s-sale-inner pt--30 mb-3">
+                                    <div class="s-report-title d-flex justify-content-between">
+                                        <%
+                                        try{
+                                            con = DB.getConnection();
+                                            st = con.createStatement();
+                                            rs = st.executeQuery("select count(*) from clothes_donate");
+                                            rs.next();
+                                            clothes = rs.getInt(1);
+
+                                        }catch(Exception e){
+                                            out.println(e);
+                                        }
+                                        %>
+                                        <h4 class="header-title mb-0">Clothes</h4>
+                                        <br>
+                                        <h4><%=clothes%></h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-ml-2 col-md-6  mt-5">
+                            <div class="single-report">
+                                <div class="s-sale-inner pt--30 mb-3">
+                                    <div class="s-report-title d-flex justify-content-between">
+                                        <%
+                                        try{
+                                            con = DB.getConnection();
+                                            st = con.createStatement();
+                                            rs = st.executeQuery("select count(*) from foods_donate");
+                                            rs.next();
+                                            food = rs.getInt(1);
+
+                                        }catch(Exception e){
+                                            out.println(e);
+                                        }
+                                        %>
+                                        <h4 class="header-title mb-0">Food</h4>
+                                        <br>
+                                        <h4><%=food%></h4>                                     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                    
+                        <div class="col-xl-2 col-ml-2 col-md-6 mt-5">
+                            <div class="single-report">
+                                <div class="s-sale-inner pt--30 mb-3">
+                                    <div class="s-report-title d-flex justify-content-between">
+                                        <%
+                                        try{
+                                            con = DB.getConnection();
+                                            st = con.createStatement();
+                                            rs = st.executeQuery("select count(*) from money_donate");
+                                            rs.next();
+                                            money = rs.getInt(1);
+
+                                        }catch(Exception e){
+                                            out.println(e);
+                                        }
+                                        %>
+                                        <h4 class="header-title mb-0">Money</h4>
+                                        <br>
+                                        <h4><%=money%></h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-ml-2 col-md-6 mt-5">
+                            <div class="single-report">
+                                <div class="s-sale-inner pt--30 mb-3">
+                                    <div class="s-report-title d-flex justify-content-between">
+                                        <%
+                                        try{
+                                            con = DB.getConnection();
+                                            st = con.createStatement();
+                                            rs = st.executeQuery("select count(*) from others_donate");
+                                            rs.next();
+                                            others = rs.getInt(1);
+
+                                        }catch(Exception e){
+                                            out.println(e);
+                                        }
+                                        %>
+                                        <h4 class="header-title mb-0">Other</h4>
+                                        <br>
+                                        <h4><%=others%></h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-ml-2 col-md-6  mt-5">
+                            <div class="single-report">
+                                <div class="s-sale-inner pt--30 mb-3">
+                                    <div class="s-report-title d-flex justify-content-between">
+                                        <%
+                                        try{
+                                            con = DB.getConnection();
+                                            st = con.createStatement();
+                                            rs = st.executeQuery("select count(*) from school_donate");
+                                            rs.next();
+                                            school = rs.getInt(1);
+
+                                        }catch(Exception e){
+                                            out.println(e);
+                                        }
+                                        %>
+                                        <h4 class="header-title mb-0">School Supplies</h4>
+                                        <br>
+                                        <h4><%=school%></h4>                                     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>            
+                                    
                     </div>
                 </div>
-               
+                                    
                  <div class="row">
+                    <!-- Primary table start -->
                     <div class="col-12 mt-5">
                         <div class="card">
                             <div class="card-body">
-                                <h6>Item Category Table</h6>
-                                <br>
-                                <div>
-                                    <table id="examples" class="table table-striped table-bordered zero-configuration">
+                                <h4 class="header-title">List of Edit Request</h4>
+                                <div class="data-tables datatable-primary">
+                                    <table id="dataTable2" class="text-center">
                                         <thead class="text-capitalize">
                                             <tr>
-                                                <th>Category</th>
-                                                <th>Item Category</th>
-                                                <th></th>
+                                                <th>Invoice Number</th>
+                                                <th>Type</th>
+                                                <th>Date Requested</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -252,7 +336,7 @@
                                                 try{ 
                                                 con = DB.getConnection();
                                                 st= con.createStatement();
-                                                String sql ="SELECT * FROM item_category";
+                                                String sql ="SELECT * FROM edit_request";
 
                                                 rs = st.executeQuery(sql);
                                                 while(rs.next()){
@@ -260,9 +344,9 @@
                                             %>  
                                             
                                             <tr>
-                                                <td><%=rs.getString("category") %></td>                                                
-                                                <td><%=rs.getString("item_name") %></td>
-                                                <td><a href="Edit_Item?id=<%=rs.getInt("id")%>"><i class="ti-pencil"></i> Edit</a></td>
+                                                <td><%=rs.getString("type") %></td>                                                
+                                                <td><%=rs.getString("invoicenum") %></td>
+                                                <td><%=rs.getString("daterequest")%></td>
                                             </tr>
                                             
                                              <% 
@@ -278,24 +362,22 @@
                             </div>
                         </div>
                     </div>
-                </div>                       
-                                        
-                                        
-                                        
+                    <!-- Primary table end -->
+                </div>                   
+                                    
+                                    
             </div>
         </div>
     </div>
-                              
-        <%
+    <%
         }else{
             response.sendRedirect("Login_Page");
         }
     %>                 
     
     <!--Custom Script-->
-    <script src="assets/js/custom1.js"></script>
+    <!--<script src="assets/js/custom1.js"></script>-->
     <script src="assets/js/custom2.js"></script>
-    <script src="assets/js/custom4.js"></script>
     <!-- jquery latest version -->
     <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
     <!-- bootstrap 4 js -->
@@ -324,5 +406,3 @@
 	<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
 </body>
-
-</html>

@@ -99,7 +99,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-3">
                         <div class="logo">
-                            <a href="home_user.jsp"><img src="assets/images/media/cpelogo2.png" alt="logo"></a>
+                            <a href="Home_Page"><img src="assets/images/media/cpelogo2.png" alt="logo"></a>
                         </div>
                     </div>
                     <!-- profile info & task notification -->
@@ -111,7 +111,7 @@
                                 <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
                                 <h4 class="user-name dropdown-toggle" data-toggle="dropdown"><%=uname%><i class="fa fa-angle-down"></i></h4>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="logout.jsp">Log Out</a>
+                                    <a class="dropdown-item" href="Login_Page">Log Out</a>
                                 </div>
                             </div>
                         </div>
@@ -130,13 +130,13 @@
                             <nav>
                                 <ul id="nav_menu">
                                     <li class="active">
-                                        <a href="home_user.jsp"><i class="ti-plus"></i><span>Add Donation</span></a>
+                                        <a href="Home_Page"><i class="ti-plus"></i><span>Add Donation</span></a>
                                     </li>
-                                    <li>
+                                    <!--<li>
                                         <a href="upload_csv.jsp"><i class="ti-import"></i><span>Upload CSV</span></a>
-                                    </li>
+                                    </li>-->
                                     <li>
-                                        <a href="gen_report_user.jsp"><i class="ti-file"></i><span>Generate Reports</span></a>
+                                        <a href="Generate_Report_Page"><i class="ti-file"></i><span>Generate Reports</span></a>
                                     </li>
                                 </ul>
                             </nav>
@@ -511,6 +511,7 @@
                                                 <th>Status</th>
                                                 <th>Date</th>
                                                 <th>Change Status</th>
+                                                <th>Send Request</th>
                                                 
                                             </tr>
                                         </thead>
@@ -519,7 +520,7 @@
                                                 try{ 
                                                 con = DB.getConnection();
                                                 st= con.createStatement();
-                                                String sql ="SELECT * FROM donation";
+                                                String sql ="SELECT * FROM donation where stat = 'Received' ";
 
                                                 rs = st.executeQuery(sql);
                                                 while(rs.next()){
@@ -542,7 +543,14 @@
                                                         <input type="text" style="display:none" value="<%=rs.getString("invoicenum") %>" name="penum">                                                    
                                                         <button type="submit" class="btn btn-warning btn-xs mb-3" >Pending</button>                                                      
                                                     </form>
-                                                </td>                                               
+                                                </td>
+                                                <td align="center">
+                                                    <form action="Edit_Request" action="post">
+                                                        <input type="text" style="display:none" value="<%=rs.getString("type") %>" name="reqtype">
+                                                        <input type="text" style="display:none" value="<%=rs.getString("invoicenum") %>" name="reqnum">                                                    
+                                                        <button type="submit" class="btn btn-info btn-xs mb-3" >Edit Request</button>                                                      
+                                                    </form>
+                                                </td>
                                             </tr>
                                             
                                              <% 
@@ -566,7 +574,7 @@
     </div>
     <%
         }else{
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("Login_Page");
         }
     %>                 
     

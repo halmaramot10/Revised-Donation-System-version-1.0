@@ -51,7 +51,7 @@ public class Update_Pending extends HttpServlet {
                             {
 
                                 out.println("Entry Updated uccessfully!");
-                                response.sendRedirect("home_user.jsp");
+                                response.sendRedirect("Home_Page");
                                 session.setAttribute("success","Entry Updated uccessfully!");
                             }
                             else
@@ -78,7 +78,7 @@ public class Update_Pending extends HttpServlet {
                             {
 
                                 out.println("Entry Updated uccessfully!");
-                                response.sendRedirect("home_user.jsp");
+                                response.sendRedirect("Home_Page");
                                 session.setAttribute("success","Entry Updated uccessfully!");
                             }
                             else
@@ -105,7 +105,7 @@ public class Update_Pending extends HttpServlet {
                             {
 
                                 out.println("Entry Updated uccessfully!");
-                                response.sendRedirect("home_user.jsp");
+                                response.sendRedirect("Home_Page");
                                 session.setAttribute("success","Entry Updated uccessfully!");
                             }
                             else
@@ -132,7 +132,7 @@ public class Update_Pending extends HttpServlet {
                             {
 
                                 out.println("Entry Updated uccessfully!");
-                                response.sendRedirect("home_user.jsp");
+                                response.sendRedirect("Home_Page");
                                 session.setAttribute("success","Entry Updated uccessfully!");
                             }
                             else
@@ -159,7 +159,7 @@ public class Update_Pending extends HttpServlet {
                             {
 
                                 out.println("Entry Updated uccessfully!");
-                                response.sendRedirect("home_user.jsp");
+                                response.sendRedirect("Home_Page");
                                 session.setAttribute("success","Entry Updated uccessfully!");
                             }
                             else

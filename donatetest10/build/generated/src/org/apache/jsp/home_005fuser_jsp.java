@@ -101,6 +101,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("        <script type=\"text/javascript\" class=\"init\">\n");
       out.write("            $(document).ready(function() {\n");
       out.write("                    $('#example').DataTable( {\n");
+      out.write("                        \"order\": [[ 8, \"desc\" ]]\n");
       out.write("                    } );\n");
       out.write("            } );\n");
       out.write("\t</script>\n");
@@ -127,7 +128,6 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
 
         String name = (String)session.getAttribute("name");
         String uname=(String)session.getAttribute("uname");
-        String id=null;
         if(uname!=null){
     
       out.write("\n");
@@ -150,7 +150,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                <div class=\"row align-items-center\">\n");
       out.write("                    <div class=\"col-md-3\">\n");
       out.write("                        <div class=\"logo\">\n");
-      out.write("                            <a href=\"home_user.jsp\"><img src=\"assets/images/media/cpelogo2.png\" alt=\"logo\"></a>\n");
+      out.write("                            <a href=\"Home_Page\"><img src=\"assets/images/media/cpelogo2.png\" alt=\"logo\"></a>\n");
       out.write("                        </div>\n");
       out.write("                    </div>\n");
       out.write("                    <!-- profile info & task notification -->\n");
@@ -164,7 +164,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.print(uname);
       out.write("<i class=\"fa fa-angle-down\"></i></h4>\n");
       out.write("                                <div class=\"dropdown-menu\">\n");
-      out.write("                                    <a class=\"dropdown-item\" href=\"logout.jsp\">Log Out</a>\n");
+      out.write("                                    <a class=\"dropdown-item\" href=\"Login_Page\">Log Out</a>\n");
       out.write("                                </div>\n");
       out.write("                            </div>\n");
       out.write("                        </div>\n");
@@ -183,11 +183,11 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                            <nav>\n");
       out.write("                                <ul id=\"nav_menu\">\n");
       out.write("                                    <li class=\"active\">\n");
-      out.write("                                        <a href=\"home_user.jsp\"><i class=\"ti-plus\"></i><span>Add Donation</span></a>\n");
+      out.write("                                        <a href=\"Home_Page\"><i class=\"ti-plus\"></i><span>Add Donation</span></a>\n");
       out.write("                                    </li>\n");
-      out.write("                                    <li>\n");
+      out.write("                                    <!--<li>\n");
       out.write("                                        <a href=\"upload_csv.jsp\"><i class=\"ti-import\"></i><span>Upload CSV</span></a>\n");
-      out.write("                                    </li>\n");
+      out.write("                                    </li>-->\n");
       out.write("                                    <li>\n");
       out.write("                                        <a href=\"gen_report_user.jsp\"><i class=\"ti-file\"></i><span>Generate Reports</span></a>\n");
       out.write("                                    </li>\n");
@@ -315,7 +315,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                                        <!--FOR FOOD-->\n");
       out.write("                                        <div class=\"form-group col-3\" id=\"item2\" style=\"display:none\">\n");
       out.write("                                            <label for=\"item\">Item Type</label>\n");
-      out.write("                                            <select name=\"item2\" class=\"form-control form-control-sm\" id=\"item02\" onchange=\"shows2()\">\n");
+      out.write("                                            <select name=\"item2\" class=\"form-control form-control-sm\" id=\"item02\" onchange=\"shows2a()\">\n");
       out.write("                                                ");
 
                                             try{
@@ -348,7 +348,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                                        <!--FOR Clothes-->\n");
       out.write("                                        <div class=\"form-group col-3\" id=\"item3\" style=\"display:none\">\n");
       out.write("                                            <label for=\"item\">Item Type</label>\n");
-      out.write("                                            <select name=\"item3\" class=\"form-control form-control-sm\" id=\"item03\" onchange=\"shows2()\">\n");
+      out.write("                                            <select name=\"item3\" class=\"form-control form-control-sm\" id=\"item03\" onchange=\"shows2b()\">\n");
       out.write("                                                ");
 
                                             try{
@@ -381,7 +381,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                                        <!--FOR Money-->\n");
       out.write("                                        <div class=\"form-group col-3\" id=\"item4\" style=\"display:none\">\n");
       out.write("                                            <label for=\"item\">Item Type</label>\n");
-      out.write("                                            <select name=\"item4\" class=\"form-control form-control-sm\" id=\"item04\" onchange=\"shows2()\">\n");
+      out.write("                                            <select name=\"item4\" class=\"form-control form-control-sm\" id=\"item04\" onchange=\"shows2c()\">\n");
       out.write("                                                ");
 
                                             try{
@@ -414,7 +414,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                                        <!--FOR School Supplies-->\n");
       out.write("                                        <div class=\"form-group col-3\" id=\"item5\" style=\"display:none\">\n");
       out.write("                                            <label for=\"item5\">Item Type</label>\n");
-      out.write("                                            <select name=\"item5\" class=\"form-control form-control-sm\" id=\"item05\" onchange=\"shows2()\">\n");
+      out.write("                                            <select name=\"item5\" class=\"form-control form-control-sm\" id=\"item05\" onchange=\"shows2d()\">\n");
       out.write("                                                ");
 
                                             try{
@@ -630,7 +630,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                    <div class=\"col-12 mt-5\">\n");
       out.write("                        <div class=\"card\">\n");
       out.write("                            <div class=\"card-body\">\n");
-      out.write("                                <h4 class=\"header-title\">Data Table Primary</h4>\n");
+      out.write("                                <h4 class=\"header-title\">List of Donations</h4>\n");
       out.write("                                <div>\n");
       out.write("                                    <table id=\"example\" class=\"table table-striped table-bordered zero-configuration\">\n");
       out.write("                                        <thead class=\"text-capitalize\">\n");
@@ -644,7 +644,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                                                <th>To</th>\n");
       out.write("                                                <th>Status</th>\n");
       out.write("                                                <th>Date</th>\n");
-      out.write("                                                <th colspan=\"2\">Change Status</th>\n");
+      out.write("                                                <th>Change Status</th>\n");
       out.write("                                                \n");
       out.write("                                            </tr>\n");
       out.write("                                        </thead>\n");
@@ -654,7 +654,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
                                                 try{ 
                                                 con = DB.getConnection();
                                                 st= con.createStatement();
-                                                String sql ="SELECT * FROM donation";
+                                                String sql ="SELECT * FROM donation where stat = 'Received' ";
 
                                                 rs = st.executeQuery(sql);
                                                 while(rs.next()){
@@ -690,7 +690,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                                                <td>");
       out.print(rs.getString("date") );
       out.write("</td>\n");
-      out.write("                                                <td>\n");
+      out.write("                                                <td align=\"center\">\n");
       out.write("                                                    <form action=\"Update_Pending\" action=\"post\">\n");
       out.write("                                                        <input type=\"text\" style=\"display:none\" value=\"");
       out.print(rs.getString("type") );
@@ -700,18 +700,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("\" name=\"penum\">                                                    \n");
       out.write("                                                        <button type=\"submit\" class=\"btn btn-warning btn-xs mb-3\" >Pending</button>                                                      \n");
       out.write("                                                    </form>\n");
-      out.write("                                                </td>\n");
-      out.write("                                                <td>\n");
-      out.write("                                                    <form action=\"Update_Released\" action=\"post\">\n");
-      out.write("                                                        <input type=\"text\" style=\"display:none\" value=\"");
-      out.print(rs.getString("type") );
-      out.write("\" name=\"rels\">\n");
-      out.write("                                                        <input type=\"text\" style=\"display:none\" value=\"");
-      out.print(rs.getString("invoicenum") );
-      out.write("\" name=\"relums\">                                                    \n");
-      out.write("                                                        <button type=\"submit\" class=\"btn btn-primary btn-xs mb-3\" >Released</button>                                                      \n");
-      out.write("                                                    </form>\n");
-      out.write("                                                </td>\n");
+      out.write("                                                </td>                                               \n");
       out.write("                                            </tr>\n");
       out.write("                                            \n");
       out.write("                                             ");
@@ -738,7 +727,7 @@ public final class home_005fuser_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("    ");
 
         }else{
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("Login_Page");
         }
     
       out.write("                 \n");

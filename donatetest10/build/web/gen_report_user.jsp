@@ -93,7 +93,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-3">
                         <div class="logo">
-                            <a href="home_user.jsp"><img src="assets/images/media/cpelogo2.png" alt="logo"></a>
+                            <a href="Home_Page"><img src="assets/images/media/cpelogo2.png" alt="logo"></a>
                         </div>
                     </div>
                     <!-- profile info & task notification -->
@@ -105,7 +105,7 @@
                                 <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
                                 <h4 class="user-name dropdown-toggle" data-toggle="dropdown"><%=uname%><i class="fa fa-angle-down"></i></h4>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="logout.jsp">Log Out</a>
+                                    <a class="dropdown-item" href="Login_Page">Log Out</a>
                                 </div>
                             </div>
                         </div>
@@ -124,13 +124,13 @@
                             <nav>
                                 <ul id="nav_menu">
                                     <li>
-                                        <a href="home_user.jsp"><i class="ti-plus"></i><span>Add Donation</span></a>
+                                        <a href="Home_Page"><i class="ti-plus"></i><span>Add Donation</span></a>
                                     </li>
-                                    <li>
+                                    <!--<li>
                                         <a href="upload_csv.jsp"><i class="ti-import"></i><span>Upload CSV</span></a>
-                                    </li>
+                                    </li>-->
                                     <li class="active">
-                                        <a href="gen_report_user.jsp"><i class="ti-file"></i><span>Generate Reports</span></a>
+                                        <a href="Generate_Report_Page"><i class="ti-file"></i><span>Generate Reports</span></a>
                                     </li>
                                 </ul>
                             </nav>
@@ -149,7 +149,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-group col-3" id="typeforms">
-                                    <label for="cond">Condition</label>                                           
+                                    <label for="cond">Donation Types</label>                                           
                                     <select id ="tshows" name="types23" class="form-control form-control-sm" onchange="tableshow1()">
                                         <option value="Select One">Select One</option>
                                         <%
@@ -1284,7 +1284,7 @@
                     <div class="col-12 mt-5">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title">Money Donations</h4>
+                                <h4 class="header-title">Clothes Donations</h4>
                                 <button type="button" class="btn btn-success mb-3" onclick="showclorec()">Received</button>                               
                                 <button type="button" class="btn btn-info mb-3" onclick="showclopen()">Pending</button>
                                 <button type="button" class="btn btn-danger mb-3" onclick="showclorel()">Released</button>
@@ -1514,7 +1514,7 @@
         
     <%
         }else{
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("Login_Page");
         }
     %>                 
     

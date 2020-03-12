@@ -67,7 +67,7 @@ public class Update_Clothes extends HttpServlet {
                 {
                     
                     out.println("Donation Entry Updated Successfully!");
-                    response.sendRedirect("./edit_clothes.jsp?id="+id);
+                    response.sendRedirect("Edit_Clothes?id="+id);
                     session.setAttribute("success","Donation Entry Updated Successfully!");
                 }
                 else

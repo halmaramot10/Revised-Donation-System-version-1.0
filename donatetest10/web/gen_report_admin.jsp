@@ -87,7 +87,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-3">
                         <div class="logo">
-                            <a href="home_user.jsp"><img src="assets/images/media/cpelogo2.png" alt="logo"></a>
+                            <a href="Home"><img src="assets/images/media/cpelogo2.png" alt="logo"></a>
                         </div>
                     </div>
                     <!-- profile info & task notification -->
@@ -99,7 +99,8 @@
                                 <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
                                 <h4 class="user-name dropdown-toggle" data-toggle="dropdown"><%=uname%><i class="fa fa-angle-down"></i></h4>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="logout.jsp">Log Out</a>
+                                    <a class="dropdown-item" href="Add_Users">User Accounts</a>
+                                    <a class="dropdown-item" href="Login_Page">Log Out</a>
                                 </div>
                             </div>
                         </div>
@@ -117,23 +118,26 @@
                         <div class="horizontal-menu">
                             <nav>
                                 <ul id="nav_menu">
-                                    <li class="active">
-                                        <a href="home_admin.jsp"><i class="ti-plus"></i><span>Add Donation</span></a>
+                                    <li>
+                                        <a href="Dashboard"><i class="ti-dashboard"></i><span>Dashboard</span></a>
                                     </li>
                                     <li>
+                                        <a href="Home"><i class="ti-plus"></i><span>Add Donation</span></a>
+                                    </li>
+                                    <!--<li>
                                         <a href="upload_csv.jsp"><i class="ti-import"></i><span>Upload CSV</span></a>
+                                    </li>-->
+                                    <li class="active">
+                                        <a href="Generate_Report"><i class="ti-file"></i><span>Generate Reports</span></a>
                                     </li>
                                     <li>
-                                        <a href="gen_report_admin.jsp"><i class="ti-file"></i><span>Generate Reports</span></a>
+                                        <a href="Add_Users"><i class="ti-user"></i><span>User Accounts</span></a>
                                     </li>
                                     <li>
-                                        <a href="user_add.jsp"><i class="ti-user"></i><span>Add User</span></a>
+                                        <a href="Edit_Donations"><i class="ti-pencil"></i>Edit Donations</a>
                                     </li>
                                     <li>
-                                        <a href="edit_type_table.jsp"><i class="ti-pencil"></i>Edit Donations</a>
-                                    </li>
-                                    <li>
-                                        <a href="edit_dropdowns.jsp"><i class="ti-pencil"></i>Edit Dropdowns</a>
+                                        <a href="Edit_Dropdowns"><i class="ti-pencil"></i>Edit Dropdowns</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -152,7 +156,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-group col-3" id="typeforms">
-                                    <label for="cond">Condition</label>                                           
+                                    <label for="cond">Donation Types</label>                                           
                                     <select id ="tshows" name="types23" class="form-control form-control-sm" onchange="tableshow1()">
                                         <option value="Select One">Select One</option>
                                         <%
@@ -185,10 +189,10 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="header-title">All Donation Types</h4>
-                                <button type="button" class="btn btn-success mb-3" onclick="showgenrec01()">Received</button>                               
-                                <button type="button" class="btn btn-info mb-3" onclick="showgenpen01()">Pending</button>
-                                <button type="button" class="btn btn-danger mb-3" onclick="showgenrel01()">Released</button>
-                                <button type="button" class="btn btn-primary mb-3" onclick="showgenall01()">All Statuses</button>
+                                <button type="button" class="btn btn-success mb-3" onclick="showgenrec()">Received</button>                               
+                                <button type="button" class="btn btn-info mb-3" onclick="showgenpen()">Pending</button>
+                                <button type="button" class="btn btn-danger mb-3" onclick="showgenrel()">Released</button>
+                                <button type="button" class="btn btn-primary mb-3" onclick="showgenall()">All Statuses</button>
                                 <br>
                                 <div id="genall" style="display:">
                                     <table id="example" class="table table-striped table-bordered zero-configuration">
@@ -1287,7 +1291,7 @@
                     <div class="col-12 mt-5">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title">Money Donations</h4>
+                                <h4 class="header-title">Clothes Donations</h4>
                                 <button type="button" class="btn btn-success mb-3" onclick="showclorec()">Received</button>                               
                                 <button type="button" class="btn btn-info mb-3" onclick="showclopen()">Pending</button>
                                 <button type="button" class="btn btn-danger mb-3" onclick="showclorel()">Released</button>
@@ -1517,14 +1521,13 @@
         
     <%
         }else{
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("Login_Page");
         }
     %>                 
     
     <!--Custom Script-->
     <script src="assets/js/custom1.js"></script>
     <script src="assets/js/custom2.js"></script>
-    <script src="assets/js/custom3.js"></script>
     <!-- jquery latest version -->
     <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
     <!-- bootstrap 4 js -->

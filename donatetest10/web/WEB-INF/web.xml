@@ -64,6 +64,14 @@
         <servlet-name>Update_Payment</servlet-name>
         <servlet-class>com.donate.Update_Payment</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Update_Pending_Admin</servlet-name>
+        <servlet-class>com.donate.Update_Pending_Admin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Edit_Request</servlet-name>
+        <servlet-class>com.donate.Edit_Request</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -128,9 +136,153 @@
         <servlet-name>Update_Payment</servlet-name>
         <url-pattern>/Update_Payment</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Update_Pending_Admin</servlet-name>
+        <url-pattern>/Update_Pending_Admin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Edit_Request</servlet-name>
+        <url-pattern>/Edit_Request</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <jsp-file>/home_admin.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/Home</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Home Page</servlet-name>
+        <jsp-file>/home_user.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Home Page</servlet-name>
+        <url-pattern>/Home_Page</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Login Page</servlet-name>
+        <jsp-file>/logout.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login Page</servlet-name>
+        <url-pattern>/Login_Page</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Generate Report Page</servlet-name>
+        <jsp-file>/gen_report_user.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Generate Report Page</servlet-name>
+        <url-pattern>/Generate_Report_Page</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Edit Clothes</servlet-name>
+        <jsp-file>/edit_clothes.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Edit Clothes</servlet-name>
+        <url-pattern>/Edit_Clothes</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Edit Dropdowns</servlet-name>
+        <jsp-file>/edit_dropdowns.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Edit Dropdowns</servlet-name>
+        <url-pattern>/Edit_Dropdowns</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Edit Item</servlet-name>
+        <jsp-file>/edit_dropdowns_cat.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Edit Item</servlet-name>
+        <url-pattern>/Edit_Item</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Edit Method</servlet-name>
+        <jsp-file>/edit_dropdowns_met.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Edit Method</servlet-name>
+        <url-pattern>/Edit_Method</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Edit Food</servlet-name>
+        <jsp-file>/edit_food.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Edit Food</servlet-name>
+        <url-pattern>/Edit_Food</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Edit Money</servlet-name>
+        <jsp-file>/edit_money.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Edit Money</servlet-name>
+        <url-pattern>/Edit_Money</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Edit Others</servlet-name>
+        <jsp-file>/edit_others.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Edit Others</servlet-name>
+        <url-pattern>/Edit_Others</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Edit School</servlet-name>
+        <jsp-file>/edit_school.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Edit School</servlet-name>
+        <url-pattern>/Edit_School</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Edit Donations</servlet-name>
+        <jsp-file>/edit_type_table.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Edit Donations</servlet-name>
+        <url-pattern>/Edit_Donations</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Edit Users</servlet-name>
+        <jsp-file>/user_edit.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Edit Users</servlet-name>
+        <url-pattern>/Edit_Users</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Add Users</servlet-name>
+        <jsp-file>/user_add.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Add Users</servlet-name>
+        <url-pattern>/Add_Users</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Generate Report</servlet-name>
+        <jsp-file>/gen_report_admin.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Generate Report</servlet-name>
+        <url-pattern>/Generate_Report</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Dashboard</servlet-name>
+        <jsp-file>/dashboard.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Dashboard</servlet-name>
+        <url-pattern>/Dashboard</url-pattern>
+    </servlet-mapping>
 </web-app>

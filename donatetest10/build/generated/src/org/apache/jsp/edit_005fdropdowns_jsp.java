@@ -97,7 +97,7 @@ public final class edit_005fdropdowns_jsp extends org.apache.jasper.runtime.Http
       out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js\"></script>\n");
       out.write("\t<script type=\"text/javascript\" language=\"javascript\" src=\"../../../../examples/resources/demo.js\"></script>\n");
       out.write("    \n");
-      out.write("    <title>Add Donation Entry</title>\n");
+      out.write("    <title>Edit Dropdowns</title>\n");
       out.write("</head>\n");
       out.write("<body class=\"body-bg\">\n");
       out.write("    \n");
@@ -119,9 +119,11 @@ public final class edit_005fdropdowns_jsp extends org.apache.jasper.runtime.Http
 
         String name = (String)session.getAttribute("name");
         String uname=(String)session.getAttribute("uname");
+
         if(uname!=null){
     
       out.write("\n");
+      out.write("    \n");
       out.write("    <div class=\"horizontal-main-wrapper\">\n");
       out.write("        \n");
       out.write("         <!--[if lt IE 8]>\n");
@@ -140,7 +142,7 @@ public final class edit_005fdropdowns_jsp extends org.apache.jasper.runtime.Http
       out.write("                <div class=\"row align-items-center\">\n");
       out.write("                    <div class=\"col-md-3\">\n");
       out.write("                        <div class=\"logo\">\n");
-      out.write("                            <a href=\"home_user.jsp\"><img src=\"assets/images/media/cpelogo2.png\" alt=\"logo\"></a>\n");
+      out.write("                            <a href=\"Home\"><img src=\"assets/images/media/cpelogo2.png\" alt=\"logo\"></a>\n");
       out.write("                        </div>\n");
       out.write("                    </div>\n");
       out.write("                    <!-- profile info & task notification -->\n");
@@ -154,7 +156,8 @@ public final class edit_005fdropdowns_jsp extends org.apache.jasper.runtime.Http
       out.print(uname);
       out.write("<i class=\"fa fa-angle-down\"></i></h4>\n");
       out.write("                                <div class=\"dropdown-menu\">\n");
-      out.write("                                    <a class=\"dropdown-item\" href=\"logout.jsp\">Log Out</a>\n");
+      out.write("                                    <a class=\"dropdown-item\" href=\"Add_Users\">User Accounts</a>\n");
+      out.write("                                    <a class=\"dropdown-item\" href=\"Login_Page\">Log Out</a>\n");
       out.write("                                </div>\n");
       out.write("                            </div>\n");
       out.write("                        </div>\n");
@@ -173,22 +176,22 @@ public final class edit_005fdropdowns_jsp extends org.apache.jasper.runtime.Http
       out.write("                            <nav>\n");
       out.write("                                <ul id=\"nav_menu\">\n");
       out.write("                                    <li>\n");
-      out.write("                                        <a href=\"home_admin.jsp\"><i class=\"ti-plus\"></i><span>Add Donation</span></a>\n");
+      out.write("                                        <a href=\"Home\"><i class=\"ti-plus\"></i><span>Add Donation</span></a>\n");
       out.write("                                    </li>\n");
-      out.write("                                    <li>\n");
+      out.write("                                    <!--<li>\n");
       out.write("                                        <a href=\"upload_csv.jsp\"><i class=\"ti-import\"></i><span>Upload CSV</span></a>\n");
+      out.write("                                    </li>-->\n");
+      out.write("                                    <li>\n");
+      out.write("                                        <a href=\"Generate_Report\"><i class=\"ti-file\"></i><span>Generate Reports</span></a>\n");
       out.write("                                    </li>\n");
       out.write("                                    <li>\n");
-      out.write("                                        <a href=\"gen_report_admin.jsp\"><i class=\"ti-file\"></i><span>Generate Reports</span></a>\n");
+      out.write("                                        <a href=\"Add_Users\"><i class=\"ti-user\"></i><span>Add User</span></a>\n");
       out.write("                                    </li>\n");
       out.write("                                    <li>\n");
-      out.write("                                        <a href=\"user_add.jsp\"><i class=\"ti-user\"></i><span>Add User</span></a>\n");
+      out.write("                                        <a href=\"Edit_Donations\"><i class=\"ti-pencil\"></i>Edit Donations</a>\n");
       out.write("                                    </li>\n");
       out.write("                                    <li class=\"active\">\n");
-      out.write("                                        <a href=\"edit_type_table.jsp\"><i class=\"ti-pencil\"></i>Edit Donations</a>\n");
-      out.write("                                    </li>\n");
-      out.write("                                    <li>\n");
-      out.write("                                        <a href=\"edit_dropdowns.jsp\"><i class=\"ti-pencil\"></i>Edit Dropdowns</a>\n");
+      out.write("                                        <a href=\"Edit_Dropdowns\"><i class=\"ti-pencil\"></i>Edit Dropdowns</a>\n");
       out.write("                                    </li>\n");
       out.write("                                </ul>\n");
       out.write("                            </nav>\n");
@@ -226,8 +229,6 @@ public final class edit_005fdropdowns_jsp extends org.apache.jasper.runtime.Http
       out.write("                    <div class=\"col-12 mt-5\">\n");
       out.write("                        <div class=\"card\">\n");
       out.write("                            <div class=\"card-body\">\n");
-      out.write("                                <div class=\"row\"\n");
-      out.write("                                <br>\n");
       out.write("                                <h6>Item Category Table</h6>\n");
       out.write("                                <br>\n");
       out.write("                                <div>\n");
@@ -260,7 +261,7 @@ public final class edit_005fdropdowns_jsp extends org.apache.jasper.runtime.Http
       out.write("                                                <td>");
       out.print(rs.getString("item_name") );
       out.write("</td>\n");
-      out.write("                                                <td><a href=\"edit_dropdowns_cat.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_Item?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -318,7 +319,7 @@ public final class edit_005fdropdowns_jsp extends org.apache.jasper.runtime.Http
       out.write("                                                <td>");
       out.print(rs.getString("met_name") );
       out.write("</td>\n");
-      out.write("                                                <td><a href=\"edit_dropdowns_met.jsp?id=");
+      out.write("                                                <td><a href=\"Edit_Method?id=");
       out.print(rs.getInt("id"));
       out.write("\"><i class=\"ti-pencil\"></i> Edit</a></td>\n");
       out.write("                                            </tr>\n");
@@ -348,7 +349,7 @@ public final class edit_005fdropdowns_jsp extends org.apache.jasper.runtime.Http
       out.write("    ");
 
         }else{
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("Login_Page");
         }
     
       out.write("                 \n");
