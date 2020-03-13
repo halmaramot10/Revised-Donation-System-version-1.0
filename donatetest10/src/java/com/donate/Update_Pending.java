@@ -52,7 +52,7 @@ public class Update_Pending extends HttpServlet {
 
                                 out.println("Entry Updated uccessfully!");
                                 response.sendRedirect("Home_Page");
-                                session.setAttribute("success","Entry Updated uccessfully!");
+                                session.setAttribute("success","Entry Updated Successfully!");
                             }
                             else
                             {
@@ -79,7 +79,7 @@ public class Update_Pending extends HttpServlet {
 
                                 out.println("Entry Updated uccessfully!");
                                 response.sendRedirect("Home_Page");
-                                session.setAttribute("success","Entry Updated uccessfully!");
+                                session.setAttribute("success","Entry Updated Successfully!");
                             }
                             else
                             {
@@ -106,7 +106,7 @@ public class Update_Pending extends HttpServlet {
 
                                 out.println("Entry Updated uccessfully!");
                                 response.sendRedirect("Home_Page");
-                                session.setAttribute("success","Entry Updated uccessfully!");
+                                session.setAttribute("success","Entry Updated Successfully!");
                             }
                             else
                             {
@@ -133,7 +133,7 @@ public class Update_Pending extends HttpServlet {
 
                                 out.println("Entry Updated uccessfully!");
                                 response.sendRedirect("Home_Page");
-                                session.setAttribute("success","Entry Updated uccessfully!");
+                                session.setAttribute("success","Entry Updated Successfully!");
                             }
                             else
                             {
@@ -160,7 +160,7 @@ public class Update_Pending extends HttpServlet {
 
                                 out.println("Entry Updated uccessfully!");
                                 response.sendRedirect("Home_Page");
-                                session.setAttribute("success","Entry Updated uccessfully!");
+                                session.setAttribute("success","Entry Updated Successfully!");
                             }
                             else
                             {

@@ -11,7 +11,7 @@ import javax.servlet.http.*;
 public class Update_Clothes extends HttpServlet {
 
     HttpSession session;
-    int status,id;
+    int status,id,status2;
     Connection con;
     Statement st;
     ResultSet rs;
@@ -62,6 +62,17 @@ public class Update_Clothes extends HttpServlet {
                            + ",datemod = '"+datemod+"'"
                            + "WHERE id = '"+id+"'";
             
+            String sql2 = "UPDATE donation SET "
+                           + "date = '"+date+"'"                   
+                           + ",item = '"+item+ "'"
+                           + ",des = '"+des+"'"                           
+                           + ",qty = '"+qty+"'"
+                           + ",fr = '"+fr+"'"
+                           + ",donto = '"+donto+"'"
+                           + ",stat = '"+stat+"'"
+                           + ",datemod = '"+datemod+"'"
+                           + "WHERE invoicenum = '"+invoicenum+"'";
+            status2 = st.executeUpdate(sql2);
             status=st.executeUpdate(sql);
             if(status>0)
                 {

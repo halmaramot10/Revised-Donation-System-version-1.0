@@ -39,7 +39,7 @@ public class Update_Item extends HttpServlet {
 
                 out.println("Entry Updated uccessfully!");
                 response.sendRedirect("Edit_Item?id="+id);
-                session.setAttribute("success","Item Updated uccessfully!");
+                session.setAttribute("success","Item Updated Successfully!");
             }
             else
             {

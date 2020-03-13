@@ -65,7 +65,7 @@ public class Update_Released extends HttpServlet {
 
                                 out.println("Entry Updated uccessfully!");
                                 response.sendRedirect("Home");
-                                session.setAttribute("success","Entry Updated uccessfully!");
+                                session.setAttribute("success","Entry Updated Successfully!");
                             }
                             else
                             {
@@ -92,7 +92,7 @@ public class Update_Released extends HttpServlet {
 
                                 out.println("Entry Updated uccessfully!");
                                 response.sendRedirect("Home");
-                                session.setAttribute("success","Entry Updated uccessfully!");
+                                session.setAttribute("success","Entry Updated Successfully!");
                             }
                             else
                             {
@@ -119,7 +119,7 @@ public class Update_Released extends HttpServlet {
 
                                 out.println("Entry Updated uccessfully!");
                                 response.sendRedirect("Home");
-                                session.setAttribute("success","Entry Updated uccessfully!");
+                                session.setAttribute("success","Entry Updated Successfully!");
                             }
                             else
                             {
@@ -146,7 +146,7 @@ public class Update_Released extends HttpServlet {
 
                                 out.println("Entry Updated uccessfully!");
                                 response.sendRedirect("Home");
-                                session.setAttribute("success","Entry Updated uccessfully!");
+                                session.setAttribute("success","Entry Updated Successfully!");
                             }
                             else
                             {
@@ -173,7 +173,7 @@ public class Update_Released extends HttpServlet {
 
                                 out.println("Entry Updated uccessfully!");
                                 response.sendRedirect("Home");
-                                session.setAttribute("success","Entry Updated uccessfully!");
+                                session.setAttribute("success","Entry Updated Successfully!");
                             }
                             else
                             {

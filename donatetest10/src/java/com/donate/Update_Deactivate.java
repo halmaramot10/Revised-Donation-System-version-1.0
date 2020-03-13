@@ -34,7 +34,7 @@ public class Update_Deactivate extends HttpServlet {
 
                 out.println("Entry Updated uccessfully!");
                 response.sendRedirect("Add_Users");
-                session.setAttribute("success","User Updated uccessfully!");
+                session.setAttribute("success","User Updated Successfully!");
             }
             else
             {
