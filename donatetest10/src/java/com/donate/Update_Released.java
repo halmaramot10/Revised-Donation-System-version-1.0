@@ -7,25 +7,13 @@ import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
-/**
- *
- * @author Hazel Anne
- */
 public class Update_Released extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     HttpSession session;
     int status,status2;
     Connection con;
     Statement st;
+    PreparedStatement ps,ps1;
     ResultSet rs;
     String type,stat = "Released",penum;
     String sql,sql2;
@@ -48,18 +36,24 @@ public class Update_Released extends HttpServlet {
             
             switch(type){
                 case "Others":
-                    st = con.createStatement();
-                        sql = "UPDATE others_donate SET "
-                            + "stat = '"+stat+"'"
-                            + ",datemod = '"+today+"'"
-                           
-                           + "WHERE invoicenum = '"+penum+"'";
-                    status=st.executeUpdate(sql);
-                    sql2 = "UPDATE donation SET "
-                           + "stat = '"+stat+"'"
-                           + ",datemod = '"+today+"'"                          
-                           + "WHERE invoicenum = '"+penum+"'";
-                    status2=st.executeUpdate(sql2);
+                    
+                    sql = "UPDATE others_donate SET stat = ?,datemod = ? where invoicenum = ?";
+            
+                    ps = con.prepareStatement(sql);
+                    ps.setString(1, stat);
+                    ps.setString(2, today);
+                    ps.setString(3, penum);
+            
+                    status = ps.executeUpdate();
+                    
+                    sql2 = "UPDATE donation SET stat = ?,datemod = ? where invoicenum = ?";
+            
+                    ps1 = con.prepareStatement(sql2);
+                    ps1.setString(1, stat);
+                    ps1.setString(2, today);
+                    ps1.setString(3, penum);
+            
+                    status2 = ps1.executeUpdate();
                     if(status>0)
                             {
 
@@ -75,18 +69,23 @@ public class Update_Released extends HttpServlet {
                             }
                     break;
                 case "Food":
-                    st = con.createStatement();
-                        sql = "UPDATE foods_donate SET "
-                            + "stat = '"+stat+"'"
-                            + ",datemod = '"+today+"'"
-                           
-                           + "WHERE invoicenum = '"+penum+"'";
-                    status=st.executeUpdate(sql);
-                    sql2 = "UPDATE donation SET "
-                           + "stat = '"+stat+"'"
-                           + ",datemod = '"+today+"'"                          
-                           + "WHERE invoicenum = '"+penum+"'";
-                    status2=st.executeUpdate(sql2);
+                    sql = "UPDATE food_donate SET stat = ?,datemod = ? where invoicenum = ?";
+            
+                    ps = con.prepareStatement(sql);
+                    ps.setString(1, stat);
+                    ps.setString(2, today);
+                    ps.setString(3, penum);
+            
+                    status = ps.executeUpdate();
+                    
+                    sql2 = "UPDATE donation SET stat = ?,datemod = ? where invoicenum = ?";
+            
+                    ps1 = con.prepareStatement(sql2);
+                    ps1.setString(1, stat);
+                    ps1.setString(2, today);
+                    ps1.setString(3, penum);
+            
+                    status2 = ps1.executeUpdate();
                     if(status>0)
                             {
 
@@ -102,18 +101,23 @@ public class Update_Released extends HttpServlet {
                             }
                     break;
                     case "Clothes":
-                    st = con.createStatement();
-                        sql = "UPDATE clothes_donate SET "
-                            + "stat = '"+stat+"'"
-                            + ",datemod = '"+today+"'"
-                           
-                           + "WHERE invoicenum = '"+penum+"'";
-                    status=st.executeUpdate(sql);
-                    sql2 = "UPDATE donation SET "
-                           + "stat = '"+stat+"'"
-                           + ",datemod = '"+today+"'"                          
-                           + "WHERE invoicenum = '"+penum+"'";
-                    status2=st.executeUpdate(sql2);
+                    sql = "UPDATE clothes_donate SET stat = ?,datemod = ? where invoicenum = ?";
+            
+                    ps = con.prepareStatement(sql);
+                    ps.setString(1, stat);
+                    ps.setString(2, today);
+                    ps.setString(3, penum);
+            
+                    status = ps.executeUpdate();
+                    
+                    sql2 = "UPDATE donation SET stat = ?,datemod = ? where invoicenum = ?";
+            
+                    ps1 = con.prepareStatement(sql2);
+                    ps1.setString(1, stat);
+                    ps1.setString(2, today);
+                    ps1.setString(3, penum);
+            
+                    status2 = ps1.executeUpdate();
                     if(status>0)
                             {
 
@@ -129,18 +133,23 @@ public class Update_Released extends HttpServlet {
                             }
                     break;
                     case "Money":
-                    st = con.createStatement();
-                        sql = "UPDATE money_donate SET "
-                            + "stat = '"+stat+"'"
-                            + ",datemod = '"+today+"'"
-                           
-                           + "WHERE invoicenum = '"+penum+"'";
-                    status=st.executeUpdate(sql);
-                    sql2 = "UPDATE donation SET "
-                           + "stat = '"+stat+"'"
-                           + ",datemod = '"+today+"'"                          
-                           + "WHERE invoicenum = '"+penum+"'";
-                    status2=st.executeUpdate(sql2);
+                    sql = "UPDATE money_donate SET stat = ?,datemod = ? where invoicenum = ?";
+            
+                    ps = con.prepareStatement(sql);
+                    ps.setString(1, stat);
+                    ps.setString(2, today);
+                    ps.setString(3, penum);
+            
+                    status = ps.executeUpdate();
+                    
+                    sql2 = "UPDATE donation SET stat = ?,datemod = ? where invoicenum = ?";
+            
+                    ps1 = con.prepareStatement(sql2);
+                    ps1.setString(1, stat);
+                    ps1.setString(2, today);
+                    ps1.setString(3, penum);
+            
+                    status2 = ps1.executeUpdate();
                     if(status>0)
                             {
 
@@ -156,18 +165,23 @@ public class Update_Released extends HttpServlet {
                             }
                     break;
                     case "School Supplies":
-                    st = con.createStatement();
-                        sql = "UPDATE school_donate SET "
-                            + "stat = '"+stat+"'"
-                            + ",datemod = '"+today+"'"
-                           
-                           + "WHERE invoicenum = '"+penum+"'";
-                    status=st.executeUpdate(sql);
-                    sql2 = "UPDATE donation SET "
-                           + "stat = '"+stat+"'"
-                           + ",datemod = '"+today+"'"                          
-                           + "WHERE invoicenum = '"+penum+"'";
-                    status2=st.executeUpdate(sql2);
+                    sql = "UPDATE school_donate SET stat = ?,datemod = ? where invoicenum = ?";
+            
+                    ps = con.prepareStatement(sql);
+                    ps.setString(1, stat);
+                    ps.setString(2, today);
+                    ps.setString(3, penum);
+            
+                    status = ps.executeUpdate();
+                    
+                    sql2 = "UPDATE donation SET stat = ?,datemod = ? where invoicenum = ?";
+            
+                    ps1 = con.prepareStatement(sql2);
+                    ps1.setString(1, stat);
+                    ps1.setString(2, today);
+                    ps1.setString(3, penum);
+            
+                    status2 = ps1.executeUpdate();
                     if(status>0)
                             {
 

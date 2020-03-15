@@ -40,7 +40,7 @@
             <div class="login-box">
                 <form action="Login" method="post">
                     <div class="login-form-head">
-                        <img src="assets/images/media/cpelogo1.png" width="200" height="180" alt="logo">
+                        <img src="assets/images/media/logo1.png" width="200" height="180" alt="logo">
                     </div>
                     <div class="login-form-body">
                         <div class="form-gp">
@@ -56,7 +56,7 @@
                             <div class="text-danger"></div>
                         </div>
                         <div class="submit-btn-area">
-                            <button id="form_submit" type="submit" style="color:black">Submit <i class="ti-arrow-right"></i></button>
+                            <button id="form_submit" type="submit" style="color:white">Submit <i class="ti-arrow-right"></i></button>
                         </div>
                         <br>
                         

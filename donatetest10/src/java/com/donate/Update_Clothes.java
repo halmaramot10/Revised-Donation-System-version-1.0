@@ -14,6 +14,7 @@ public class Update_Clothes extends HttpServlet {
     int status,id,status2;
     Connection con;
     Statement st;
+    PreparedStatement ps,ps1;
     ResultSet rs;
     String date,item,des,qty,cond,size,color,gender,age,fr,donto,stat,addedby,invoicenum,datemod;
     RequestDispatcher rd = null;
@@ -24,7 +25,6 @@ public class Update_Clothes extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             
             id=Integer.parseInt(request.getParameter("id"));
-            date = request.getParameter("date");
             item = request.getParameter("item");
             des = request.getParameter("des");
             qty = request.getParameter("qty");
@@ -45,35 +45,50 @@ public class Update_Clothes extends HttpServlet {
             
             session = request.getSession();
             con = DB.getConnection();
-            st = con.createStatement();
-             String sql = "UPDATE clothes_donate SET "
-                           + "date = '"+date+"'"
-                           + ",item = '"+item+ "'"
-                           + ",des = '"+des+"'"                           
-                           + ",qty = '"+qty+"'"
-                           + ",cond = '"+cond+"'"
-                           + ",size = '"+size+"'"
-                           + ",color = '"+color+"'"
-                           + ",gender = '"+gender+"'"
-                           + ",age = '"+age+"'"
-                           + ",fr = '"+fr+"'"
-                           + ",donto = '"+donto+"'"
-                           + ",stat = '"+stat+"'"
-                           + ",datemod = '"+datemod+"'"
-                           + "WHERE id = '"+id+"'";
+
+            String sql = "UPDATE clothes_donate SET "
+                     + "item = ?"
+                     + ",des = ?"
+                     + ",qty = ?"
+                     + ",cond = ?"
+                     + ",size = ?"
+                     + ",color=?"
+                     + ",gender = ?"
+                     + ",age = ?"
+                     + ",fr = ?"
+                     + ",donto = ?"
+                     + ",stat = ?"
+                     + ",datemod = ? "
+                     + "where id = ?";
+             
+            ps = con.prepareStatement(sql);
+            ps.setString(1, item);
+            ps.setString(2, des);
+            ps.setString(3, qty);
+            ps.setString(4, cond);
+            ps.setString(5, size);
+            ps.setString(6, color);
+            ps.setString(7, gender);
+            ps.setString(8, age);
+            ps.setString(9, fr);
+            ps.setString(10, donto);
+            ps.setString(11, stat);
+            ps.setString(12, datemod);
+            ps.setInt(13, id);
             
-            String sql2 = "UPDATE donation SET "
-                           + "date = '"+date+"'"                   
-                           + ",item = '"+item+ "'"
-                           + ",des = '"+des+"'"                           
-                           + ",qty = '"+qty+"'"
-                           + ",fr = '"+fr+"'"
-                           + ",donto = '"+donto+"'"
-                           + ",stat = '"+stat+"'"
-                           + ",datemod = '"+datemod+"'"
-                           + "WHERE invoicenum = '"+invoicenum+"'";
-            status2 = st.executeUpdate(sql2);
-            status=st.executeUpdate(sql);
+            String sql2 = "UPDATE donation SET item = ?, des = ?, qty = ?, fr = ?, donto = ?, stat = ?, datemod = ? where invoicenum = ? ";
+            ps1 = con.prepareStatement(sql2);
+            ps1.setString(1, item);
+            ps1.setString(2, des);
+            ps1.setString(3, qty);
+            ps1.setString(4, fr);
+            ps1.setString(5, donto);
+            ps1.setString(6, stat);
+            ps1.setString(7, datemod);
+            ps1.setString(8, invoicenum);
+            
+            status2 = ps1.executeUpdate();
+            status = ps.executeUpdate();
             if(status>0)
                 {
                     

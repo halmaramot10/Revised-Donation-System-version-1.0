@@ -103,7 +103,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-3">
                         <div class="logo">
-                            <a href="Home"><img src="assets/images/media/cpelogo2.png" alt="logo"></a>
+                            <a href="Home"><img src="assets/images/media/logo.png" alt="logo"></a>
                         </div>
                     </div>
                     <!-- profile info & task notification -->
@@ -328,7 +328,7 @@
                                             <tr>
                                                 <th>Invoice Number</th>
                                                 <th>Type</th>
-                                                <th>Date Requested</th>
+                                                <th>Requested By</th>
                                             </tr>
                                         </thead>
                                         <tbody>

@@ -115,7 +115,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-3">
                         <div class="logo">
-                            <a href="Home"><img src="assets/images/media/cpelogo2.png" alt="logo"></a>
+                            <a href="Home"><img src="assets/images/media/logo.png" alt="logo"></a>
                         </div>
                     </div>
                     <!-- profile info & task notification -->
@@ -192,7 +192,7 @@
 
                                 %>
                                 </b>
-                                <h6 class="header-title" style="text-align: center">Update Food Donation Entry</h6>
+                                <h6 class="header-title" style="text-align: center">Update Item Category Entry</h6>
                                 <form action="Update_Item" method="post">
                                     <div class ="row">
                                         <input type ="text" name="id" value="<%=id%>" style="display: none">
@@ -236,7 +236,7 @@
                     <div class="col-12 mt-5">
                         <div class="card">
                             <div class="card-body">
-                                <h6>Item Category Table</h6>
+                                <h6>Item Category</h6>
                                 <br>
                                 <div>
                                     <table id="examples" class="table table-striped table-bordered zero-configuration">

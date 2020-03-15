@@ -91,7 +91,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-3">
                         <div class="logo">
-                            <a href="Home"><img src="assets/images/media/cpelogo2.png" alt="logo"></a>
+                            <a href="Home"><img src="assets/images/media/logo.png" alt="logo"></a>
                         </div>
                     </div>
                     <!-- profile info & task notification -->
@@ -179,7 +179,7 @@
                     <div class="col-12 mt-5">
                         <div class="card">
                             <div class="card-body">
-                                <h6>Item Category Table</h6>
+                                <h6>Item Category</h6>
                                 <br>
                                 <div>
                                     <table id="examples" class="table table-striped table-bordered zero-configuration">
@@ -233,8 +233,8 @@
                                     <table id="example56" class="table table-striped table-bordered zero-configuration">
                                         <thead class="text-capitalize">
                                             <tr>
-                                                <th>Category</th>
-                                                <th>Item Category</th>
+                                                <th>Method</th>
+                                                <th>Bank/Application Name</th>
                                                 <th></th>
                                             </tr>
                                         </thead>

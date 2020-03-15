@@ -13,6 +13,7 @@ public class Update_Payment extends HttpServlet {
     int status;
     Connection con;
     Statement st;
+    PreparedStatement ps;
     ResultSet rs;
     RequestDispatcher rd = null;
     
@@ -23,23 +24,26 @@ public class Update_Payment extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             
             id = request.getParameter("id");
-            method = request.getParameter("category");
+            method = request.getParameter("method");
             met_name = request.getParameter("met_name");
             session = request.getSession();
             con = DB.getConnection();
-            st = con.createStatement();
             
-            String sql = "UPDATE paymet SET "
-                    + "method = '"+method+"'"
-                    + ",met_name = '"+met_name+"'"
-                    + "where id = '"+id+"'";
-            status = st.executeUpdate(sql);
+            String sql = "UPDATE paymet SET method = ?,met_name = ? where id = ?";
+            
+            ps = con.prepareStatement(sql);
+            ps.setString(1, method);
+            ps.setString(2, met_name);
+            ps.setString(3, id);
+            
+            status = ps.executeUpdate();
+            
             if(status>0)
             {
 
                 out.println("Entry Updated uccessfully!");
                 response.sendRedirect("Edit_Method?id="+id);
-                session.setAttribute("success","Item Updated Successfully!");
+                session.setAttribute("success","Method Updated Successfully!");
             }
             else
             {

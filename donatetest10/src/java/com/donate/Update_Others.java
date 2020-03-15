@@ -13,6 +13,7 @@ public class Update_Others extends HttpServlet {
     HttpSession session;
     int status,status2,id;
     Connection con;
+    PreparedStatement ps,ps1;
     Statement st;
     ResultSet rs;
     String date,item,des,qty,cond,fr,donto,stat,addedby,invoicenum,datemod;
@@ -41,30 +42,42 @@ public class Update_Others extends HttpServlet {
             
             session = request.getSession();
             con = DB.getConnection();
-            st = con.createStatement();
-             String sql = "UPDATE others_donate SET "
-                           + "date = '"+date+"'"
-                           + ",item = '"+item+ "'"
-                           + ",des = '"+des+"'"                           
-                           + ",qty = '"+qty+"'"
-                           + ",cond = '"+cond+"'"
-                           + ",fr = '"+fr+"'"
-                           + ",donto = '"+donto+"'"
-                           + ",stat = '"+stat+"'"
-                           + ",datemod = '"+datemod+"'"
-                           + "WHERE id = '"+id+"'";
-                        String sql2 = "UPDATE donation SET "
-                           + "date = '"+date+"'"                   
-                           + ",item = '"+item+ "'"
-                           + ",des = '"+des+"'"                           
-                           + ",qty = '"+qty+"'"
-                           + ",fr = '"+fr+"'"
-                           + ",donto = '"+donto+"'"
-                           + ",stat = '"+stat+"'"
-                           + ",datemod = '"+datemod+"'"
-                           + "WHERE invoicenum = '"+invoicenum+"'";
-            status2 = st.executeUpdate(sql2);
-            status=st.executeUpdate(sql);
+            
+            String sql = "UPDATE others_donate SET "
+                     + "item = ?"
+                     + ",des = ?"
+                     + ",qty = ?"
+                     + ",cond = ?"                    
+                     + ",fr = ?"
+                     + ",donto = ?"
+                     + ",stat = ?"
+                     + ",datemod = ? "
+                     + "where id = ?";
+             
+            ps = con.prepareStatement(sql);
+            ps.setString(1, item);
+            ps.setString(2, des);
+            ps.setString(3, qty);
+            ps.setString(4, cond);
+            ps.setString(5, fr);
+            ps.setString(6, donto);
+            ps.setString(7, stat);
+            ps.setString(8, datemod);
+            ps.setInt(9, id);
+            
+            String sql2 = "UPDATE donation SET item = ?, des = ?, qty = ?, fr = ?, donto = ?, stat = ?, datemod = ? where invoicenum = ? ";
+            ps1 = con.prepareStatement(sql2);
+            ps1.setString(1, item);
+            ps1.setString(2, des);
+            ps1.setString(3, qty);
+            ps1.setString(4, fr);
+            ps1.setString(5, donto);
+            ps1.setString(6, stat);
+            ps1.setString(7, datemod);
+            ps1.setString(8, invoicenum);
+            
+            status2 = ps1.executeUpdate();
+            status = ps.executeUpdate();
             if(status>0)
                 {
                     

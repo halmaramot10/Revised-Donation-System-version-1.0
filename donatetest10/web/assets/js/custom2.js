@@ -30,9 +30,9 @@ function show1()
         document.getElementById('toform').className = "form-group col-3"; 
         document.getElementById('statform').className = "form-group col-3"; 
         
-        /*document.getElementById('ntform').style.display= 'none';
+        document.getElementById('ntform').style.display= 'none';
         document.getElementById('descform').className = "form-group col-9"; 
-        document.getElementById('qtyform').className = "form-group col-3";*/
+        document.getElementById('qtyform').className = "form-group col-3";
         
     }
 
@@ -62,9 +62,9 @@ function show1()
         document.getElementById('toform').className = "form-group col-3"; 
         document.getElementById('statform').className = "form-group col-3"; 
         
-        /*document.getElementById('ntform').style.display= 'none';
+        document.getElementById('ntform').style.display= 'none';
         document.getElementById('descform').className = "form-group col-9"; 
-        document.getElementById('qtyform').className = "form-group col-3";*/
+        document.getElementById('qtyform').className = "form-group col-3";
     }
     else if (types.value==="School Supplies"){
         /*Hide Input Forms not related to School Supplies*/
@@ -89,9 +89,9 @@ function show1()
         document.getElementById('toform').className = "form-group col-4"; 
         document.getElementById('statform').className = "form-group col-4";
         
-        /*document.getElementById('ntform').style.display= 'none';
+        document.getElementById('ntform').style.display= 'none';
         document.getElementById('descform').className = "form-group col-9"; 
-        document.getElementById('qtyform').className = "form-group col-3";*/
+        document.getElementById('qtyform').className = "form-group col-3";
     }
     else if (types.value==="Money"){
         /*Hide Input Forms not related to School Supplies*/
@@ -118,9 +118,9 @@ function show1()
         document.getElementById('toform').className = "form-group col-4"; 
         document.getElementById('statform').className = "form-group col-4";
         
-        /*document.getElementById('ntform').style.display= 'none';
+        document.getElementById('ntform').style.display= 'none';
         document.getElementById('descform').className = "form-group col-9"; 
-        document.getElementById('qtyform').className = "form-group col-3";*/
+        document.getElementById('qtyform').className = "form-group col-3";
     }
 
     /*For Other Donation Type*/
@@ -148,9 +148,9 @@ function show1()
         document.getElementById('toform').className = "form-group col-3"; 
         document.getElementById('statform').className = "form-group col-3";
         
-        /*document.getElementById('ntform').style.display= 'none';
+        document.getElementById('ntform').style.display= 'none';
         document.getElementById('descform').className = "form-group col-9"; 
-        document.getElementById('qtyform').className = "form-group col-3";*/
+        document.getElementById('qtyform').className = "form-group col-3";
     }
 }
 

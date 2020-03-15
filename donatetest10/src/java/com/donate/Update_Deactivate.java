@@ -12,6 +12,7 @@ public class Update_Deactivate extends HttpServlet {
     HttpSession session;
     int status;
     Connection con;
+    PreparedStatement ps;
     Statement st;
     ResultSet rs;
     RequestDispatcher rd = null;
@@ -25,10 +26,12 @@ public class Update_Deactivate extends HttpServlet {
             inid = request.getParameter("inid");
             session = request.getSession();
             con = DB.getConnection();
-            st = con.createStatement();
             
-            String sql = "UPDATE users SET status = '"+stats+"' where id = '"+inid+"'";
-            status = st.executeUpdate(sql);
+            String sql = "UPDATE users SET status = ? where id = ? ";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, stats);
+            ps.setString(2, inid);
+            status = ps.executeUpdate();
             if(status>0)
             {
 

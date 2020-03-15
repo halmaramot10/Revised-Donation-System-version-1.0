@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package com.donate;
 
@@ -12,29 +7,17 @@ import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
-/**
- *
- * @author Hazel Anne
- */
+
 @WebServlet(name = "Add_Donation_Admin", urlPatterns = {"/Add_Donation_Admin"})
 public class Add_Donation_Admin extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     HttpSession session;
     int status=0 ,status2 = 0, status3=0;
     Connection con;
     Statement st,st1;
     ResultSet rs;
     RequestDispatcher rd = null;
-    
+    PreparedStatement ps,ps1,ps2;
     //for common inputs
     String date = null, type = null,des = null, qty = null, fr = null, donto = null, stat = null,datemod = "00/00/0000",addedby=null,invoicenum=null;
     
@@ -113,21 +96,24 @@ public class Add_Donation_Admin extends HttpServlet {
                 case "Others":
                     {
                         if (newtype == "" || newtype == null){
-                            st = con.createStatement();
-                            String sql = "insert into others_donate (date,type,item,des,qty,cond,fr,donto,stat,datemod,addedby,invoicenum) values "
-                                    + "('"+date+"',"
-                                    + "'"+type+"',"
-                                    + "'"+item1+"',"
-                                    + "'"+des+"',"
-                                    + "'"+qty+"',"
-                                    + "'"+cond+"',"
-                                    + "'"+fr+"',"
-                                    + "'"+donto+"',"
-                                    + "'"+stat+"',"
-                                    + "'"+datemod+"',"
-                                    + "'"+addedby+"',"
-                                    + "'"+invoicenum+"')";
-                            status=st.executeUpdate(sql);
+                            String sql = "insert into others_donate (date,type,item,des,qty,cond,fr,donto,stat,datemod,addedby,invoicenum) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+                            
+                            ps = con.prepareStatement(sql);
+                            
+                            ps.setString(1, date);
+                            ps.setString(2, type);
+                            ps.setString(3, item1);
+                            ps.setString(4, des);
+                            ps.setString(5, qty);
+                            ps.setString(6, cond);
+                            ps.setString(7, fr);
+                            ps.setString(8, donto);
+                            ps.setString(9, stat);
+                            ps.setString(10, datemod);
+                            ps.setString(11, addedby);
+                            ps.setString(12, invoicenum);
+                            
+                            status=ps.executeUpdate();
                             if(status>0)
                             {
 
@@ -143,25 +129,31 @@ public class Add_Donation_Admin extends HttpServlet {
                             }
                         }
                         else if(newtype !=null || newtype != ""){
-                            st = con.createStatement();
-                            st1 = con.createStatement();
-                            String sql = "insert into others_donate (date,type,item,des,qty,cond,fr,donto,stat,datemod,addedby,invoicenum) values "
-                                + "('"+date+"',"
-                                + "'"+type+"',"
-                                + "'"+newtype+"',"
-                                + "'"+des+"',"
-                                + "'"+qty+"',"
-                                + "'"+cond+"',"
-                                + "'"+fr+"',"
-                                + "'"+donto+"',"
-                                + "'"+stat+"',"
-                                + "'"+datemod+"',"
-                                + "'"+addedby+"',"
-                                + "'"+invoicenum+"')";
                             
-                            String sql2 = "insert into item_category(category,item_name) values('"+type+"','"+newtype+"')";
-                            status2 = st.executeUpdate(sql2);
-                            status=st.executeUpdate(sql);                        
+                            String sql = "insert into others_donate (date,type,item,des,qty,cond,fr,donto,stat,datemod,addedby,invoicenum) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+                            
+                            ps = con.prepareStatement(sql);
+                            
+                            ps.setString(1, date);
+                            ps.setString(2, type);
+                            ps.setString(3, newtype);
+                            ps.setString(4, des);
+                            ps.setString(5, qty);
+                            ps.setString(6, cond);
+                            ps.setString(7, fr);
+                            ps.setString(8, donto);
+                            ps.setString(9, stat);
+                            ps.setString(10, datemod);
+                            ps.setString(11, addedby);
+                            ps.setString(12, invoicenum);
+                                                        
+                            String sql2 = "insert into item_category(category,item_name) values(?,?)";
+                            ps1 = con.prepareStatement(sql2);
+                            
+                            ps1.setString(1, type);
+                            ps1.setString(2, newtype);
+                            status2 = ps1.executeUpdate();
+                            status=ps.executeUpdate();                        
                             if(status>0)
                             {
                             
@@ -181,20 +173,23 @@ public class Add_Donation_Admin extends HttpServlet {
                 case "School Supplies":
                     {
                         if (newtype == "" || newtype == null){
-                            st = con.createStatement();
-                            String sql = "insert into school_donate(date,type,item,des,qty,fr,donto,stat,datemod,addedby,invoicenum) values "
-                                    + "('"+date+"',"
-                                    + "'"+type+"',"
-                                    + "'"+item5+"',"
-                                    + "'"+des+"',"
-                                    + "'"+qty+"',"
-                                    + "'"+fr+"',"
-                                    + "'"+donto+"',"
-                                    + "'"+stat+"',"
-                                    + "'"+datemod+"',"
-                                    + "'"+addedby+"',"
-                                    + "'"+invoicenum+"')";
-                            status=st.executeUpdate(sql);
+                            String sql = "insert into school_donate (date,type,item,des,qty,fr,donto,stat,datemod,addedby,invoicenum) values (?,?,?,?,?,?,?,?,?,?,?)";
+                            
+                            ps = con.prepareStatement(sql);
+                            
+                            ps.setString(1, date);
+                            ps.setString(2, type);
+                            ps.setString(3, item5);
+                            ps.setString(4, des);
+                            ps.setString(5, qty);
+                            ps.setString(6, fr);
+                            ps.setString(7, donto);
+                            ps.setString(8, stat);
+                            ps.setString(9, datemod);
+                            ps.setString(10, addedby);
+                            ps.setString(11, invoicenum);
+                            
+                            status=ps.executeUpdate();
                             if(status>0)
                             {
 
@@ -211,22 +206,30 @@ public class Add_Donation_Admin extends HttpServlet {
                         }
                         else if(newtype !=null || newtype != ""){
                             st = con.createStatement();
-                            String sql = "insert into school_donate(date,type,item,des,qty,fr,donto,stat,datemod,addedby,invoicenum) values "
-                                    + "('"+date+"',"
-                                    + "'"+type+"',"
-                                    + "'"+newtype+"',"
-                                    + "'"+des+"',"
-                                    + "'"+qty+"',"
-                                    + "'"+fr+"',"
-                                    + "'"+donto+"',"
-                                    + "'"+stat+"',"
-                                    + "'"+datemod+"',"
-                                    + "'"+addedby+"',"
-                                    + "'"+invoicenum+"')";
+                            String sql = "insert into school_donate (date,type,item,des,qty,fr,donto,stat,datemod,addedby,invoicenum) values (?,?,?,?,?,?,?,?,?,?,?)";
                             
-                            String sql2 = "insert into item_category(category,item_name) values('"+type+"','"+newtype+"')";
-                            status2 = st.executeUpdate(sql2);                        
-                            status=st.executeUpdate(sql);
+                            ps = con.prepareStatement(sql);
+                            
+                            ps.setString(1, date);
+                            ps.setString(2, type);
+                            ps.setString(3, newtype);
+                            ps.setString(4, des);
+                            ps.setString(5, qty);
+                            ps.setString(6, fr);
+                            ps.setString(7, donto);
+                            ps.setString(8, stat);
+                            ps.setString(9, datemod);
+                            ps.setString(10, addedby);
+                            ps.setString(11, invoicenum);
+                            
+                            
+                            String sql2 = "insert into item_category(category,item_name) values(?,?)";
+                            ps1 = con.prepareStatement(sql2);
+                            
+                            ps1.setString(1, type);
+                            ps1.setString(2, newtype);
+                            status2 = ps1.executeUpdate(); 
+                            status=ps.executeUpdate();
                             if(status>0)
                             {
 
@@ -246,21 +249,25 @@ public class Add_Donation_Admin extends HttpServlet {
                 case "Food":
                 {
                     if (newtype == "" || newtype == null){
-                            st = con.createStatement();
-                            String sql = "insert into foods_donate (date,type,item,des,qty,exp,fr,donto,stat,datemod,addedby,invoicenum) values "
-                                    + "('"+date+"',"
-                                    + "'"+type+"',"
-                                    + "'"+item2+"',"
-                                    + "'"+des+"',"
-                                    + "'"+qty+"',"
-                                    + "'"+exp+"',"
-                                    + "'"+fr+"',"
-                                    + "'"+donto+"',"
-                                    + "'"+stat+"',"
-                                    + "'"+datemod+"',"
-                                    + "'"+addedby+"',"
-                                    + "'"+invoicenum+"')";
-                            status=st.executeUpdate(sql);
+                        
+                            String sql = "insert into foods_donate (date,type,item,des,qty,exp,fr,donto,stat,datemod,addedby,invoicenum) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+                            
+                            ps = con.prepareStatement(sql);
+                            
+                            ps.setString(1, date);
+                            ps.setString(2, type);
+                            ps.setString(3, item2);
+                            ps.setString(4, des);
+                            ps.setString(5, qty);
+                            ps.setString(6, exp);
+                            ps.setString(7, fr);
+                            ps.setString(8, donto);
+                            ps.setString(9, stat);
+                            ps.setString(10, datemod);
+                            ps.setString(11, addedby);
+                            ps.setString(12, invoicenum);
+                            
+                            status=ps.executeUpdate();
                             if(status>0)
                             {
 
@@ -276,25 +283,31 @@ public class Add_Donation_Admin extends HttpServlet {
                             }
                         }
                         else if(newtype !=null || newtype != ""){
-                            st = con.createStatement();
-                            st1 = con.createStatement();
-                            String sql = "insert into foods_donate (date,type,item,des,qty,exp,fr,donto,stat,datemod,addedby,invoicenum) values "
-                                + "('"+date+"',"
-                                + "'"+type+"',"
-                                + "'"+newtype+"',"
-                                + "'"+des+"',"
-                                + "'"+qty+"',"
-                                + "'"+exp+"',"
-                                + "'"+fr+"',"
-                                + "'"+donto+"',"
-                                + "'"+stat+"',"
-                                + "'"+datemod+"',"
-                                + "'"+addedby+"',"
-                                + "'"+invoicenum+"')";
                             
-                            String sql2 = "insert into item_category(category,item_name) values('"+type+"','"+newtype+"')";
-                            status2 = st.executeUpdate(sql2);
-                            status=st.executeUpdate(sql);                        
+                            String sql = "insert into foods_donate (date,type,item,des,qty,exp,fr,donto,stat,datemod,addedby,invoicenum) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+                            
+                            ps = con.prepareStatement(sql);
+                            
+                            ps.setString(1, date);
+                            ps.setString(2, type);
+                            ps.setString(3, newtype);
+                            ps.setString(4, des);
+                            ps.setString(5, qty);
+                            ps.setString(6, exp);
+                            ps.setString(7, fr);
+                            ps.setString(8, donto);
+                            ps.setString(9, stat);
+                            ps.setString(10, datemod);
+                            ps.setString(11, addedby);
+                            ps.setString(12, invoicenum);
+                            
+                            String sql2 = "insert into item_category(category,item_name) values(?,?)";
+                            ps1 = con.prepareStatement(sql2);
+                            
+                            ps1.setString(1, type);
+                            ps1.setString(2, newtype);
+                            status2 = ps1.executeUpdate(); 
+                            status=ps.executeUpdate();
                             if(status>0)
                             {
                             
@@ -314,25 +327,30 @@ public class Add_Donation_Admin extends HttpServlet {
                 case "Clothes":
                 {
                     if (newtype == "" || newtype == null){
-                            st = con.createStatement();
+                        
                             String sql = "insert into clothes_donate (date,type,item,des,qty,cond,size,color,gender,age,fr,donto,stat,datemod,addedby,invoicenum) values "
-                                    + "('"+date+"',"
-                                    + "'"+type+"',"
-                                    + "'"+item3+"',"
-                                    + "'"+des+"',"
-                                    + "'"+qty+"',"
-                                    + "'"+cond01+"',"
-                                    + "'"+size+"',"
-                                    + "'"+color+"',"
-                                    + "'"+gender+"',"
-                                    + "'"+age+"',"
-                                    + "'"+fr+"',"
-                                    + "'"+donto+"',"
-                                    + "'"+stat+"',"
-                                    + "'"+datemod+"',"
-                                    + "'"+addedby+"',"
-                                    + "'"+invoicenum+"')";
-                            status=st.executeUpdate(sql);
+                                    + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+                            ps = con.prepareStatement(sql);
+                            
+                            ps.setString(1, date);
+                            ps.setString(2, type);
+                            ps.setString(3, item3);
+                            ps.setString(4, des);
+                            ps.setString(5, qty);
+                            ps.setString(6, cond);
+                            ps.setString(7, size);
+                            ps.setString(8, color);
+                            ps.setString(9, gender);
+                            ps.setString(10, age);
+                            ps.setString(11, fr);
+                            ps.setString(12, donto);
+                            ps.setString(13, stat);
+                            ps.setString(14, datemod);
+                            ps.setString(15, addedby);
+                            ps.setString(16, invoicenum);
+                            
+                            status=ps.executeUpdate();
                             if(status>0)
                             {
 
@@ -348,29 +366,37 @@ public class Add_Donation_Admin extends HttpServlet {
                             }
                         }
                         else if(newtype !=null || newtype != ""){
-                            st = con.createStatement();
-                            st1 = con.createStatement();
                             String sql = "insert into clothes_donate (date,type,item,des,qty,cond,size,color,gender,age,fr,donto,stat,datemod,addedby,invoicenum) values "
-                                + "('"+date+"',"
-                                + "'"+type+"',"
-                                + "'"+newtype+"',"
-                                + "'"+des+"',"
-                                + "'"+qty+"',"
-                                + "'"+cond01+"',"
-                                + "'"+size+"',"
-                                + "'"+color+"',"
-                                + "'"+gender+"',"
-                                + "'"+age+"',"
-                                + "'"+fr+"',"
-                                + "'"+donto+"',"
-                                + "'"+stat+"',"
-                                + "'"+datemod+"',"
-                                + "'"+addedby+"',"
-                                + "'"+invoicenum+"')";
+                                    + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+                            ps = con.prepareStatement(sql);
                             
-                            String sql2 = "insert into item_category(category,item_name) values('"+type+"','"+newtype+"')";
-                            status2 = st.executeUpdate(sql2);
-                            status=st.executeUpdate(sql);                        
+                            ps.setString(1, date);
+                            ps.setString(2, type);
+                            ps.setString(3, newtype);
+                            ps.setString(4, des);
+                            ps.setString(5, qty);
+                            ps.setString(6, cond);
+                            ps.setString(7, size);
+                            ps.setString(8, color);
+                            ps.setString(9, gender);
+                            ps.setString(10, age);
+                            ps.setString(11, fr);
+                            ps.setString(12, donto);
+                            ps.setString(13, stat);
+                            ps.setString(14, datemod);
+                            ps.setString(15, addedby);
+                            ps.setString(16, invoicenum);
+                            
+                            
+                            
+                            String sql2 = "insert into item_category(category,item_name) values(?,?)";
+                            ps1 = con.prepareStatement(sql2);
+                            
+                            ps1.setString(1, type);
+                            ps1.setString(2, newtype);
+                            status2 = ps1.executeUpdate(); 
+                            status=ps.executeUpdate();
                             if(status>0)
                             {
                             
@@ -393,23 +419,28 @@ public class Add_Donation_Admin extends HttpServlet {
                         switch(met){
                             case "Bank":
                                 if(newba == "" || newba == null){
-                                    st = con.createStatement();
+                                    
                                     String sql = "insert into money_donate (date,type,item,des,qty,met,pays,refno,fr,donto,stat,datemod,addedby,invoicenum) values "
-                                    + "('"+date+"',"
-                                    + "'"+type+"',"
-                                    + "'"+item4+"',"
-                                    + "'"+des+"',"
-                                    + "'"+qty+"',"
-                                    + "'"+met+"',"
-                                    + "'"+bank+"',"
-                                    + "'"+refnum+"',"        
-                                    + "'"+fr+"',"
-                                    + "'"+donto+"',"
-                                    + "'"+stat+"',"
-                                    + "'"+datemod+"',"
-                                    + "'"+addedby+"',"
-                                    + "'"+invoicenum+"')";
-                                    status=st.executeUpdate(sql);
+                                            + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+                                    ps = con.prepareStatement(sql);
+
+                                    ps.setString(1, date);
+                                    ps.setString(2, type);
+                                    ps.setString(3, item4);
+                                    ps.setString(4, des);
+                                    ps.setString(5, qty);
+                                    ps.setString(6, met);
+                                    ps.setString(7, bank);
+                                    ps.setString(8, refnum);
+                                    ps.setString(9, fr);
+                                    ps.setString(10, donto);
+                                    ps.setString(11, stat);
+                                    ps.setString(12, datemod);
+                                    ps.setString(13, addedby);
+                                    ps.setString(14, invoicenum);
+
+                                    status=ps.executeUpdate();
                                     if(status>0)
                                     {
 
@@ -425,25 +456,35 @@ public class Add_Donation_Admin extends HttpServlet {
                                     }
                                 }
                                 else if(newba !=null || newba != ""){
-                                    st = con.createStatement();
+                                    
                                     String sql = "insert into money_donate (date,type,item,des,qty,met,pays,refno,fr,donto,stat,datemod,addedby,invoicenum) values "
-                                    + "('"+date+"',"
-                                    + "'"+type+"',"
-                                    + "'"+item4+"',"
-                                    + "'"+des+"',"
-                                    + "'"+qty+"',"
-                                    + "'"+met+"',"
-                                    + "'"+newba+"',"
-                                    + "'"+refnum+"',"        
-                                    + "'"+fr+"',"
-                                    + "'"+donto+"',"
-                                    + "'"+stat+"',"
-                                    + "'"+datemod+"',"
-                                    + "'"+addedby+"',"
-                                    + "'"+invoicenum+"')";
-                                    String sql3 = "insert into paymet(method,met_name) values ('"+met+"','"+newba+"')";
-                                    status3 = st.executeUpdate(sql3);
-                                    status=st.executeUpdate(sql);
+                                            + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+                                    ps = con.prepareStatement(sql);
+
+                                    ps.setString(1, date);
+                                    ps.setString(2, type);
+                                    ps.setString(3, item4);
+                                    ps.setString(4, des);
+                                    ps.setString(5, qty);
+                                    ps.setString(6, met);
+                                    ps.setString(7, newba);
+                                    ps.setString(8, refnum);
+                                    ps.setString(9, fr);
+                                    ps.setString(10, donto);
+                                    ps.setString(11, stat);
+                                    ps.setString(12, datemod);
+                                    ps.setString(13, addedby);
+                                    ps.setString(14, invoicenum);
+
+
+                                    String sql3 = "insert into paymet(method,met_name) values(?,?)";
+                                    ps2 = con.prepareStatement(sql3);                          
+                                    ps2.setString(1, met);
+                                    ps2.setString(2, newba);
+                                    status3 = ps2.executeUpdate();
+                                    
+                                    status=ps.executeUpdate();
                                     if(status>0)
                                     {
 
@@ -463,23 +504,28 @@ public class Add_Donation_Admin extends HttpServlet {
 
                             case "Online":
                                 if(newba == "" || newba == null){
-                                    st = con.createStatement();
+                                    
                                     String sql = "insert into money_donate (date,type,item,des,qty,met,pays,refno,fr,donto,stat,datemod,addedby,invoicenum) values "
-                                    + "('"+date+"',"
-                                    + "'"+type+"',"
-                                    + "'"+item4+"',"
-                                    + "'"+des+"',"
-                                    + "'"+qty+"',"
-                                    + "'"+met+"',"
-                                    + "'"+online+"',"
-                                    + "'"+refnum+"',"        
-                                    + "'"+fr+"',"
-                                    + "'"+donto+"',"
-                                    + "'"+stat+"',"
-                                    + "'"+datemod+"',"
-                                    + "'"+addedby+"',"
-                                    + "'"+invoicenum+"')";
-                                    status=st.executeUpdate(sql);
+                                            + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+                                    ps = con.prepareStatement(sql);
+
+                                    ps.setString(1, date);
+                                    ps.setString(2, type);
+                                    ps.setString(3, item4);
+                                    ps.setString(4, des);
+                                    ps.setString(5, qty);
+                                    ps.setString(6, met);
+                                    ps.setString(7, online);
+                                    ps.setString(8, refnum);
+                                    ps.setString(9, fr);
+                                    ps.setString(10, donto);
+                                    ps.setString(11, stat);
+                                    ps.setString(12, datemod);
+                                    ps.setString(13, addedby);
+                                    ps.setString(14, invoicenum);
+
+                                    status=ps.executeUpdate();
                                     if(status>0)
                                     {
 
@@ -495,25 +541,35 @@ public class Add_Donation_Admin extends HttpServlet {
                                     }
                                 }
                                 else if(newba !=null || newba != ""){
-                                    st = con.createStatement();
+                                    
                                     String sql = "insert into money_donate (date,type,item,des,qty,met,pays,refno,fr,donto,stat,datemod,addedby,invoicenum) values "
-                                    + "('"+date+"',"
-                                    + "'"+type+"',"
-                                    + "'"+item4+"',"
-                                    + "'"+des+"',"
-                                    + "'"+qty+"',"
-                                    + "'"+met+"',"
-                                    + "'"+newba+"',"
-                                    + "'"+refnum+"',"        
-                                    + "'"+fr+"',"
-                                    + "'"+donto+"',"
-                                    + "'"+stat+"',"
-                                    + "'"+datemod+"',"
-                                    + "'"+addedby+"',"
-                                    + "'"+invoicenum+"')";
-                                    String sql3 = "insert into paymet(method,met_name) values ('"+met+"','"+newba+"')";
-                                    status3 = st.executeUpdate(sql3);
-                                    status=st.executeUpdate(sql);
+                                            + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+                                    ps = con.prepareStatement(sql);
+
+                                    ps.setString(1, date);
+                                    ps.setString(2, type);
+                                    ps.setString(3, item4);
+                                    ps.setString(4, des);
+                                    ps.setString(5, qty);
+                                    ps.setString(6, met);
+                                    ps.setString(7, newba);
+                                    ps.setString(8, refnum);
+                                    ps.setString(9, fr);
+                                    ps.setString(10, donto);
+                                    ps.setString(11, stat);
+                                    ps.setString(12, datemod);
+                                    ps.setString(13, addedby);
+                                    ps.setString(14, invoicenum);
+
+
+                                    String sql3 = "insert into paymet(method,met_name) values(?,?)";
+                                    ps2 = con.prepareStatement(sql3);                          
+                                    ps2.setString(1, met);
+                                    ps2.setString(2, newba);
+                                    status3 = ps2.executeUpdate();
+                                    
+                                    status=ps.executeUpdate();
                                     if(status>0)
                                     {
 
@@ -531,23 +587,28 @@ public class Add_Donation_Admin extends HttpServlet {
                                 }
                             break;
                             case "Other":
-                                st = con.createStatement();
+                                    
                                     String sql = "insert into money_donate (date,type,item,des,qty,met,pays,refno,fr,donto,stat,datemod,addedby,invoicenum) values "
-                                    + "('"+date+"',"
-                                    + "'"+type+"',"
-                                    + "'"+item4+"',"
-                                    + "'"+des+"',"
-                                    + "'"+qty+"',"
-                                    + "'"+met+"',"
-                                    + "'"+others+"',"
-                                    + "'"+refnum+"',"        
-                                    + "'"+fr+"',"
-                                    + "'"+donto+"',"
-                                    + "'"+stat+"',"
-                                    + "'"+datemod+"',"
-                                    + "'"+addedby+"',"
-                                    + "'"+invoicenum+"')";
-                                    status=st.executeUpdate(sql);
+                                            + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+                                    ps = con.prepareStatement(sql);
+
+                                    ps.setString(1, date);
+                                    ps.setString(2, type);
+                                    ps.setString(3, item4);
+                                    ps.setString(4, des);
+                                    ps.setString(5, qty);
+                                    ps.setString(6, met);
+                                    ps.setString(7, others);
+                                    ps.setString(8, refnum);
+                                    ps.setString(9, fr);
+                                    ps.setString(10, donto);
+                                    ps.setString(11, stat);
+                                    ps.setString(12, datemod);
+                                    ps.setString(13, addedby);
+                                    ps.setString(14, invoicenum);
+
+                                    status=ps.executeUpdate();
                                     if(status>0)
                                     {
 
@@ -568,25 +629,35 @@ public class Add_Donation_Admin extends HttpServlet {
                         switch(met){
                             case "Bank":
                                 if(newba == "" || newba == null){
-                                    st = con.createStatement();
+                                    
                                     String sql = "insert into money_donate (date,type,item,des,qty,met,pays,refno,fr,donto,stat,datemod,addedby,invoicenum) values "
-                                    + "('"+date+"',"
-                                    + "'"+type+"',"
-                                    + "'"+newtype+"',"
-                                    + "'"+des+"',"
-                                    + "'"+qty+"',"
-                                    + "'"+met+"',"
-                                    + "'"+bank+"',"
-                                    + "'"+refnum+"',"        
-                                    + "'"+fr+"',"
-                                    + "'"+donto+"',"
-                                    + "'"+stat+"',"
-                                    + "'"+datemod+"',"
-                                    + "'"+addedby+"',"
-                                    + "'"+invoicenum+"')";
-                                    String sql2 = "insert into item_category(category,item_name) values('"+type+"','"+newtype+"')";
-                                    status2 = st.executeUpdate(sql2);
-                                    status=st.executeUpdate(sql);
+                                            + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+                                    ps = con.prepareStatement(sql);
+
+                                    ps.setString(1, date);
+                                    ps.setString(2, type);
+                                    ps.setString(3, newtype);
+                                    ps.setString(4, des);
+                                    ps.setString(5, qty);
+                                    ps.setString(6, met);
+                                    ps.setString(7, bank);
+                                    ps.setString(8, refnum);
+                                    ps.setString(9, fr);
+                                    ps.setString(10, donto);
+                                    ps.setString(11, stat);
+                                    ps.setString(12, datemod);
+                                    ps.setString(13, addedby);
+                                    ps.setString(14, invoicenum);
+                                    
+                                    String sql2 = "insert into item_category(category,item_name) values(?,?)";
+                                    ps1 = con.prepareStatement(sql2);
+
+                                    ps1.setString(1, type);
+                                    ps1.setString(2, newtype);
+                                    status2 = ps1.executeUpdate(); 
+                                    
+                                    status=ps.executeUpdate();
                                     if(status>0)
                                     {
 
@@ -602,27 +673,41 @@ public class Add_Donation_Admin extends HttpServlet {
                                     }
                                 }
                                 else if(newba !=null || newba != ""){
-                                    st = con.createStatement();
+                                    
                                     String sql = "insert into money_donate (date,type,item,des,qty,met,pays,refno,fr,donto,stat,datemod,addedby,invoicenum) values "
-                                    + "('"+date+"',"
-                                    + "'"+type+"',"
-                                    + "'"+newtype+"',"
-                                    + "'"+des+"',"
-                                    + "'"+qty+"',"
-                                    + "'"+met+"',"
-                                    + "'"+newba+"',"
-                                    + "'"+refnum+"',"        
-                                    + "'"+fr+"',"
-                                    + "'"+donto+"',"
-                                    + "'"+stat+"',"
-                                    + "'"+datemod+"',"
-                                    + "'"+addedby+"',"
-                                    + "'"+invoicenum+"')";
-                                    String sql2 = "insert into item_category(category,item_name) values('"+type+"','"+newtype+"')";
-                                    status2 = st.executeUpdate(sql2);
-                                    String sql3 = "insert into paymet(method,met_name) values ('"+met+"','"+newba+"')";
-                                    status3 = st.executeUpdate(sql3);
-                                    status=st.executeUpdate(sql);
+                                            + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+                                    ps = con.prepareStatement(sql);
+
+                                    ps.setString(1, date);
+                                    ps.setString(2, type);
+                                    ps.setString(3, newtype);
+                                    ps.setString(4, des);
+                                    ps.setString(5, qty);
+                                    ps.setString(6, met);
+                                    ps.setString(7, newba);
+                                    ps.setString(8, refnum);
+                                    ps.setString(9, fr);
+                                    ps.setString(10, donto);
+                                    ps.setString(11, stat);
+                                    ps.setString(12, datemod);
+                                    ps.setString(13, addedby);
+                                    ps.setString(14, invoicenum);
+                                    
+                                    String sql2 = "insert into item_category(category,item_name) values(?,?)";
+                                    ps1 = con.prepareStatement(sql2);
+
+                                    ps1.setString(1, type);
+                                    ps1.setString(2, newtype);
+                                    status2 = ps1.executeUpdate(); 
+                                    
+                                    String sql3 = "insert into paymet(method,met_name) values(?,?)";
+                                    ps2 = con.prepareStatement(sql3);                          
+                                    ps2.setString(1, met);
+                                    ps2.setString(2, newba);
+                                    status3 = ps2.executeUpdate();
+                                    
+                                    status=ps.executeUpdate();
                                     if(status>0)
                                     {
 
@@ -642,25 +727,35 @@ public class Add_Donation_Admin extends HttpServlet {
 
                             case "Online":
                                 if(newba == "" || newba == null){
-                                    st = con.createStatement();
+                                    
                                     String sql = "insert into money_donate (date,type,item,des,qty,met,pays,refno,fr,donto,stat,datemod,addedby,invoicenum) values "
-                                    + "('"+date+"',"
-                                    + "'"+type+"',"
-                                    + "'"+newtype+"',"
-                                    + "'"+des+"',"
-                                    + "'"+qty+"',"
-                                    + "'"+met+"',"
-                                    + "'"+online+"',"
-                                    + "'"+refnum+"',"        
-                                    + "'"+fr+"',"
-                                    + "'"+donto+"',"
-                                    + "'"+stat+"',"
-                                    + "'"+datemod+"',"
-                                    + "'"+addedby+"',"
-                                    + "'"+invoicenum+"')";
-                                    String sql2 = "insert into item_category(category,item_name) values('"+type+"','"+newtype+"')";
-                                    status2 = st.executeUpdate(sql2);
-                                    status=st.executeUpdate(sql);
+                                            + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+                                    ps = con.prepareStatement(sql);
+
+                                    ps.setString(1, date);
+                                    ps.setString(2, type);
+                                    ps.setString(3, newtype);
+                                    ps.setString(4, des);
+                                    ps.setString(5, qty);
+                                    ps.setString(6, met);
+                                    ps.setString(7, online);
+                                    ps.setString(8, refnum);
+                                    ps.setString(9, fr);
+                                    ps.setString(10, donto);
+                                    ps.setString(11, stat);
+                                    ps.setString(12, datemod);
+                                    ps.setString(13, addedby);
+                                    ps.setString(14, invoicenum);
+                                    
+                                    String sql2 = "insert into item_category(category,item_name) values(?,?)";
+                                    ps1 = con.prepareStatement(sql2);
+
+                                    ps1.setString(1, type);
+                                    ps1.setString(2, newtype);
+                                    status2 = ps1.executeUpdate(); 
+                                    
+                                    status=ps.executeUpdate();
                                     if(status>0)
                                     {
 
@@ -676,27 +771,41 @@ public class Add_Donation_Admin extends HttpServlet {
                                     }
                                 }
                                 else if(newba !=null || newba != ""){
-                                    st = con.createStatement();
+                                    
                                     String sql = "insert into money_donate (date,type,item,des,qty,met,pays,refno,fr,donto,stat,datemod,addedby,invoicenum) values "
-                                    + "('"+date+"',"
-                                    + "'"+type+"',"
-                                    + "'"+newtype+"',"
-                                    + "'"+des+"',"
-                                    + "'"+qty+"',"
-                                    + "'"+met+"',"
-                                    + "'"+newba+"',"
-                                    + "'"+refnum+"',"        
-                                    + "'"+fr+"',"
-                                    + "'"+donto+"',"
-                                    + "'"+stat+"',"
-                                    + "'"+datemod+"',"
-                                    + "'"+addedby+"',"
-                                    + "'"+invoicenum+"')";
-                                    String sql2 = "insert into item_category(category,item_name) values('"+type+"','"+newtype+"')";
-                                    status2 = st.executeUpdate(sql2);
-                                    String sql3 = "insert into paymet(method,met_name) values ('"+met+"','"+newba+"')";
-                                    status3 = st.executeUpdate(sql3);
-                                    status=st.executeUpdate(sql);
+                                            + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+                                    ps = con.prepareStatement(sql);
+
+                                    ps.setString(1, date);
+                                    ps.setString(2, type);
+                                    ps.setString(3, newtype);
+                                    ps.setString(4, des);
+                                    ps.setString(5, qty);
+                                    ps.setString(6, met);
+                                    ps.setString(7, newba);
+                                    ps.setString(8, refnum);
+                                    ps.setString(9, fr);
+                                    ps.setString(10, donto);
+                                    ps.setString(11, stat);
+                                    ps.setString(12, datemod);
+                                    ps.setString(13, addedby);
+                                    ps.setString(14, invoicenum);
+                                    
+                                    String sql2 = "insert into item_category(category,item_name) values(?,?)";
+                                    ps1 = con.prepareStatement(sql2);
+
+                                    ps1.setString(1, type);
+                                    ps1.setString(2, newtype);
+                                    status2 = ps1.executeUpdate(); 
+                                    
+                                    String sql3 = "insert into paymet(method,met_name) values(?,?)";
+                                    ps2 = con.prepareStatement(sql3);                          
+                                    ps2.setString(1, met);
+                                    ps2.setString(2, newba);
+                                    status3 = ps2.executeUpdate();
+                                    
+                                    status=ps.executeUpdate();
                                     if(status>0)
                                     {
 
@@ -714,25 +823,35 @@ public class Add_Donation_Admin extends HttpServlet {
                                 }
                             break;
                             case "Other":
-                                st = con.createStatement();
-                                    String sql = "insert into money_donate (date,type,item,des,qty,met,pays,refno,fr,donto,stat,datemod,addedby,invoicenum) values "
-                                    + "('"+date+"',"
-                                    + "'"+type+"',"
-                                    + "'"+newtype+"',"
-                                    + "'"+des+"',"
-                                    + "'"+qty+"',"
-                                    + "'"+met+"',"
-                                    + "'"+others+"',"
-                                    + "'"+refnum+"',"        
-                                    + "'"+fr+"',"
-                                    + "'"+donto+"',"
-                                    + "'"+stat+"',"
-                                    + "'"+datemod+"',"
-                                    + "'"+addedby+"',"
-                                    + "'"+invoicenum+"')";
-                                    String sql2 = "insert into item_category(category,item_name) values('"+type+"','"+newtype+"')";
-                                    status2 = st.executeUpdate(sql2);
-                                    status=st.executeUpdate(sql);
+                                
+                                String sql = "insert into money_donate (date,type,item,des,qty,met,pays,refno,fr,donto,stat,datemod,addedby,invoicenum) values "
+                                            + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+                                    ps = con.prepareStatement(sql);
+
+                                    ps.setString(1, date);
+                                    ps.setString(2, type);
+                                    ps.setString(3, newtype);
+                                    ps.setString(4, des);
+                                    ps.setString(5, qty);
+                                    ps.setString(6, met);
+                                    ps.setString(7, others);
+                                    ps.setString(8, refnum);
+                                    ps.setString(9, fr);
+                                    ps.setString(10, donto);
+                                    ps.setString(11, stat);
+                                    ps.setString(12, datemod);
+                                    ps.setString(13, addedby);
+                                    ps.setString(14, invoicenum);
+                                    
+                                    String sql2 = "insert into item_category(category,item_name) values(?,?)";
+                                    ps1 = con.prepareStatement(sql2);
+
+                                    ps1.setString(1, type);
+                                    ps1.setString(2, newtype);
+                                    status2 = ps1.executeUpdate(); 
+                                    
+                                    status=ps.executeUpdate();
                                     if(status>0)
                                     {
 

@@ -13,6 +13,7 @@ public class Update_User extends HttpServlet {
     int status,id;
     Connection con;
     Statement st;
+    PreparedStatement ps;
     ResultSet rs;
     String username,password,role,stat,name,contact,email;
     RequestDispatcher rd = null;
@@ -35,18 +36,29 @@ public class Update_User extends HttpServlet {
             
             session = request.getSession();
             con = DB.getConnection();
-            st = con.createStatement();
-             String sql = "UPDATE users SET "
-                           + "username = '"+username+"'"
-                           + ",password = '"+password+ "'"
-                           + ",role = '"+role+"'"                           
-                           + ",status = '"+stat+"'"
-                           + ",name = '"+name+"'"
-                           + ",contact = '"+contact+"'"
-                           + ",email = '"+email+"'"
-                           + "WHERE id = '"+id+"'";
             
-            status=st.executeUpdate(sql);
+            
+             String sql = "UPDATE users SET "
+                           + "username = ?"
+                           + ",password = ?"
+                           + ",role = ?"                           
+                           + ",status = ?"
+                           + ",name = ?"
+                           + ",contact = ?"
+                           + ",email = ?"
+                           + "WHERE id = ?";
+            
+            ps = con.prepareStatement(sql);
+            
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ps.setString(3, role);
+            ps.setString(4, stat);
+            ps.setString(5, name);
+            ps.setString(6, contact);
+            ps.setString(7, email);
+            ps.setInt(8, id);
+            status = ps.executeUpdate();
             if(status>0)
                 {
                     

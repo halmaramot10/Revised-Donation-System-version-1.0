@@ -14,6 +14,7 @@ public class Add_User extends HttpServlet {
     int status=0;
     Connection con;
     Statement st,st1;
+    PreparedStatement ps;
     ResultSet rs;
     RequestDispatcher rd = null;
     
@@ -34,29 +35,33 @@ public class Add_User extends HttpServlet {
             
             session = request.getSession();
             con = DB.getConnection();
-            st = con.createStatement();
-            String sql = "insert into users (username,password,role,status,name,contact,email) values "
-                                    + "('"+username+"',"
-                                    + "'"+password+"',"
-                                    + "'"+role+"',"
-                                    + "'"+stat+"',"
-                                    + "'"+name+"',"
-                                    + "'"+contact+"',"
-                                    + "'"+email+"')";
-                            status=st.executeUpdate(sql);
-                            if(status>0)
-                            {
+            String sql = "insert into users (username,password,role,status,name,contact,email) values (?,?,?,?,?,?,?)";
+            
+            ps = con.prepareStatement(sql);
+            
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ps.setString(3, role);
+            ps.setString(4, stat);
+            ps.setString(5, name);
+            ps.setString(6, contact);
+            ps.setString(7, email);
+            
+            status = ps.executeUpdate();
+             
+            if(status>0)
+            {
 
-                                out.println("User Added Successfully!");
-                                response.sendRedirect("Add_Users");
-                                session.setAttribute("success","User Added Successfully!");
-                            }
-                            else
-                            {
+                out.println("User Added Successfully!");
+                response.sendRedirect("Add_Users");
+                session.setAttribute("success","User Added Successfully!");
+            }
+            else
+            {
 
-                                out.println("Oops! Something went wrong...");
-                                session.setAttribute("error","Oops! Something went wrong...");
-                            }
+                out.println("Oops! Something went wrong...");
+                session.setAttribute("error","Oops! Something went wrong...");
+            }
             
         }catch(SQLException ex) { 
             while (ex!=null) { 

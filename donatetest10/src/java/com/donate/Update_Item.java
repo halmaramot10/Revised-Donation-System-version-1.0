@@ -13,6 +13,7 @@ public class Update_Item extends HttpServlet {
     int status;
     Connection con;
     Statement st;
+    PreparedStatement ps;
     ResultSet rs;
     RequestDispatcher rd = null;
     
@@ -27,13 +28,16 @@ public class Update_Item extends HttpServlet {
             item_name = request.getParameter("item_name");
             session = request.getSession();
             con = DB.getConnection();
-            st = con.createStatement();
             
-            String sql = "UPDATE item_category SET "
-                    + "category = '"+category+"'"
-                    + ",item_name = '"+item_name+"'"
-                    + "where id = '"+id+"'";
-            status = st.executeUpdate(sql);
+            String sql = "UPDATE item_category SET category = ?,item_name = ? where id = ?";
+            
+            ps = con.prepareStatement(sql);
+            ps.setString(1, category);
+            ps.setString(2, item_name);
+            ps.setString(3, id);
+            
+            status = ps.executeUpdate();
+            
             if(status>0)
             {
 

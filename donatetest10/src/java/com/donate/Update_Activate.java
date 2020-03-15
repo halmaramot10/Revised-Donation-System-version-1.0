@@ -14,6 +14,7 @@ public class Update_Activate extends HttpServlet {
     Connection con;
     Statement st;
     ResultSet rs;
+    PreparedStatement ps;
     RequestDispatcher rd = null;
     
     String acid=null,stats = "Active";
@@ -24,11 +25,15 @@ public class Update_Activate extends HttpServlet {
             
             acid = request.getParameter("acid");
             session = request.getSession();
-            con = DB.getConnection();
-            st = con.createStatement();
+            con = DB.getConnection();           
             
-            String sql = "UPDATE users SET status = '"+stats+"' where id = '"+acid+"'";
-            status = st.executeUpdate(sql);
+            String sql = "UPDATE users SET status = ? where id = ?";
+            ps = con.prepareStatement(sql);
+            
+            ps.setString(1, stats);
+            ps.setString(2, acid);
+            
+            status = ps.executeUpdate();
             if(status>0)
             {
 

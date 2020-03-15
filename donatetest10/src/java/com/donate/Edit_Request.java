@@ -14,7 +14,8 @@ public class Edit_Request extends HttpServlet {
     Connection con;
     Statement st;
     ResultSet rs;
-    String type,stat = "Pending",penum;
+    PreparedStatement ps;
+    String type,stat = "Pending",penum,requestby;
     String sql,sql2;
     RequestDispatcher rd = null;
     
@@ -26,30 +27,34 @@ public class Edit_Request extends HttpServlet {
             
             type = request.getParameter("reqtype");
             penum = request.getParameter("reqnum");
-            
-            SimpleDateFormat sdf= new SimpleDateFormat("MM-dd-yyyy");
-            String today = sdf.format(new java.util.Date());
+            requestby = request.getParameter("reqby");
             
             session = request.getSession();
             con = DB.getConnection();
             
+            sql = "INSERT INTO edit_request (type,invoicenum,daterequest) VALUES (?,?,?)";
+            
+            ps = con.prepareStatement(sql);
+            
+            ps.setString(1, type);
+            ps.setString(2, penum);
+            ps.setString(3, requestby);
+            
+            status = ps.executeUpdate();
+                    
+            if(status>0)
+            {
 
-                    st = con.createStatement();
-                        sql = "INSERT INTO edit_request (type,invoicenum,daterequest) VALUES ('"+type+"', '"+penum+"','"+today+"')";
-                    status=st.executeUpdate(sql);
-                    if(status>0)
-                            {
+                out.println("Edit Request Sent");
+                response.sendRedirect("Home_Page");
+                session.setAttribute("success","Edit Request Sent!");
+            }
+            else
+            {
 
-                                out.println("Edit Request Sent");
-                                response.sendRedirect("Home_Page");
-                                session.setAttribute("success","Edit Request Sent!");
-                            }
-                            else
-                            {
-
-                                out.println("Oops! Something went wrong...");
-                                session.setAttribute("error","Oops! Something went wrong...");
-                            }
+                out.println("Oops! Something went wrong...");
+                session.setAttribute("error","Oops! Something went wrong...");
+            }
 
 
         }catch(SQLException ex) { 

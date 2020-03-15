@@ -54,7 +54,7 @@
         <script type="text/javascript" class="init">
             $(document).ready(function() {
                     $('#example').DataTable( {
-                        "order": [[ 8, "desc" ]]
+                        "order": [[ 0, "desc" ]]
                     } );
             } );
 	</script>
@@ -100,7 +100,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-3">
                         <div class="logo">
-                            <a href="Home"><img src="assets/images/media/cpelogo2.png" alt="logo"></a>
+                            <a href="Home"><img src="assets/images/media/logo.png" alt="logo"></a>
                         </div>
                     </div>
                     <!-- profile info & task notification -->
@@ -515,6 +515,7 @@
                                     <table id="example" class="table table-striped table-bordered zero-configuration">
                                         <thead class="text-capitalize">
                                             <tr>
+                                                <th>No</th>
                                                 <th>Invoice No</th>
                                                 <th>Donation Type</th>
                                                 <th>Item Category</th>
@@ -541,6 +542,7 @@
                                             %>  
                                             
                                             <tr>
+                                                <td><%=rs.getString("id")%></td>
                                                 <td><%=rs.getString("invoicenum") %></td>
                                                 <td><%=rs.getString("type") %></td>
                                                 <td><%=rs.getString("item") %></td>
