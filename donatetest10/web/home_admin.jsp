@@ -67,6 +67,7 @@
     Connection con = null;
     Statement st = null;
     ResultSet rs = null;
+    PreparedStatement ps,ps1,ps2,ps3;
     %>
 
     <%
@@ -204,8 +205,8 @@
                                                 <%
                                                         try{
                                                             con=DB.getConnection();
-                                                            st=con.createStatement();
-                                                            rs=st.executeQuery("select * from category");
+                                                            ps = con.prepareStatement("select * from category");
+                                                            rs=ps.executeQuery();
                                                             while(rs.next()){           
                                                     %>
                                                     
@@ -229,8 +230,8 @@
                                                 <%
                                             try{
                                                 con=DB.getConnection();
-                                                st=con.createStatement();
-                                                rs=st.executeQuery("select * from item_category where category = 'Others'");
+                                                ps1 = con.prepareStatement("select * from item_category where category = 'Others'");
+                                                rs=ps1.executeQuery();
                                                 while(rs.next()){           
                                         %>
                                                     
@@ -253,8 +254,8 @@
                                                 <%
                                             try{
                                                 con=DB.getConnection();
-                                                st=con.createStatement();
-                                                rs=st.executeQuery("select * from item_category where category = 'Food'");
+                                                ps1 = con.prepareStatement("select * from item_category where category = 'Food'");
+                                                rs=ps1.executeQuery();
                                                 while(rs.next()){           
                                         %>
                                                     
@@ -277,8 +278,8 @@
                                                 <%
                                             try{
                                                 con=DB.getConnection();
-                                                st=con.createStatement();
-                                                rs=st.executeQuery("select * from item_category where category = 'Clothes'");
+                                                ps1 = con.prepareStatement("select * from item_category where category = 'Clothes'");
+                                                rs=ps1.executeQuery();
                                                 while(rs.next()){           
                                         %>
                                                     
@@ -301,8 +302,8 @@
                                                 <%
                                             try{
                                                 con=DB.getConnection();
-                                                st=con.createStatement();
-                                                rs=st.executeQuery("select * from item_category where category = 'Money'");
+                                                ps1 = con.prepareStatement("select * from item_category where category = 'Money'");
+                                                rs=ps1.executeQuery();
                                                 while(rs.next()){           
                                         %>
                                                     
@@ -325,8 +326,8 @@
                                                 <%
                                             try{
                                                 con=DB.getConnection();
-                                                st=con.createStatement();
-                                                rs=st.executeQuery("select * from item_category where category = 'School Supplies'");
+                                                ps1 = con.prepareStatement("select * from item_category where category = 'School Supplies'");
+                                                rs=ps1.executeQuery();
                                                 while(rs.next()){           
                                         %>
                                                     
@@ -446,8 +447,8 @@
                                                  <%
                                             try{
                                                 con=DB.getConnection();
-                                                st=con.createStatement();
-                                                rs=st.executeQuery("select * from paymet where method='Bank'");
+                                                ps2 = con.prepareStatement("select * from paymet where method = 'Bank'");
+                                                rs=ps2.executeQuery();
                                                 while(rs.next()){           
                                         %>
                                                     
@@ -468,8 +469,8 @@
                                                 <%
                                             try{
                                                 con=DB.getConnection();
-                                                st=con.createStatement();
-                                                rs=st.executeQuery("select * from paymet where method='Online'");
+                                                ps2 = con.prepareStatement("select * from paymet where method = 'Online'");
+                                                rs=ps2.executeQuery();
                                                 while(rs.next()){           
                                         %>
                                                     
@@ -533,10 +534,8 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
-                                                String sql ="SELECT * FROM donation where stat = 'Received' or stat = 'Pending' ";
-
-                                                rs = st.executeQuery(sql);
+                                                ps2 = con.prepareStatement("select * from donation where stat = 'Received' or stat = 'Pending'");
+                                                rs=ps2.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  

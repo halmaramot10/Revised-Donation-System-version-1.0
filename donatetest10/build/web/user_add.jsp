@@ -64,6 +64,7 @@
     Connection con = null;
     Statement st = null;
     ResultSet rs = null;
+    PreparedStatement ps;
     %>
 
     <%
@@ -250,11 +251,10 @@
                                         <tbody>
                                             <%
                                                 try{ 
-                                                con = DB.getConnection();
-                                                st= con.createStatement();
+                                                con = DB.getConnection();                                               
                                                 String sql ="SELECT * FROM users";
-
-                                                rs = st.executeQuery(sql);
+                                                ps = con.prepareStatement(sql);
+                                                rs = ps.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  

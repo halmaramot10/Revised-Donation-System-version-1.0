@@ -58,6 +58,7 @@
     Connection con = null;
     Statement st = null;
     ResultSet rs = null;
+    PreparedStatement ps;
     %>
 
     <%
@@ -194,10 +195,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
-                                                String sql ="SELECT * FROM item_category";
+                                                ps = con.prepareStatement("select * from item_category");
+                                                rs=ps.executeQuery();
 
-                                                rs = st.executeQuery(sql);
                                                 while(rs.next()){
                                                     
                                             %>  
@@ -242,10 +242,8 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
-                                                String sql ="SELECT * FROM paymet";
-
-                                                rs = st.executeQuery(sql);
+                                                ps = con.prepareStatement("select * from paymet");
+                                                rs=ps.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  

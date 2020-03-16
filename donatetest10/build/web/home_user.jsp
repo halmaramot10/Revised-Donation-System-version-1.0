@@ -67,6 +67,7 @@
     Connection con = null;
     Statement st = null;
     ResultSet rs = null;
+    PreparedStatement ps,ps1,ps2,ps3;
     %>
 
     <%
@@ -78,6 +79,7 @@
 
         String name = (String)session.getAttribute("name");
         String uname=(String)session.getAttribute("uname");
+        String id=null;
         if(uname!=null){
     %>
     
@@ -190,8 +192,8 @@
                                                 <%
                                                         try{
                                                             con=DB.getConnection();
-                                                            st=con.createStatement();
-                                                            rs=st.executeQuery("select * from category");
+                                                            ps = con.prepareStatement("select * from category");
+                                                            rs=ps.executeQuery();
                                                             while(rs.next()){           
                                                     %>
                                                     
@@ -215,8 +217,8 @@
                                                 <%
                                             try{
                                                 con=DB.getConnection();
-                                                st=con.createStatement();
-                                                rs=st.executeQuery("select * from item_category where category = 'Others'");
+                                                ps1 = con.prepareStatement("select * from item_category where category = 'Others'");
+                                                rs=ps1.executeQuery();
                                                 while(rs.next()){           
                                         %>
                                                     
@@ -239,8 +241,8 @@
                                                 <%
                                             try{
                                                 con=DB.getConnection();
-                                                st=con.createStatement();
-                                                rs=st.executeQuery("select * from item_category where category = 'Food'");
+                                                ps1 = con.prepareStatement("select * from item_category where category = 'Food'");
+                                                rs=ps1.executeQuery();
                                                 while(rs.next()){           
                                         %>
                                                     
@@ -263,8 +265,8 @@
                                                 <%
                                             try{
                                                 con=DB.getConnection();
-                                                st=con.createStatement();
-                                                rs=st.executeQuery("select * from item_category where category = 'Clothes'");
+                                                ps1 = con.prepareStatement("select * from item_category where category = 'Clothes'");
+                                                rs=ps1.executeQuery();
                                                 while(rs.next()){           
                                         %>
                                                     
@@ -287,8 +289,8 @@
                                                 <%
                                             try{
                                                 con=DB.getConnection();
-                                                st=con.createStatement();
-                                                rs=st.executeQuery("select * from item_category where category = 'Money'");
+                                                ps1 = con.prepareStatement("select * from item_category where category = 'Money'");
+                                                rs=ps1.executeQuery();
                                                 while(rs.next()){           
                                         %>
                                                     
@@ -311,8 +313,8 @@
                                                 <%
                                             try{
                                                 con=DB.getConnection();
-                                                st=con.createStatement();
-                                                rs=st.executeQuery("select * from item_category where category = 'School Supplies'");
+                                                ps1 = con.prepareStatement("select * from item_category where category = 'School Supplies'");
+                                                rs=ps1.executeQuery();
                                                 while(rs.next()){           
                                         %>
                                                     
@@ -432,8 +434,8 @@
                                                  <%
                                             try{
                                                 con=DB.getConnection();
-                                                st=con.createStatement();
-                                                rs=st.executeQuery("select * from paymet where method='Bank'");
+                                                ps2 = con.prepareStatement("select * from paymet where method = 'Bank'");
+                                                rs=ps2.executeQuery();
                                                 while(rs.next()){           
                                         %>
                                                     
@@ -454,8 +456,8 @@
                                                 <%
                                             try{
                                                 con=DB.getConnection();
-                                                st=con.createStatement();
-                                                rs=st.executeQuery("select * from paymet where method='Online'");
+                                                ps2 = con.prepareStatement("select * from paymet where method = 'Online'");
+                                                rs=ps2.executeQuery();
                                                 while(rs.next()){           
                                         %>
                                                     
@@ -511,19 +513,15 @@
                                                 <th>To</th>
                                                 <th>Status</th>
                                                 <th>Date</th>
-                                                <th>Change Status</th>
-                                                <th>Send Request</th>
-                                                
+                                                <th>Change to</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
-                                                String sql ="SELECT * FROM donation where stat = 'Received' ";
-
-                                                rs = st.executeQuery(sql);
+                                                ps2 = con.prepareStatement("select * from donation where stat = 'Received'");
+                                                rs=ps2.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  
@@ -539,22 +537,15 @@
                                                 <td><%=rs.getString("donto") %></td>
                                                 <td><%=rs.getString("stat") %></td>
                                                 <td><%=rs.getString("date") %></td>
-                                                <td align="center">
+                                                <td>
                                                     <form action="Update_Pending" action="post">
                                                         <input type="text" style="display:none" value="<%=rs.getString("type") %>" name="pen">
                                                         <input type="text" style="display:none" value="<%=rs.getString("invoicenum") %>" name="penum">                                                    
                                                         <button type="submit" class="btn btn-warning btn-xs mb-3" >Pending</button>                                                      
                                                     </form>
                                                 </td>
-                                                <td align="center">
-                                                    <form action="Edit_Request" action="post">
-                                                        <input type="text" style="display:none" value="<%=rs.getString("type") %>" name="reqtype">
-                                                        <input type="text" style="display:none" value="<%=rs.getString("invoicenum") %>" name="reqnum">
-                                                        <input type="text" style="display:none" value="<%=rs.getString("addedby") %>" name="reqby"> 
-                                                        <button type="submit" class="btn btn-info btn-xs mb-3" >Edit Request</button>                                                      
-                                                    </form>
-                                                </td>
                                                 
+                                          
                                             </tr>
                                             
                                              <% 

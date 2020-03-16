@@ -66,6 +66,7 @@
     Connection con = null;
     Statement st = null, st2 = null;
     ResultSet rs = null;
+    PreparedStatement ps = null, ps1 = null;
     %>
 
     <%
@@ -86,8 +87,8 @@
             try{
             con = DB.getConnection();
             st = con.createStatement();
-            String sql = "select * from paymet where id = "+id+"";
-            rs = st.executeQuery(sql);
+            ps = con.prepareStatement("select * from paymet where id = "+id+"");
+            rs = ps.executeQuery();
             if(rs.next()){
                 met = rs.getString("method");
                 pay = rs.getString("met_name");
@@ -203,8 +204,8 @@
                                                 <%
                                                     try{
                                                         con=DB.getConnection();
-                                                        st=con.createStatement();
-                                                        rs=st.executeQuery("select * from method");
+                                                        ps1 = con.prepareStatement("select * from method");
+                                                        rs=ps1.executeQuery();
                                                         while(rs.next()){           
                                                 %>
                                                     

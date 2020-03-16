@@ -64,6 +64,7 @@
     Connection con = null;
     Statement st = null;
     ResultSet rs = null;
+    PreparedStatement ps,ps1;
     %>
 
     <%
@@ -84,8 +85,8 @@
             try{
                 id = Integer.parseInt(request.getParameter("id"));
                 con = DB.getConnection();
-                st = con.createStatement();
-                rs = st.executeQuery("select * from users where id="+id+"");
+                ps1 = con.prepareStatement("select * from users where id="+id+"");
+                rs = ps1.executeQuery();
                 if (rs.next()){
                     
                     username = rs.getString("username");
@@ -276,10 +277,9 @@
                                             <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
                                                 String sql ="SELECT * FROM users";
-
-                                                rs = st.executeQuery(sql);
+                                                ps = con.prepareStatement(sql);
+                                                rs = ps.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  

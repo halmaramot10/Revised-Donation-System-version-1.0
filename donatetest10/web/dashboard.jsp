@@ -67,6 +67,7 @@
     Connection con = null;
     Statement st = null;
     ResultSet rs = null;
+    PreparedStatement ps;
     %>
 
     <%
@@ -176,8 +177,8 @@
                                         <%
                                         try{
                                             con = DB.getConnection();
-                                            st = con.createStatement();
-                                            rs = st.executeQuery("select count(*) from donation");
+                                            ps = con.prepareStatement("select count(*) from donation");
+                                            rs = ps.executeQuery();
                                             rs.next();
                                             all = rs.getInt(1);
 
@@ -200,8 +201,8 @@
                                         <%
                                         try{
                                             con = DB.getConnection();
-                                            st = con.createStatement();
-                                            rs = st.executeQuery("select count(*) from clothes_donate");
+                                            ps = con.prepareStatement("select count(*) from clothes_donate");
+                                            rs = ps.executeQuery();
                                             rs.next();
                                             clothes = rs.getInt(1);
 
@@ -224,8 +225,8 @@
                                         <%
                                         try{
                                             con = DB.getConnection();
-                                            st = con.createStatement();
-                                            rs = st.executeQuery("select count(*) from foods_donate");
+                                            ps = con.prepareStatement("select count(*) from foods_donate");
+                                            rs = ps.executeQuery();
                                             rs.next();
                                             food = rs.getInt(1);
 
@@ -248,8 +249,8 @@
                                         <%
                                         try{
                                             con = DB.getConnection();
-                                            st = con.createStatement();
-                                            rs = st.executeQuery("select count(*) from money_donate");
+                                            ps = con.prepareStatement("select count(*) from money_donate");
+                                            rs = ps.executeQuery();
                                             rs.next();
                                             money = rs.getInt(1);
 
@@ -272,8 +273,8 @@
                                         <%
                                         try{
                                             con = DB.getConnection();
-                                            st = con.createStatement();
-                                            rs = st.executeQuery("select count(*) from others_donate");
+                                            ps = con.prepareStatement("select count(*) from others_donate");
+                                            rs = ps.executeQuery();
                                             rs.next();
                                             others = rs.getInt(1);
 
@@ -296,8 +297,8 @@
                                         <%
                                         try{
                                             con = DB.getConnection();
-                                            st = con.createStatement();
-                                            rs = st.executeQuery("select count(*) from school_donate");
+                                            ps = con.prepareStatement("select count(*) from school_donate");
+                                            rs = ps.executeQuery();
                                             rs.next();
                                             school = rs.getInt(1);
 
@@ -335,10 +336,11 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
+                                                
                                                 String sql ="SELECT * FROM edit_request";
+                                                ps = con.prepareStatement(sql);
 
-                                                rs = st.executeQuery(sql);
+                                                rs = ps.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  

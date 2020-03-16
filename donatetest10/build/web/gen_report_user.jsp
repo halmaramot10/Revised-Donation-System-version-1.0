@@ -60,6 +60,7 @@
     Connection con = null;
     Statement st = null;
     ResultSet rs = null;
+    PreparedStatement ps,ps1,ps2,ps3,ps4,ps5,ps6;
     %>
 
     <%
@@ -155,8 +156,8 @@
                                         <%
                                             try{
                                                 con=DB.getConnection();
-                                                st=con.createStatement();
-                                                rs=st.executeQuery("select * from category");
+                                                ps=con.prepareStatement("select * from category");
+                                                rs=ps.executeQuery();
                                                 while(rs.next()){           
                                         %>
                                                     
@@ -207,10 +208,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
                                                 String sql ="SELECT * FROM donation";
-
-                                                rs = st.executeQuery(sql);
+                                                ps1 = con.prepareStatement(sql);
+                                                rs = ps1.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  
@@ -258,10 +258,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
-                                                String sql ="SELECT * FROM donation where stat='Received'";
-
-                                                rs = st.executeQuery(sql);
+                                                String sql ="SELECT * FROM donation where stat = 'Received'";
+                                                ps1 = con.prepareStatement(sql);
+                                                rs = ps1.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  
@@ -309,10 +308,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
                                                 String sql ="SELECT * FROM donation where stat='Pending'";
-
-                                                rs = st.executeQuery(sql);
+                                                ps1 = con.prepareStatement(sql);
+                                                rs = ps1.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  
@@ -360,10 +358,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
-                                                String sql ="SELECT * FROM donation where stat='Released'";
-
-                                                rs = st.executeQuery(sql);
+                                                String sql ="SELECT * FROM donation where stat = 'Released'";
+                                                ps1 = con.prepareStatement(sql);
+                                                rs = ps1.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  
@@ -427,10 +424,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
                                                 String sql ="SELECT * FROM school_donate";
-
-                                                rs = st.executeQuery(sql);
+                                                ps2 = con.prepareStatement(sql);
+                                                rs = ps2.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  
@@ -476,10 +472,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
                                                 String sql ="SELECT * FROM school_donate where stat='Received'";
-
-                                                rs = st.executeQuery(sql);
+                                                ps2 = con.prepareStatement(sql);
+                                                rs = ps2.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  
@@ -525,10 +520,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
                                                 String sql ="SELECT * FROM school_donate where stat='Pending'";
-
-                                                rs = st.executeQuery(sql);
+                                                ps2 = con.prepareStatement(sql);
+                                                rs = ps2.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  
@@ -574,10 +568,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
                                                 String sql ="SELECT * FROM school_donate where stat='Released'";
-
-                                                rs = st.executeQuery(sql);
+                                                ps2 = con.prepareStatement(sql);
+                                                rs = ps2.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  
@@ -641,10 +634,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
                                                 String sql ="SELECT * FROM foods_donate";
-
-                                                rs = st.executeQuery(sql);
+                                                ps3 = con.prepareStatement(sql);
+                                                rs = ps3.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  
@@ -692,10 +684,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
-                                                String sql ="SELECT * FROM foods_donate where stat='Received'";
-
-                                                rs = st.executeQuery(sql);
+                                                String sql ="SELECT * FROM foods_donate where stat = 'Received'";
+                                                ps3 = con.prepareStatement(sql);
+                                                rs = ps3.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  
@@ -743,10 +734,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
-                                                String sql ="SELECT * FROM foods_donate where stat='Pending'";
-
-                                                rs = st.executeQuery(sql);
+                                                String sql ="SELECT * FROM foods_donate where stat = 'Pending'";
+                                                ps3 = con.prepareStatement(sql);
+                                                rs = ps3.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  
@@ -794,10 +784,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
-                                                String sql ="SELECT * FROM foods_donate where stat='Released'";
-
-                                                rs = st.executeQuery(sql);
+                                                String sql ="SELECT * FROM foods_donate where stat = 'Released'";
+                                                ps3 = con.prepareStatement(sql);
+                                                rs = ps3.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  
@@ -862,10 +851,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
                                                 String sql ="SELECT * FROM others_donate";
-
-                                                rs = st.executeQuery(sql);
+                                                ps4 = con.prepareStatement(sql);
+                                                rs = ps4.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  
@@ -913,10 +901,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
-                                                String sql ="SELECT * FROM others_donate where stat='Received'";
-
-                                                rs = st.executeQuery(sql);
+                                                String sql ="SELECT * FROM others_donate where stat = 'Received'";
+                                                ps4 = con.prepareStatement(sql);
+                                                rs = ps4.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  
@@ -964,10 +951,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
-                                                String sql ="SELECT * FROM others_donate where stat='Pending'";
-
-                                                rs = st.executeQuery(sql);
+                                                String sql ="SELECT * FROM others_donate where stat = 'Pending'";
+                                                ps4 = con.prepareStatement(sql);
+                                                rs = ps4.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  
@@ -1015,10 +1001,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
-                                                String sql ="SELECT * FROM others_donate where stat='Released'";
-
-                                                rs = st.executeQuery(sql);
+                                                String sql ="SELECT * FROM others_donate where stat = 'Released'";
+                                                ps4 = con.prepareStatement(sql);
+                                                rs = ps4.executeQuery();
                                                 while(rs.next()){
                                                     
                                             %>  
@@ -1084,10 +1069,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
                                                 String sql ="SELECT * FROM money_donate";
-
-                                                rs = st.executeQuery(sql);
+                                                ps5 = con.prepareStatement(sql);
+                                                rs = ps5.executeQuery();
                                                 while(rs.next()){
 
                                             %>  
@@ -1137,10 +1121,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
                                                 String sql ="SELECT * FROM money_donate where stat = 'Received'";
-
-                                                rs = st.executeQuery(sql);
+                                                ps5 = con.prepareStatement(sql);
+                                                rs = ps5.executeQuery();
                                                 while(rs.next()){
 
                                             %>  
@@ -1190,10 +1173,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
-                                                String sql ="SELECT * FROM money_donate where stat='Pending'";
-
-                                                rs = st.executeQuery(sql);
+                                                String sql ="SELECT * FROM money_donate where stat = 'Pending'";
+                                                ps5 = con.prepareStatement(sql);
+                                                rs = ps5.executeQuery();
                                                 while(rs.next()){
 
                                             %>  
@@ -1243,9 +1225,9 @@
                                                 try{ 
                                                 con = DB.getConnection();
                                                 st= con.createStatement();
-                                                String sql ="SELECT * FROM money_donate where stat='Released'";
-
-                                                rs = st.executeQuery(sql);
+                                                String sql ="SELECT * FROM money_donate where stat = 'Released'";
+                                                ps5 = con.prepareStatement(sql);
+                                                rs = ps5.executeQuery();
                                                 while(rs.next()){
 
                                             %>  
@@ -1311,10 +1293,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
                                                 String sql ="SELECT * FROM clothes_donate";
-
-                                                rs = st.executeQuery(sql);
+                                                ps6 = con.prepareStatement(sql);
+                                                rs = ps6.executeQuery();
                                                 while(rs.next()){
 
                                             %>  
@@ -1364,10 +1345,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
-                                                String sql ="SELECT * FROM clothes_donate where stat='Received'";
-
-                                                rs = st.executeQuery(sql);
+                                                String sql ="SELECT * FROM clothes_donate where stat = 'Received'";
+                                                ps6 = con.prepareStatement(sql);
+                                                rs = ps6.executeQuery();
                                                 while(rs.next()){
 
                                             %>  
@@ -1417,10 +1397,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
-                                                String sql ="SELECT * FROM clothes_donate where stat='Pending'";
-
-                                                rs = st.executeQuery(sql);
+                                                String sql ="SELECT * FROM clothes_donate where stat = 'Pending'";
+                                                ps6 = con.prepareStatement(sql);
+                                                rs = ps6.executeQuery();
                                                 while(rs.next()){
 
                                             %>  
@@ -1470,10 +1449,9 @@
                                                <%
                                                 try{ 
                                                 con = DB.getConnection();
-                                                st= con.createStatement();
-                                                String sql ="SELECT * FROM clothes_donate where stat='Released'";
-
-                                                rs = st.executeQuery(sql);
+                                                String sql ="SELECT * FROM clothes_donate where stat = 'Released'";
+                                                ps6 = con.prepareStatement(sql);
+                                                rs = ps6.executeQuery();
                                                 while(rs.next()){
 
                                             %>  

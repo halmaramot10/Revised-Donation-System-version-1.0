@@ -66,6 +66,7 @@
     Connection con = null;
     Statement st = null;
     ResultSet rs = null;
+    PreparedStatement ps = null,ps1 = null;
     %>
 
     <%
@@ -88,8 +89,8 @@
             try{
                 id = Integer.parseInt(request.getParameter("id"));
                 con = DB.getConnection();
-                st = con.createStatement();
-                rs = st.executeQuery("select * from others_donate where id="+id+"");
+                ps = con.prepareStatement("select * from others_donate where id="+id+"");
+                rs = ps.executeQuery();
                 if (rs.next()){
                     
                     date = rs.getString("date");
@@ -227,8 +228,8 @@
                                                 <%
                                                     try{
                                                         con=DB.getConnection();
-                                                        st=con.createStatement();
-                                                        rs=st.executeQuery("select * from item_category where category = 'Others'");
+                                                        ps1 = con.prepareStatement("select * from item_category where category = 'Others'");
+                                                        rs=ps1.executeQuery();
                                                         while(rs.next()){           
                                                 %>
                                                     
